@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3011791288831495927, guid: 2657f9483353cfd4ab691e6c331ab3fc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.14
+      value: -4.8
       objectReference: {fileID: 0}
     - target: {fileID: 3011791288831495927, guid: 2657f9483353cfd4ab691e6c331ab3fc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -294,7 +294,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -319,7 +319,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0.45, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -678,8 +678,8 @@ Transform:
   m_GameObject: {fileID: 1522267812}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1097, y: -3.35, z: 0}
-  m_LocalScale: {x: 21.6625, y: 1, z: 1}
+  m_LocalPosition: {x: 0.1097, y: -8.58, z: 0}
+  m_LocalScale: {x: 66.88297, y: 1.725, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -840,7 +840,7 @@ Transform:
   m_GameObject: {fileID: 1607437290}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.8, y: -1.52, z: 0}
+  m_LocalPosition: {x: -8.8, y: -6.46, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -943,7 +943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3011791288831495927, guid: 2657f9483353cfd4ab691e6c331ab3fc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.44
+      value: -6.38
       objectReference: {fileID: 0}
     - target: {fileID: 3011791288831495927, guid: 2657f9483353cfd4ab691e6c331ab3fc, type: 3}
       propertyPath: m_LocalPosition.z
