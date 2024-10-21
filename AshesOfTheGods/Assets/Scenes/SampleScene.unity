@@ -696,6 +696,7 @@ GameObject:
   - component: {fileID: 1607437293}
   - component: {fileID: 1607437292}
   - component: {fileID: 1607437291}
+  - component: {fileID: 1607437295}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -716,7 +717,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_GravityScale: 9.8
   m_Material: {fileID: 0}
@@ -846,6 +847,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1607437295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607437290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecdba2e762e25b74ea0a190f88b9a329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  airSpeedMultiplier: 1
 --- !u!1 &1886880297
 GameObject:
   m_ObjectHideFlags: 0
