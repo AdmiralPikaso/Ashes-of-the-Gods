@@ -4,17 +4,5 @@ using UnityEngine;
 public class Player : Entity
 {
     protected Rigidbody2D rigidB;
-    void Awake()
-    {
-
-    }
-    void Update()
-    {
-        
-    }
-
-    void FixedUpdate()
-    {
-       
-    }
+    [SerializeField] protected float jumpForce;
 }

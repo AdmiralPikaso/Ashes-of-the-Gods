@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : Player
 {
@@ -7,15 +9,29 @@ public class PlayerMovement : Player
         rigidB = GetComponent<Rigidbody2D>();
     }
 
-    private Vector2 HorInput;
+    private bool JumpPressed;
+
+    private void JumpLogic()
+    {
+        JumpPressed = Input.GetKeyDown(KeyCode.Space);
+        if (!in_air && JumpPressed)
+        {
+            rigidB.AddForceY(jumpForce, ForceMode2D.Impulse);
+            JumpPressed = false;
+        }
+    }
+
     void Update()
     {
-        HorInput = new Vector2(Input.GetAxis("Horizontal"), 0);
-        MovementLogic(rigidB,HorInput,speed);
+        moveDirection = Input.GetAxis("Horizontal");
+        in_air = !on_ground && !on_platform;
+        JumpLogic();
     }
 
     void FixedUpdate()
     {
-        
+
+        MovementLogic(rigidB, moveDirection);
     }
+
 }
