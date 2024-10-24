@@ -11,10 +11,11 @@ public class PlayerMovement : Player
     void Update()
     {
         HorInput = new Vector2(Input.GetAxis("Horizontal"), 0);
+        MovementLogic(rigidB,HorInput,speed);
     }
 
     void FixedUpdate()
     {
-        Movement(rigidB, HorInput);
+        
     }
 }
