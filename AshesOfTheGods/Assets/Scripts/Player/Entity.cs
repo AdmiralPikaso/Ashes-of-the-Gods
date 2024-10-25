@@ -8,9 +8,15 @@ public class Entity : MonoBehaviour
     [SerializeField] protected float airSpeedMultiplier;
     protected float moveDirection;
 
-    protected bool on_ground;
-    protected bool on_platform;
+    protected bool on_ground = false;
+    protected bool on_platform = false;
     protected bool in_air = false;
+    protected bool in_wall = false;
+
+    protected float lastMoveDir = 0;
+
+    public float GetMoveDir() => lastMoveDir;
+    public float GetSpeed() => speed;
 
     /// <summary>
     /// Вызывать в FixedUpdate, в moveDir передавать ввод(Значение от -1 до 1), speed - скорость.
@@ -20,40 +26,41 @@ public class Entity : MonoBehaviour
     /// <param name="speed"></param>
     public void MovementLogic(Rigidbody2D rigidB, float moveDir)
     {
-        // rigidB.MovePosition(new Vector2(rigidB.position.x + moveDir * speed * Time.fixedDeltaTime, rigidB.position.y));
-        rigidB.linearVelocityX = speed * moveDir;
+        if (!in_wall)
+            rigidB.linearVelocityX = speed * moveDir;
+        else
+        {
+            if (lastMoveDir == moveDir)
+                rigidB.linearVelocityX = 0;
+            else rigidB.linearVelocityX = speed * moveDir;
+            lastMoveDir = moveDir;
+        }
     }
 
     protected void OnCollisionEnter2D(Collision2D collision)
     {
-        Vector2 BordersCollisionCoordinates =
-        new Vector2(collision.gameObject.transform.position.x - collision.gameObject.transform.localScale.x,
-        collision.gameObject.transform.position.x + collision.gameObject.transform.localScale.x);
-
-        Vector2 BordersObjectCoorditates =
-        new Vector2(this.transform.position.x - this.transform.localScale.x,
-        this.transform.position.x + this.transform.localScale.x);
-
-        /* if (this.transform.position.y - this.transform.localScale.y > collision.transform.position.y
-        && BordersObjectCoorditates.x > BordersCollisionCoordinates.x + 0.1e2
-        && BordersObjectCoorditates.y < BordersCollisionCoordinates.y - 0.1e2
-         )*/
+        GameObject collisionObject = collision.gameObject;
+        if (collisionObject.CompareTag("Ground"))
+            on_ground = true;
+        if (collisionObject.CompareTag("Platform"))
+            on_platform = true;
+        if (collisionObject.CompareTag("PlatformDown"))
         {
-            if (collision.gameObject.CompareTag("Ground"))
-                on_ground = true;
-            if (collision.gameObject.CompareTag("Platform"))
-                on_platform = true;
-
+            on_platform = false;
         }
-        print($"{this.transform.position.y - this.transform.localScale.y} > {collision.transform.position.y + collision.gameObject.transform.localScale.y + 0.1e2}\n{BordersObjectCoorditates.x} > {BordersCollisionCoordinates.x} \n {BordersObjectCoorditates.y} < {BordersCollisionCoordinates.y}");
+        if (collisionObject.CompareTag("Wall"))
+            in_wall = true;
     }
 
     protected void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        GameObject collisionObject = collision.gameObject;
+        if (collisionObject.CompareTag("Ground"))
             on_ground = false;
-        if (collision.gameObject.CompareTag("Platform"))
+        if (collisionObject.CompareTag("Platform"))
             on_platform = false;
+        if (collisionObject.CompareTag("Wall"))
+            in_wall = false;
     }
 
 }
