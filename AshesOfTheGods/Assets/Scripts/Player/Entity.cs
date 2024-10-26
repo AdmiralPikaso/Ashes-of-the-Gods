@@ -35,6 +35,8 @@ public class Entity : MonoBehaviour
             else rigidB.linearVelocityX = speed * moveDir;
             lastMoveDir = moveDir;
         }
+        //print(in_wall);
+        //print(rigidB.linearVelocityX);
     }
 
     protected void OnCollisionEnter2D(Collision2D collision)
@@ -49,7 +51,10 @@ public class Entity : MonoBehaviour
             on_platform = false;
         }
         if (collisionObject.CompareTag("Wall"))
+        {
             in_wall = true;
+        }
+        print(in_wall);
     }
 
     protected void OnCollisionExit2D(Collision2D collision)
@@ -61,6 +66,7 @@ public class Entity : MonoBehaviour
             on_platform = false;
         if (collisionObject.CompareTag("Wall"))
             in_wall = false;
+        print(in_wall);
     }
 
 }
