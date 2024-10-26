@@ -18,21 +18,18 @@ public class Entity : MonoBehaviour
     public float GetMoveDir() => lastMoveDir;
     public float GetSpeed() => speed;
 
-    /// <summary>
-    /// Вызывать в FixedUpdate, в moveDir передавать ввод(Значение от -1 до 1), speed - скорость.
-    /// </summary>
-    /// <param name="rigidB"></param>
-    /// <param name="moveDir"></param>
-    /// <param name="speed"></param>
     public void MovementLogic(Rigidbody2D rigidB, float moveDir)
     {
+        float RealSpeed = speed;
+        if (in_air)
+            RealSpeed *= airSpeedMultiplier;
         if (!in_wall)
-            rigidB.linearVelocityX = speed * moveDir;
+            rigidB.linearVelocityX = RealSpeed * moveDir;
         else
         {
             if (lastMoveDir == moveDir)
                 rigidB.linearVelocityX = 0;
-            else rigidB.linearVelocityX = speed * moveDir;
+            else rigidB.linearVelocityX = RealSpeed * moveDir;
             lastMoveDir = moveDir;
         }
         //print(in_wall);
@@ -54,7 +51,7 @@ public class Entity : MonoBehaviour
         {
             in_wall = true;
         }
-        print(in_wall);
+
     }
 
     protected void OnCollisionExit2D(Collision2D collision)
@@ -66,7 +63,7 @@ public class Entity : MonoBehaviour
             on_platform = false;
         if (collisionObject.CompareTag("Wall"))
             in_wall = false;
-        print(in_wall);
+
     }
 
 }
