@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
+  - Platform
+  - Wall
+  - PlatformDown
   - Guarded Point
   layers:
   - Default
