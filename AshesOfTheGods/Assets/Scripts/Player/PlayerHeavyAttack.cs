@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerAttack : Player
+public class PlayerHeavyAttack : Player
 {
     [SerializeField] public Transform attackPoint;
     [SerializeField] public LayerMask damageableLayerMask;

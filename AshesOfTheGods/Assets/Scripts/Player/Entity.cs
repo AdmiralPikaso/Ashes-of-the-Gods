@@ -47,7 +47,7 @@ public class Entity : MonoBehaviour
         {
             on_platform = false;
         }
-        if (collisionObject.CompareTag("Wall"))
+        if (collisionObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy"))
         {
             in_wall = true;
         }
