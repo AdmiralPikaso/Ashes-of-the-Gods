@@ -1,27 +1,27 @@
 using UnityEngine;
 
-public class PlayerHeavyAttack : Player
+public class PlayerHeavyAttack : MonoBehaviour
 {
-    [SerializeField] public Transform attackPoint;
-    [SerializeField] public LayerMask damageableLayerMask;
-    [SerializeField] public float damage;
-    [SerializeField] public float attackRange;
-    [SerializeField] public float timeBtwAttack;
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private LayerMask damageableLayerMask;
+    [SerializeField] private float damage;
+    [SerializeField] private float attackRange;
+    [SerializeField] private float timeBtwAttack;
 
     private float timer;
 
-    private void Update()
+    public void Update()
     {
         Attack();
     }
 
-    private void OnDrawGizmosSelected()
+    public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
-    private void Attack()
+    public void Attack()
     {
         if (timer <= 0)
         {

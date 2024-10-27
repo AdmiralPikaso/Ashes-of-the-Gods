@@ -61,7 +61,7 @@ public class Entity : MonoBehaviour
             on_ground = false;
         if (collisionObject.CompareTag("Platform"))
             on_platform = false;
-        if (collisionObject.CompareTag("Wall"))
+        if (collisionObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy"))
             in_wall = false;
 
     }

@@ -2,25 +2,25 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] protected float speed;
+    [SerializeField] private float speed;
     private Transform player;
     private Rigidbody2D rb;
     private Vector2 movement;
-    [SerializeField] protected float atackDistanse;
+    [SerializeField] private float atackDistanse;
     private bool onAtackDistanse = false;
     private bool on_ground = false;
 
-    [SerializeField] protected Transform guardedPoint;
+    [SerializeField] private Transform guardedPoint;
     private bool guardModeRightMove;
-    [SerializeField] protected float guardDistance;
+    [SerializeField] private float guardDistance;
     private Vector2 returnMovement;
 
-    bool guardMode = true;
-    bool angryMode = false;
-    bool returnMode = false;
+    private bool guardMode = true;
+    private bool angryMode = false;
+    private bool returnMode = false;
 
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player").transform;
@@ -29,29 +29,29 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Проверка дистанции для атаки
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         if (Vector2.Distance(player.position, transform.position) <= atackDistanse-1)
             onAtackDistanse = true;
         
         else
             onAtackDistanse = false;
 
-        //вектор в сторону игрока
+        //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         movement = (player.position - transform.position).normalized;
         movement.y = 0;
 
-        //вектор в сторону зоны патрулирования
+        //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         returnMovement = (guardedPoint.position - transform.position).normalized;
         returnMovement.y = 0;
 
-        //находится ли скелет в зоне патрулирования
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (Vector2.Distance(rb.position, guardedPoint.position) < guardDistance + 0.1f && !angryMode)
         {
             guardMode = true;
             returnMode = false;
         }
 
-        //находится ли игрок в зоне патрулирования
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (Vector2.Distance(player.position,guardedPoint.position) < guardDistance)
         {
             angryMode = true;
@@ -78,27 +78,27 @@ public class EnemyMovement : MonoBehaviour
         if (guardMode)
             GuardMode(); 
     }
-    protected void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject collisionObject = collision.gameObject;
         if (collisionObject.CompareTag("Ground"))
             on_ground = true;
     }
 
-    protected void OnCollisionExit2D(Collision2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
         GameObject collisionObject = collision.gameObject;
         if (collisionObject.CompareTag("Ground"))
             on_ground = false;
     }
 
-    //Движение за игроком
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     private void AngryMode(Vector2 movement)
     {
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 
-    //Зона патрулирования
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     private void GuardMode()
     {
         if (rb.position.x > guardedPoint.position.x + guardDistance)
@@ -114,7 +114,7 @@ public class EnemyMovement : MonoBehaviour
             rb.MovePosition(rb.position + Vector2.left*speed * Time.fixedDeltaTime);
     }
 
-    //Возвращение в зону патрулирования
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     private void ReturnMode()
     {
             rb.MovePosition(rb.position + returnMovement * speed * Time.fixedDeltaTime);   

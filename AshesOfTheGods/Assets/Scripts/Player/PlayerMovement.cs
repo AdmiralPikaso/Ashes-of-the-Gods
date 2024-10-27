@@ -30,7 +30,7 @@ public class PlayerMovement : Player
 
     void FixedUpdate()
     {
-        print($"{in_wall}, {on_ground},{on_platform}");
+        //print($"{in_wall}, {on_ground},{on_platform}");
         MovementLogic(rigidB, moveDirection);
     }
 
