@@ -8,11 +8,12 @@ TagManager:
   - Platform
   - Wall
   - PlatformDown
+  - Guarded Point
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 
