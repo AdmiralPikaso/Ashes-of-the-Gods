@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerHeavyAttack : MonoBehaviour
@@ -5,46 +6,65 @@ public class PlayerHeavyAttack : MonoBehaviour
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask damageableLayerMask;
     [SerializeField] private float damage;
-    [SerializeField] private float attackRange;
-    [SerializeField] private float timeBtwAttack;
-
-    private float timer;
+    [SerializeField] private float attackSpeed;
+    private bool waitMode = false;
+    
+    public void Start()
+    {
+        StartCoroutine(AttackCooldown(attackSpeed));
+    }
 
     public void Update()
     {
-        Attack();
+        HandleMovement();
+
+        if (Input.GetAxis("Fire2") != 0 && !waitMode)
+        {
+            Attack();
+        }
+    }
+
+    private void HandleMovement()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");
+
+        if (horizontalInput == 1 && attackPoint.localPosition.x < 0)
+        {
+            attackPoint.localPosition = new Vector3(-attackPoint.localPosition.x, attackPoint.localPosition.y, attackPoint.localPosition.z);
+        }
+        else if (horizontalInput == -1 && attackPoint.localPosition.x > 0)
+        {
+            attackPoint.localPosition = new Vector3(-attackPoint.localPosition.x, attackPoint.localPosition.y, attackPoint.localPosition.z);
+        }
     }
 
     public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawRay(transform.position, attackPoint.position - transform.position);
     }
 
     public void Attack()
     {
-        if (timer <= 0)
+        Vector2 direction = attackPoint.position - transform.position;
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction, direction.magnitude, damageableLayerMask);
+        foreach (RaycastHit2D hit in hits)
         {
-            if (Input.GetAxis("Fire2") != 0)
-            {
-                print("Нажато");
-
-                Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, damageableLayerMask);
-                print(enemies.Length);
-                if (enemies.Length != 0)
-                {
-                    for (int i = 0; i < enemies.Length; i++)
-                    {
-                        enemies[i].GetComponent<Enemy>().TakeDamage(damage);
-                        print("Урон нанесён");
-                    }
-                }
-                timer = timeBtwAttack;
-            }
+            hit.collider.GetComponent<Enemy>().TakeDamage(damage);
         }
-        else
+        waitMode = true;
+    }
+
+    private IEnumerator AttackCooldown(float attackSpeed)
+    {
+        while (true)
         {
-            timer -= Time.deltaTime;
+            if (waitMode)
+            {
+                yield return new WaitForSeconds(attackSpeed);
+                waitMode = false;
+            }
+            yield return new WaitForFixedUpdate();
         }
     }
 }

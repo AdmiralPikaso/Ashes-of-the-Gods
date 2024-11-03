@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerRegularAttack : MonoBehaviour
@@ -5,40 +7,65 @@ public class PlayerRegularAttack : MonoBehaviour
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask damageableLayerMask;
     [SerializeField] private float damage;
-    [SerializeField] private float attackRange;
-    [SerializeField] private float timeBtwAttack;
+    [SerializeField] private float attackSpeed;
+    private bool waitMode = false;
 
-    private float timer = 0;
+    public void Start()
+    {
+        StartCoroutine(AttackCooldown(attackSpeed));
+    }
 
     public void Update()
     {
-        Attack();
+        HandleMovement();
+
+        if (Input.GetAxis("Fire1") != 0 && !waitMode)
+        {
+            Attack();
+        }
+    }
+
+    private void HandleMovement()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");
+
+        if (horizontalInput == 1 && attackPoint.localPosition.x < 0)
+        {
+            attackPoint.localPosition = new Vector3(-attackPoint.localPosition.x, attackPoint.localPosition.y, attackPoint.localPosition.z);
+        }
+        else if (horizontalInput == -1 && attackPoint.localPosition.x > 0)
+        {
+            attackPoint.localPosition = new Vector3(-attackPoint.localPosition.x, attackPoint.localPosition.y, attackPoint.localPosition.z);
+        }
     }
 
     public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawRay(transform.position, attackPoint.position - transform.position);
     }
 
     public void Attack()
     {
-        if (timer <= 0)
+        Vector2 direction = attackPoint.position - transform.position;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, direction.magnitude, damageableLayerMask);
+        if (hit.collider != null)
         {
-            if (Input.GetAxis("Fire1") != 0)
-            {
-                // Проверяем ближайшего врага
-                Collider2D closestEnemy = Physics2D.OverlapCircle(attackPoint.position, attackRange, damageableLayerMask);
-
-                if (closestEnemy != null)
-                    closestEnemy.GetComponent<Enemy>().TakeDamage(damage);
-                timer = timeBtwAttack;
-                print("Атакован");
-            }
+            hit.collider.GetComponent<Enemy>().TakeDamage(damage);
         }
-        else
+        waitMode = true;
+    }
+
+    private IEnumerator AttackCooldown(float attackSpeed)
+    {
+        while (true)
         {
-            timer -= Time.deltaTime;
+            if (waitMode)
+            {
+                yield return new WaitForSeconds(attackSpeed);
+                waitMode = false;
+            }
+            yield return new WaitForFixedUpdate();
         }
     }
 }
