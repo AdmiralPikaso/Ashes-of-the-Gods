@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerCollisionState:MonoBehaviour
+public class PlayerCollisionState : MonoBehaviour
 {
     private bool on_ground = false;
     private bool on_platform = false;
@@ -12,7 +12,7 @@ public class PlayerCollisionState:MonoBehaviour
             on_ground = true;
         if (collisionObject.CompareTag("Platform"))
             on_platform = true;
-        
+
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -21,11 +21,11 @@ public class PlayerCollisionState:MonoBehaviour
             on_ground = false;
         if (collisionObject.CompareTag("Platform"))
             on_platform = false;
-       
+
     }
 
     public bool GetOnPlatform()
-    { 
+    {
         return on_platform;
     }
 }

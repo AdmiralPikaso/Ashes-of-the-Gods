@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -8,6 +9,10 @@ public class PlayerMovement : MonoBehaviour
     private bool on_platform = false;
     private bool in_air = false;
     private bool in_wall = false;
+    public bool GetOnPlatform()
+    {
+        return on_platform;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject collisionObject = collision.gameObject;
@@ -33,13 +38,11 @@ public class PlayerMovement : MonoBehaviour
     private bool in_enemy;
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        print("AXAXA");
         if (coll.CompareTag("Enemy"))
             speed = speed / 2;
     }
     private void OnTriggerExit2D(Collider2D coll)
     {
-        print("ИХИХИ");
         if (coll.CompareTag("Enemy"))
             speed = speed *= 2;
     }
@@ -56,10 +59,14 @@ public class PlayerMovement : MonoBehaviour
     private float lastMoveDir = 0;
     public float GetMoveDir() => lastMoveDir;
     public float GetSpeed() => speed;
-
     public void SetSpeed(float newSpeed) => speed = newSpeed;
 
-    public void MovementLogic(Rigidbody2D rigidB, float moveDir)
+    public float GetVelocityX() => rigidB.linearVelocityX;
+    public void SetVelocityX(float newVel) => rigidB.linearVelocityX = newVel;
+
+
+
+    public void MovementLogic(float moveDir)
     {
         float RealSpeed = speed;
         if (in_air)
@@ -99,6 +106,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        MovementLogic(rigidB, moveDirection);
+        MovementLogic(moveDirection);
     }
 }

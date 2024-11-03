@@ -8,8 +8,8 @@ public class FirstSkill : MonoBehaviour
     [SerializeField] private float CoolDownTime = 10;
     private PlayerMovement pMovement;
     private bool ready = true;
-    public bool In_armor {get; private set;} = false;
-    public int AttacksCount {get;set;}
+    public bool In_armor { get; private set; } = false;
+    public int AttacksCount { get; set; }
     void Awake()
     {
         pMovement = this.GetComponent<PlayerMovement>();
@@ -38,16 +38,13 @@ public class FirstSkill : MonoBehaviour
         pMovement.SetSpeed(pMovement.GetSpeed() / 1.5f);
         this.GetComponent<SpriteRenderer>().color = Color.red;
         In_armor = false;
-        AttacksCount = 0;  
+        AttacksCount = 0;
     }
 
     private IEnumerator WaitMode()
     {
         while (true)
         {
-            if (In_armor && AttacksCount <=5)
-            AttacksCount+=2;
-                yield return new WaitForSeconds(1);
             if (!ready && !In_armor)
             {
                 print("Кнопка уходит в кд");

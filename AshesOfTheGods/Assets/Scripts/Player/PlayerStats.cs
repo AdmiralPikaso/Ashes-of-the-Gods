@@ -9,7 +9,9 @@ public class PlayerStats : MonoBehaviour
     {
         if (this.GetComponent<FirstSkill>().In_armor)
             this.GetComponent<FirstSkill>().AttacksCount+=1;
+        else{
         HpNow -= damage;
+        }
         if (HpNow <= 0)
             Lose();
     }
@@ -19,5 +21,8 @@ public class PlayerStats : MonoBehaviour
         //Some code
         HpNow = hp;
     }
-
+    void Update()
+    {
+        print(HpNow);
+    }
 }
