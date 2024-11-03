@@ -33,7 +33,6 @@ public class PlayerRegularAttack : MonoBehaviour
                 if (closestEnemy != null)
                     closestEnemy.GetComponent<Enemy>().TakeDamage(damage);
                 timer = timeBtwAttack;
-                print("Атакован");
             }
         }
         else

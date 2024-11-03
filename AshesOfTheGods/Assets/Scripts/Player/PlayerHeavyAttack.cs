@@ -36,7 +36,7 @@ public class PlayerHeavyAttack : MonoBehaviour
                     for (int i = 0; i < enemies.Length; i++)
                     {
                         enemies[i].GetComponent<Enemy>().TakeDamage(damage);
-                        print("Урон нанесён");
+                        
                     }
                 }
                 timer = timeBtwAttack;

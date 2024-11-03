@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
             on_platform = true;
         if (collisionObject.CompareTag("PlatformDown"))
             on_platform = false;
-        if (collisionObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy"))
+        if (collisionObject.CompareTag("Wall"))
             in_wall = true;
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -27,10 +27,22 @@ public class PlayerMovement : MonoBehaviour
             on_ground = false;
         if (collisionObject.CompareTag("Platform"))
             on_platform = false;
-        if (collisionObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy"))
+        if (collisionObject.CompareTag("Wall"))
             in_wall = false;
     }
-
+    private bool in_enemy;
+    private void OnTriggerEnter2D(Collider2D coll)
+    {
+        print("AXAXA");
+        if (coll.CompareTag("Enemy"))
+            speed = speed / 2;
+    }
+    private void OnTriggerExit2D(Collider2D coll)
+    {
+        print("ИХИХИ");
+        if (coll.CompareTag("Enemy"))
+            speed = speed *= 2;
+    }
     private Rigidbody2D rigidB;
     void Awake()
     {
@@ -45,11 +57,18 @@ public class PlayerMovement : MonoBehaviour
     public float GetMoveDir() => lastMoveDir;
     public float GetSpeed() => speed;
 
+    public void SetSpeed(float newSpeed) => speed = newSpeed;
+
     public void MovementLogic(Rigidbody2D rigidB, float moveDir)
     {
         float RealSpeed = speed;
         if (in_air)
             RealSpeed *= airSpeedMultiplier;
+        if (in_enemy)
+        {
+            RealSpeed /= 2;
+            in_enemy = false;
+        }
         if (!in_wall)
             rigidB.linearVelocityX = RealSpeed * moveDir;
         else
@@ -80,7 +99,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        //print($"{in_wall}, {on_ground},{on_platform}"); //if you need debug colission uncommnet it
         MovementLogic(rigidB, moveDirection);
     }
 }
