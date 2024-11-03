@@ -5,7 +5,7 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private float hp;
     public float HpNow { get; private set; }
-    public void IncHp(float damage)
+    public void ReduceHp(float damage)
     {
         if (this.GetComponent<FirstSkill>().In_armor)
             this.GetComponent<FirstSkill>().AttacksCount+=1;
