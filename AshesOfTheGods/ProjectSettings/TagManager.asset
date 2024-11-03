@@ -10,6 +10,7 @@ TagManager:
   - PlatformDown
   - Guarded Point
   - Enemy
+  - AboveEnemyHead
   layers:
   - Default
   - TransparentFX
