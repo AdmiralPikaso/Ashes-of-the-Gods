@@ -23,6 +23,6 @@ public class PlayerStats : MonoBehaviour
     }
     void Update()
     {
-        print(HpNow);
+       // print(HpNow);
     }
 }

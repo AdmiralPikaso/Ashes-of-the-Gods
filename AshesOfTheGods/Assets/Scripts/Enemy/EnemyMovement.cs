@@ -3,36 +3,15 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private float speed;
 
     private Rigidbody2D rb;
-    private Vector2 movement;
-    [SerializeField] private float atackDistanse;
-    private bool onAtackDistanse = false;
-
-    [SerializeField] private Transform firstGuardedPoint;
-    [SerializeField] private Transform secondGuardedPoint;
-    private bool guardModeRightMove = false;
-    [SerializeField] private float guardDistance;
-    private Vector2 returnMovement;
-
-    private bool guardMode = true;
-    private bool angryMode = false;
-    private bool returnMode = false;
-
-    private bool guardWaitMode = false;
-    private bool returnWaitMode = false;
-    private bool returnWaitModeFlag = false;
-    [SerializeField] float guardWaitTime;
-    [SerializeField] float targetLostTime;
-
     private GameObject player;
     private Transform playerTransform;
+    [Header("Точки режима патрулирования")]
+    [SerializeField] private Transform firstGuardedPoint;
+    [SerializeField] private Transform secondGuardedPoint;
+    
     private PlayerMovement player_on_platform;
-
-    [SerializeField] float enemyDamage;
-    private bool enemyCanAtack = true;
-    [SerializeField] float atackCoodown;
 
     void Awake()
     {
@@ -49,16 +28,35 @@ public class EnemyMovement : MonoBehaviour
     }
 
 
-
     private void Start()
     {
-        StartCoroutine(WaitMode(guardWaitTime, targetLostTime, atackCoodown));
+        StartCoroutine(WaitMode());
     }
+
+
+    private bool guardMode = true;
+    private bool angryMode = false;
+    private bool returnMode = false;
     void Update()
     {
         print($"{guardMode}{angryMode}{returnMode}");
         Debug.DrawRay(new Vector3(firstGuardedPoint.position.x, -500, 0), new Vector3(0, 1000, 0));
-        Debug.DrawRay(new Vector3(secondGuardedPoint.position.x, -500, 0), new Vector3(0, 1000, 0));
+        Debug.DrawRay(new Vector3(secondGuardedPoint.position.x, -500, 0), new Vector3(0, 1000, 0)); 
+    }
+
+    
+    [Space]
+    [Header("дальность атаки и дальность зрения")]
+    [SerializeField] float distance;
+    [SerializeField] private float atackDistanse;
+    
+    public LayerMask layerMask;
+    private Vector2 movement;
+    private bool onAtackDistanse = false;
+    private Vector2 returnMovement;
+    private bool returnWaitModeFlag = false;
+    private void FixedUpdate()
+    { 
         //Atack Distance check
         if (Vector2.Distance(playerTransform.position, transform.position) <= atackDistanse - 1)
             onAtackDistanse = true;
@@ -81,6 +79,12 @@ public class EnemyMovement : MonoBehaviour
             returnMovement = (secondGuardedPoint.position - transform.position - new Vector3(1, 0, 0)).normalized;
             returnMovement.y = 0;
         }
+
+        RaycastHit2D enemyVisionRight = Physics2D.Raycast(transform.position, Vector2.right, distance,layerMask);
+        RaycastHit2D enemtVisionLeft = Physics2D.Raycast(transform.position, Vector2.left, distance,layerMask);
+        Debug.DrawRay(transform.position, Vector2.right * distance, Color.green);
+        Debug.DrawRay(transform.position, Vector2.left * distance, Color.green);
+
         //exit from return, entrance to guard
         if (rb.position.x - transform.localScale.x >= firstGuardedPoint.position.x - 0.1f & rb.position.x + transform.localScale.x <= secondGuardedPoint.position.x + 0.5f & !angryMode)
         {
@@ -88,11 +92,14 @@ public class EnemyMovement : MonoBehaviour
             guardMode = true;
         }
 
-        //exit from guard, entrance to angry
 
-        if (playerTransform.position.x > firstGuardedPoint.position.x & playerTransform.position.x < secondGuardedPoint.position.x)
+        //exit from guard, entrance to angry
+        //if (playerTransform.position.x > firstGuardedPoint.position.x & playerTransform.position.x < secondGuardedPoint.position.x)
+        if (enemyVisionRight.collider != null | enemtVisionLeft.collider !=null)
         {
+           // Debug.Log("Enemy Detected");
             guardMode = false;
+            returnMode = false;
             angryMode = true;
         }
 
@@ -104,12 +111,6 @@ public class EnemyMovement : MonoBehaviour
             returnMode = true;
             returnWaitModeFlag = true;
         }
-    }
-
-
-
-    private void FixedUpdate()
-    {
 
         if (!onAtackDistanse & angryMode)
             AngryMode(movement);
@@ -123,12 +124,17 @@ public class EnemyMovement : MonoBehaviour
         if (guardMode)
             GuardMode();
     }
+
+    [Space]
+    [SerializeField] private float speed;
     private void AngryMode(Vector2 movement)
     {
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 
 
+    private bool guardModeRightMove = false;
+    private bool guardWaitMode = false;
     private void GuardMode()
     {
         if (guardModeRightMove & !guardWaitMode)
@@ -149,7 +155,8 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-
+    
+    private bool returnWaitMode = false;
     private void ReturnMode()
     {
         if (returnWaitModeFlag)
@@ -162,6 +169,9 @@ public class EnemyMovement : MonoBehaviour
 
     }
 
+    
+    [SerializeField] float enemyDamage;
+    private bool enemyCanAtack = true;
     private void AtackMode()
     {
         Debug.Log("Скелет бьёт");
@@ -170,7 +180,13 @@ public class EnemyMovement : MonoBehaviour
         enemyCanAtack = false;
     }
 
-    private IEnumerator WaitMode(float guardWaitTime, float targetLostTime, float atackCoodown)
+    [Space]
+    [Header("Время ожидания на точке, ожидания после потери и кд атаки")]
+    [SerializeField] float guardWaitTime;
+    [SerializeField] float targetLostTime;
+    [SerializeField] float atackCoodown;
+    
+    private IEnumerator WaitMode()
     {
         while (true)
         {

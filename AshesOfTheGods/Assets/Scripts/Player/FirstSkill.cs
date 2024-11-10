@@ -22,7 +22,7 @@ public class FirstSkill : MonoBehaviour
 
         if (AttacksCount >= 5)
             RemArmor();
-        print($"{In_armor}, {ready}, {AttacksCount}");
+        //print($"{In_armor}, {ready}, {AttacksCount}");
     }
 
     private void GetArmor()
