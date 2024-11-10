@@ -5,22 +5,28 @@ public class PlayerHeavyAttack : MonoBehaviour
 {
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask damageableLayerMask;
-    [SerializeField] private float damage;
-    [SerializeField] private float attackSpeed;
+    private float damage;
+    private float attackColldown;
     private bool waitMode = false;
-    
+    private bool KeyWasPressed = false;
+
     public void Start()
     {
-        StartCoroutine(AttackCooldown(attackSpeed));
+        damage = 30;
+        attackColldown = 1.0f;
+        StartCoroutine(AttackCooldown(attackColldown));
     }
 
     public void Update()
     {
         HandleMovement();
 
-        if (Input.GetAxis("Fire2") != 0 && !waitMode)
+        if (Input.GetAxis("Fire2") == 0)
+            KeyWasPressed = false;
+        if (Input.GetAxis("Fire2") != 0 && !waitMode && !KeyWasPressed)
         {
             Attack();
+            KeyWasPressed = true;
         }
     }
 
@@ -55,13 +61,13 @@ public class PlayerHeavyAttack : MonoBehaviour
         waitMode = true;
     }
 
-    private IEnumerator AttackCooldown(float attackSpeed)
+    private IEnumerator AttackCooldown(float attackColldown)
     {
         while (true)
         {
             if (waitMode)
             {
-                yield return new WaitForSeconds(attackSpeed);
+                yield return new WaitForSeconds(attackColldown);
                 waitMode = false;
             }
             yield return new WaitForFixedUpdate();
