@@ -5,11 +5,11 @@ public class HealthBar : MonoBehaviour
     public Image healthBar;
     private Image Border;
 
-    private Stribog info;
+    private NewStribog info;
 
     void Awake()
     {
-        info = FindFirstObjectByType<Stribog>();
+        info = FindFirstObjectByType<NewStribog>();
         healthBar = GetComponent<Image>();
         Border = GameObject.Find("Border").GetComponent<Image>();
     }

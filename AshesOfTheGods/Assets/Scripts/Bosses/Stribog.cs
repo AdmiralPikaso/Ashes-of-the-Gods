@@ -16,7 +16,7 @@ public class Stribog : Enemy
     private float groundLevelY;
     void Awake()
     {
-        groundLevelY = GameObject.FindGameObjectWithTag("Ground").transform.position.y + GameObject.FindGameObjectWithTag("Ground").transform.localScale.y; 
+        groundLevelY = GameObject.FindGameObjectWithTag("Ground").transform.position.y + GameObject.FindGameObjectWithTag("Ground").transform.localScale.y;
         rigidB = GetComponent<Rigidbody2D>();
         PlayerTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
         phase1 = true;
@@ -47,7 +47,7 @@ public class Stribog : Enemy
     void FixedUpdate()
     {
         if (inTransit)
-            transits(StartPos);
+            transitToPhase2(StartPos);
     }
 
     public bool inTransit = false;
@@ -57,60 +57,63 @@ public class Stribog : Enemy
 
     private bool nowFlyup = true;
     private bool nowFlyTocenter = false;
-    private bool nowCirclingAboveCenter = false;
-    private void transits(Vector2 StartPos)
+    private bool nowFlyUp2 =false;
+    private float realSpeed = 1;
+    private void transitToPhase2(Vector2 StartPos)
     {
-
         void flyup(Vector2 StartPos)
         {
+            if (realSpeed < flySpeed)
+                realSpeed = realSpeed * 1.5f;
             if (StartPos.y + flyuplength > transform.position.y)
-                rigidB.MovePosition(new Vector2(rigidB.position.x, rigidB.position.y + flySpeed * Time.fixedDeltaTime * 2));
+                rigidB.MovePosition(new Vector2(rigidB.position.x, rigidB.position.y + realSpeed * Time.fixedDeltaTime * 2));
             else
             {
                 nowFlyup = false;
                 nowFlyTocenter = true;
                 rigidB.rotation = -30 * math.sign(centerArenaX - rigidB.position.x);
+                realSpeed = 2;
             }
         }
         void flytocenter()
         {
-
-            if (math.distance(rigidB.position.x, centerArenaX) > 0.01f)
+            print(realSpeed);
+            if (realSpeed < flySpeed)
+                realSpeed = realSpeed + 1;
+            if (math.distance(rigidB.position.x, centerArenaX) > 0.5f)
             {
-                rigidB.MovePosition(new Vector2(rigidB.position.x + flySpeed * Time.fixedDeltaTime * math.sign(centerArenaX - rigidB.position.x), rigidB.position.y));
+                rigidB.MovePosition(new Vector2(rigidB.position.x + realSpeed * Time.fixedDeltaTime * math.sign(centerArenaX - rigidB.position.x), rigidB.position.y));
             }
             else
             {
                 nowFlyTocenter = false;
-                nowCirclingAboveCenter = true;
+                nowFlyUp2 = true;
                 rigidB.rotation = 0;
-
+                StartPos = transform.position;
             }
         }
-        void circlingAboveCenter()
+        void flyup2(Vector2 StartPos)
         {
+            //here we need start animation to phase2 sprite
+            if (transform.position.y < StartPos.y + 5)
+                rigidB.MovePosition(new Vector2(rigidB.transform.position.x, rigidB.transform.position.y + Time.fixedDeltaTime));
 
+            else
+            {
+                phase1 = false;
+                phase2 = true;
+            }
         }
-        print($"{nowFlyup}, {nowFlyTocenter}, {nowCirclingAboveCenter}");
-        print(StartPos);
+        print($"{nowFlyup}, {nowFlyTocenter}, {nowFlyUp2}");
         if (nowFlyup)
             flyup(StartPos);
         else if (nowFlyTocenter)
+        {
             flytocenter();
-        else if (nowCirclingAboveCenter)
-            circlingAboveCenter();
+        }
+        else if (nowFlyUp2)
+            flyup2(StartPos);
     }
     public float GetHp() => hp;
-
-    /* private IEnumerator Transit()
-     {
-         while (true)
-         {
-             if (inTransit)
-             {
-
-             }
-             yield return null;
-         }
-     }*/
 }
+
