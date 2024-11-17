@@ -8,10 +8,17 @@ public class PlayerRegularAttack : MonoBehaviour
     [SerializeField] private LayerMask damageableLayerMask;
     [SerializeField] private float damage;
     [SerializeField] private float attackSpeed;
+    [SerializeField] private AudioClip attackSound;
+    private AudioSource audioSource;
+    [SerializeField] private float minPitch;
+    [SerializeField] private float maxPitch;
+    [SerializeField] private float volume;
     private bool waitMode = false;
 
     public void Start()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
+
         StartCoroutine(AttackCooldown(attackSpeed));
     }
 
@@ -54,6 +61,8 @@ public class PlayerRegularAttack : MonoBehaviour
             hit.collider.GetComponent<Enemy>().TakeDamage(damage);
         }
         waitMode = true;
+        
+        Sounds.Sound(attackSound, audioSource, volume, minPitch, maxPitch);
     }
 
     private IEnumerator AttackCooldown(float attackSpeed)

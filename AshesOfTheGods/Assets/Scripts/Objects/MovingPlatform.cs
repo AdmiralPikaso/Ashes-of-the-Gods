@@ -12,6 +12,7 @@ public class MovingPlatform : MonoBehaviour
     private Vector2 lastPosition;     // Позиция объекта в предыдущем кадре
     private Vector2 currentSpeed;     // Текущая скорость объекта
 
+    private Vector2 currentSpeedplayer;
 
     void Awake()
     {
@@ -36,6 +37,7 @@ public class MovingPlatform : MonoBehaviour
 
         MovementLogic();
     }
+
     private void MovementLogic()
     {
         transform.position = Vector2.MoveTowards(transform.position, targetTransform.position, platformSpeed * Time.deltaTime);
@@ -45,8 +47,9 @@ public class MovingPlatform : MonoBehaviour
         }
         if (collisionCheck.contact)
         {
-            print("ЕДЕМ!");
-            player.MovementLogic(currentSpeed.x);
+            print(currentSpeed.x);
+            player.SetVelocityX(currentSpeed.x);
+            print(player.GetVelocityX());
         }
     }
 }
