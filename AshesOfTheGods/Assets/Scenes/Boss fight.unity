@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 81910067}
   - component: {fileID: 81910066}
   m_Layer: 0
-  m_Name: Walls
+  m_Name: ArenaWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -238,7 +238,7 @@ Transform:
   m_GameObject: {fileID: 207777378}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.964954, y: 5.229435, z: -129.58902}
+  m_LocalPosition: {x: -25, y: 5.229435, z: -129.58902}
   m_LocalScale: {x: 3.9592, y: 25.233597, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -358,7 +358,6 @@ GameObject:
   - component: {fileID: 306768877}
   - component: {fileID: 306768876}
   - component: {fileID: 306768880}
-  - component: {fileID: 306768881}
   m_Layer: 3
   m_Name: Stribog
   m_TagString: Untagged
@@ -503,7 +502,7 @@ Transform:
   m_GameObject: {fileID: 306768875}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.26, y: -4.72, z: 0}
+  m_LocalPosition: {x: 12.22, y: 6.95, z: 0}
   m_LocalScale: {x: 1, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -523,25 +522,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   MaxHp: 300
---- !u!320 &306768881
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 306768875}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 199eafc9a0572834d91cae33650ca0d2, type: 2}
-  m_InitialState: 1
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: 0}
-    value: {fileID: 306768875}
-  m_ExposedReferences:
-    m_References: []
+  inTransit: 0
 --- !u!1 &418023627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1613,7 +1594,7 @@ Transform:
   m_GameObject: {fileID: 1607868353}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 40.125046, y: 5.1694355, z: -129.58902}
+  m_LocalPosition: {x: 25, y: 5.1694355, z: -129.58902}
   m_LocalScale: {x: 3.9592, y: 25.233597, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
