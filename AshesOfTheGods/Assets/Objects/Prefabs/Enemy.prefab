@@ -121,14 +121,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a864f5bbe37fc734ebe933335b1346b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  atackDistanse: 5
   firstGuardedPoint: {fileID: 0}
   secondGuardedPoint: {fileID: 0}
-  guardDistance: 10
+  distance: 0
+  atackDistanse: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  speed: 5
+  enemyDamage: 5
   guardWaitTime: 3
   targetLostTime: 2
-  enemyDamage: 5
   atackCoodown: 2
 --- !u!212 &3980493810398853486
 SpriteRenderer:

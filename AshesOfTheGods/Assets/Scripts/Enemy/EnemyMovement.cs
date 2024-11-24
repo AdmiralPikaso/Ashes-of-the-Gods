@@ -39,7 +39,7 @@ public class EnemyMovement : MonoBehaviour
     private bool returnMode = false;
     void Update()
     {
-        print($"{guardMode}{angryMode}{returnMode}");
+       // print($"{guardMode}{angryMode}{returnMode}");
         Debug.DrawRay(new Vector3(firstGuardedPoint.position.x, -500, 0), new Vector3(0, 1000, 0));
         Debug.DrawRay(new Vector3(secondGuardedPoint.position.x, -500, 0), new Vector3(0, 1000, 0)); 
     }
@@ -113,7 +113,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
         if (!onAtackDistanse & angryMode)
-            AngryMode(movement);
+            AngryMode();
 
         else if (onAtackDistanse & angryMode & enemyCanAtack)
             AtackMode();
@@ -127,15 +127,15 @@ public class EnemyMovement : MonoBehaviour
 
     [Space]
     [SerializeField] private float speed;
-    private void AngryMode(Vector2 movement)
+    private void AngryMode()
     {
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * movement);
     }
 
 
     private bool guardModeRightMove = false;
     private bool guardWaitMode = false;
-    private void GuardMode()
+    public void GuardMode()
     {
         if (guardModeRightMove & !guardWaitMode)
             rb.MovePosition(rb.position + Vector2.right * speed * Time.fixedDeltaTime);
@@ -175,7 +175,6 @@ public class EnemyMovement : MonoBehaviour
     private void AtackMode()
     {
         Debug.Log("Скелет бьёт");
-
         player.GetComponent<PlayerStats>().ReduceHp(enemyDamage);
         enemyCanAtack = false;
     }
@@ -192,19 +191,19 @@ public class EnemyMovement : MonoBehaviour
         {
             if (guardWaitMode)
             {
-                print("Ждёт");
+                //print("Ждёт");
                 yield return new WaitForSeconds(guardWaitTime);
                 guardWaitMode = false;
             }
             if (returnWaitMode)
             {
-                print("Ждёт ретёрна");
+                //print("Ждёт ретёрна");
                 yield return new WaitForSeconds(targetLostTime);
                 returnWaitMode = false;
             }
             if (!enemyCanAtack)
             {
-                print("Кд атаки");
+                //print("Кд атаки");
                 yield return new WaitForSeconds(atackCoodown);
                 enemyCanAtack = true;
             }
