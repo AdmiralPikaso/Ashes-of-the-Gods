@@ -17,24 +17,20 @@ public class PlayerStats : MonoBehaviour
         if (HpNow <= 0)
             Death();
     }
+    void Awake()
+    {
 
+        HpNow = hp;
+    }
     public void Lose()
     {
-        //Some code
-        //HpNow = hp;
-    }
-    void Update()
-    {
-        print(HpNow);
-        
+        print(HpNow);     
     }
 
     public void Death()
     {
         Destroy(gameObject);
-        deathScreen.SetActive(true);
-        
-        
+        deathScreen.SetActive(true);      
         //LevelManager.instance.Respawn();
     }
 }

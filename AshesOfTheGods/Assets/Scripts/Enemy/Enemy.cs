@@ -1,8 +1,10 @@
+using NUnit.Framework;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float hp;
+    [SerializeField] protected float hp;
 
     public void TakeDamage(float damage)
     {
