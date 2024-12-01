@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -10,6 +12,7 @@ public class Enemy : MonoBehaviour
         HpNow = hp;
         HpMax = hp;
     }
+
     public void TakeDamage(float damage)
     {
         HpNow -= damage;

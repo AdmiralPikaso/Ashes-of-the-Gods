@@ -1,8 +1,10 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
+    [SerializeField] private GameObject deathScreen; 
     [SerializeField] private float hp;
     public float HpNow { get; private set; }
     public float HpMax { get; private set; }
@@ -15,16 +17,22 @@ public class PlayerStats : MonoBehaviour
             HpNow -= damage;
         }
         if (HpNow <= 0)
-            Lose();
+            Death();
     }
     void Awake()
     {
+
         HpNow = hp;
-        HpMax = hp;
     }
     public void Lose()
     {
-        //Some code
-        HpNow = hp;
+        print(HpNow);     
+    }
+
+    public void Death()
+    {
+        Destroy(gameObject);
+        deathScreen.SetActive(true);      
+        //LevelManager.instance.Respawn();
     }
 }
