@@ -2,6 +2,8 @@ using System.Runtime.CompilerServices;
 using System.Collections;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class FirstSkill : MonoBehaviour
 {
@@ -17,7 +19,12 @@ public class FirstSkill : MonoBehaviour
     {
         audioSource = gameObject.AddComponent<AudioSource>();
         pMovement = this.GetComponent<PlayerMovement>();
+    }
+
+    private void Start()
+    {
         StartCoroutine(WaitMode());
+        StartCoroutine(ReloadUi());
     }
     void Update()
     {
@@ -26,7 +33,7 @@ public class FirstSkill : MonoBehaviour
 
         if (AttacksCount >= 5)
             RemArmor();
-        print($"{In_armor}, {ready}, {AttacksCount}");
+        //print($"{In_armor}, {ready}, {AttacksCount}");
     }
 
     private void GetArmor()
@@ -46,6 +53,7 @@ public class FirstSkill : MonoBehaviour
         AttacksCount = 0;
     }
 
+    private bool firstSkillUiReload = false;
     private IEnumerator WaitMode()
     {
         while (true)
@@ -53,11 +61,43 @@ public class FirstSkill : MonoBehaviour
             if (!ready && !In_armor)
             {
                 print("Кнопка уходит в кд");
+                firstSkillUiReload = true;
                 yield return new WaitForSeconds(CoolDownTime);
+                print("Кнопка вышла из кд");
                 ready = true;
             }
             yield return new WaitForFixedUpdate();
         }
     }
+
+    [SerializeField] Image firstSkillFill;
+    [SerializeField] GameObject firstSkillShade;
+    private float cd = 0;
+    private IEnumerator ReloadUi()
+    {
+        while (true)
+        {
+            
+            if (firstSkillUiReload)
+            {
+                firstSkillShade.SetActive(true);
+                firstSkillFill.fillAmount = 0;
+                while (cd != 1)
+                {
+                    cd += Time.deltaTime;
+                    print("Кдшится");
+                    firstSkillFill.fillAmount = cd/CoolDownTime;
+                    if (ready == true)
+                        cd = 1;
+                    yield return null;
+                }
+                firstSkillUiReload = false;
+                firstSkillShade.SetActive(false);
+                cd = 0;
+            }
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
 
 }

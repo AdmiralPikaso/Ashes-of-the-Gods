@@ -14,11 +14,10 @@ public class PlayerRegularAttack : MonoBehaviour
     [SerializeField] private float maxPitch;
     [SerializeField] private float volume;
     private bool waitMode = false;
-
+    private bool KeyWasPressed = false;
     public void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
-
         StartCoroutine(AttackCooldown(attackSpeed));
     }
 
@@ -26,9 +25,12 @@ public class PlayerRegularAttack : MonoBehaviour
     {
         HandleMovement();
 
-        if (Input.GetAxis("Fire1") != 0 && !waitMode)
+        if (Input.GetAxis("Fire1") == 0)
+            KeyWasPressed = false;
+        if (Input.GetAxis("Fire1") != 0 && !waitMode && !KeyWasPressed)
         {
             Attack();
+            KeyWasPressed = true;
         }
     }
 
@@ -65,13 +67,13 @@ public class PlayerRegularAttack : MonoBehaviour
         Sounds.Sound(attackSound, audioSource, volume, minPitch, maxPitch);
     }
 
-    private IEnumerator AttackCooldown(float attackSpeed)
+    private IEnumerator AttackCooldown(float attackColldown)
     {
         while (true)
         {
             if (waitMode)
             {
-                yield return new WaitForSeconds(attackSpeed);
+                yield return new WaitForSeconds(attackColldown);
                 waitMode = false;
             }
             yield return new WaitForFixedUpdate();
