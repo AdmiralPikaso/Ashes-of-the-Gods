@@ -469,3 +469,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 30
+  damageSound: {fileID: 0}
+  deathSound: {fileID: 0}
+  minPitch: 0
+  maxPitch: 0
+  volume: 0

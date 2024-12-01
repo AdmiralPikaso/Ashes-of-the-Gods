@@ -5,16 +5,19 @@ public class PlayerHeavyAttack : MonoBehaviour
 {
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask damageableLayerMask;
-    private float damage;
-    private float attackColldown;
+    [SerializeField] private float damage;
+    [SerializeField] private float attackSpeed;
+    [SerializeField] private AudioClip attackSound;
+    private AudioSource audioSource;
+    [SerializeField] private float minPitch;
+    [SerializeField] private float maxPitch;
+    [SerializeField] private float volume;
     private bool waitMode = false;
     private bool KeyWasPressed = false;
-
     public void Start()
     {
-        damage = 30;
-        attackColldown = 1.0f;
-        StartCoroutine(AttackCooldown(attackColldown));
+        audioSource = gameObject.AddComponent<AudioSource>();
+        StartCoroutine(AttackCooldown(attackSpeed));
     }
 
     public void Update()
@@ -59,6 +62,8 @@ public class PlayerHeavyAttack : MonoBehaviour
             hit.collider.GetComponent<Enemy>().TakeDamage(damage);
         }
         waitMode = true;
+
+        Sounds.Sound(attackSound, audioSource, volume, minPitch, maxPitch);
     }
 
     private IEnumerator AttackCooldown(float attackColldown)
