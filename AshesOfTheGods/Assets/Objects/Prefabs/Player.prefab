@@ -244,6 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae17fe9a00522f428d789570a7c1662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathScreen: {fileID: 0}
   hp: 0
 --- !u!1 &3458882151417949403
 GameObject:
