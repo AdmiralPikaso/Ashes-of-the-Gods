@@ -17,6 +17,7 @@ public class MovingPlatform : MonoBehaviour
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        collisionCheck = this.GetComponentInChildren<CollisionCheck>();
         targetTransform = pointB;
         lastPosition = transform.position;
     }
@@ -36,6 +37,7 @@ public class MovingPlatform : MonoBehaviour
         lastPosition = currentPosition;
 
         MovementLogic();
+        print($"{targetTransform.position.x}.  {targetTransform.position.y}");
     }
 
     private void MovementLogic()
@@ -46,10 +48,8 @@ public class MovingPlatform : MonoBehaviour
             targetTransform = (targetTransform == pointA) ? pointB : pointA;
         }
         if (collisionCheck.contact)
-        {
-            print(currentSpeed.x);
-            player.SetVelocityX(currentSpeed.x);
-            print(player.GetVelocityX());
-        }
+            player.transform.SetParent(this.transform);
+        if (!collisionCheck.contact)
+            player.transform.SetParent(null);
     }
 }

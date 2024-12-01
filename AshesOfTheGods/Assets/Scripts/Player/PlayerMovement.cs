@@ -106,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void MovementLogic(float moveDir)
     {
+        print($"{in_wall}, {on_platform}, {on_ground}");
         float RealSpeed = speed;
         if (in_air)
             RealSpeed *= airSpeedMultiplier;

@@ -29,7 +29,7 @@ public class SemiTranspPlatform : MonoBehaviour
 
     void InclusionLogic()
     {
-        print($"{PlayerTransform.position.y - PlayerTransform.localScale.y / 2.0f}, {this.transform.position.y + this.transform.localScale.y / 2.0f}");
+       // print($"{PlayerTransform.position.y - PlayerTransform.localScale.y / 2.0f}, {this.transform.position.y + this.transform.localScale.y / 2.0f}");
 
         if (Physics2D.OverlapCircle(this.transform.position, this.transform.localScale.x, satisMask))
         {
