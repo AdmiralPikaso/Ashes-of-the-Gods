@@ -48,7 +48,7 @@ public class FirstSkill : MonoBehaviour
     private void RemArmor()
     {
         pMovement.SetSpeed(pMovement.GetSpeed() / 1.5f);
-        this.GetComponent<SpriteRenderer>().color = Color.red;
+        this.GetComponent<SpriteRenderer>().color = Color.white;
         In_armor = false;
         AttacksCount = 0;
     }

@@ -71,7 +71,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.08506352, y: -0.013912439}
+  m_Offset: {x: -0.08506346, y: 0.072993875}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -81,7 +81,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.3683062, y: 4.566047}
+  m_Size: {x: 3.3683062, y: 4.64674}
   m_EdgeRadius: 0
 --- !u!50 &2478225852416183989
 Rigidbody2D:
@@ -182,7 +182,7 @@ MonoBehaviour:
   distance: 20
   speed: 5
   arrow: {fileID: 2195181542045423615, guid: 75b53de171b8f6e41aad9688be40ee58, type: 3}
-  atackCD: 3
+  atackCD: 2
   guardWaitTime: 2
   targetLostTime: 3
 --- !u!114 &2726985387058454574
@@ -202,7 +202,7 @@ MonoBehaviour:
   minPitch: 0
   maxPitch: 0
   volume: 0
-  hp: 0
+  hp: 60
 --- !u!1 &326512774109674081
 GameObject:
   m_ObjectHideFlags: 0

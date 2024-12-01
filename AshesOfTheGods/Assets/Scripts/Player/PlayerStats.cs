@@ -19,10 +19,18 @@ public class PlayerStats : MonoBehaviour
         if (HpNow <= 0)
             Death();
     }
+    Collider2D col;
     void Awake()
     {
 
         HpNow = hp;
+        HpMax = hp;
+        col = GetComponent<Collider2D>();
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Death"))
+            Death();
     }
     public void Lose()
     {

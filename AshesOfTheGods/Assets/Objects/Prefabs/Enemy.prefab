@@ -396,12 +396,12 @@ MonoBehaviour:
   atackDistanse: 5
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   speed: 5
-  enemyDamage: 5
+  enemyDamage: 10
   guardWaitTime: 3
   targetLostTime: 2
-  atackCoodown: 2
+  atackCoodown: 1
 --- !u!212 &3980493810398853486
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -474,7 +474,7 @@ MonoBehaviour:
   minPitch: 0
   maxPitch: 0
   volume: 0
-  hp: 30
+  hp: 90
 --- !u!95 &6907300063487929882
 Animator:
   serializedVersion: 7
