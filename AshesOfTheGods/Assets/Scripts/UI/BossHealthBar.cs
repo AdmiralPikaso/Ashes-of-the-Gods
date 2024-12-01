@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
-public class HealthBar : MonoBehaviour
+public class BossHealthBar : MonoBehaviour
 {
-    public Image healthBar;
+    public Image healthbar;
     private Image Border;
 
     private NewStribog info;
@@ -10,7 +10,7 @@ public class HealthBar : MonoBehaviour
     void Awake()
     {
         info = FindFirstObjectByType<NewStribog>();
-        healthBar = GetComponent<Image>();
+        healthbar = GetComponent<Image>();
         Border = GameObject.Find("Border").GetComponent<Image>();
     }
     void Update()
@@ -21,7 +21,7 @@ public class HealthBar : MonoBehaviour
             Destroy(gameObject);
 
         }
-        healthBar.fillAmount = info.GetHp() / info.MaxHp;
+        healthbar.fillAmount = info.GetHp() / info.MaxHp;
         print(info.GetHp());
     }
 }

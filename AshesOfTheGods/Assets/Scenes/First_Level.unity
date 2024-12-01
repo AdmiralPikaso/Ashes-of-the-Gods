@@ -1470,6 +1470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae17fe9a00522f428d789570a7c1662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathScreen: {fileID: 0}
   hp: 0
 --- !u!114 &525177573
 MonoBehaviour:
@@ -1484,6 +1485,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoolDownTime: 10
+  firstSkillFill: {fileID: 0}
+  firstSkillShade: {fileID: 0}
 --- !u!114 &525177574
 MonoBehaviour:
   m_ObjectHideFlags: 0
