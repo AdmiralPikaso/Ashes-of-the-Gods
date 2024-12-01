@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected float hp;
+    [SerializeField] private float hp;
+    public float HpNow { get; private set; }
+    public float HpMax { get; private set; }
+    private void Awake()
+    {
+        HpNow = hp;
+        HpMax = hp;
+    }
 
     public void TakeDamage(float damage)
     {
-        hp -= damage;
+        HpNow -= damage;
         if (hp <= 0)
         {
             Die();
