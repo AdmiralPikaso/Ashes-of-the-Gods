@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - AboveEnemyHead
   - MovingPlatform
+  - Death
   layers:
   - Default
   - TransparentFX

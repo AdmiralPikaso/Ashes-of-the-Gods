@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00000029802322, y: 0.00000085681677}
+  m_AnchoredPosition: {x: -0.00000023841858, y: 0.000000834465}
   m_SizeDelta: {x: 0, y: 0.14207}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5298084831332191847
@@ -112,8 +112,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.6893}
-  m_SizeDelta: {x: 1.5497, y: 0.14207}
+  m_AnchoredPosition: {x: 0.03, y: 3.59}
+  m_SizeDelta: {x: 6.4753, y: 0.5937}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &821624109759568350
 Canvas:
@@ -213,7 +213,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.0054413667, y: 0.07123358}
   m_AnchorMax: {x: 0.99386996, y: 0.9404564}
-  m_AnchoredPosition: {x: 0.0002681613, y: 0.00000063329935}
+  m_AnchoredPosition: {x: 0.0002682209, y: 0.00000062584877}
   m_SizeDelta: {x: -0.00053573, y: -0.000000014901}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3521614018581588708
@@ -339,17 +339,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.013574719, y: -0.0035922527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 3.75, y: 6.81}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.8377078, y: 6.840898}
   m_EdgeRadius: 0
 --- !u!50 &5842222868582138476
 Rigidbody2D:
@@ -392,7 +392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstGuardedPoint: {fileID: 0}
   secondGuardedPoint: {fileID: 0}
-  distance: 0
+  distance: 20
   atackDistanse: 5
   layerMask:
     serializedVersion: 2
@@ -446,7 +446,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: 5147274338526168628, guid: b116a9d96a0831b419b8f61a275d4b24, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
