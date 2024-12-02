@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
@@ -20,19 +21,19 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject collisionObject = collision.gameObject;
-    
+
         if (collisionObject.CompareTag("Ground"))
             on_ground = true;
-    
+
         if (collisionObject.CompareTag("Platform"))
             on_platform = true;
-    
+
         if (collisionObject.CompareTag("PlatformDown"))
         {
             on_platform = false;
             on_moving_platform = false;
         }
-    
+
         if (collisionObject.CompareTag("Wall"))
             in_wall = true;
 
@@ -47,13 +48,13 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         GameObject collisionObject = collision.gameObject;
-    
+
         if (collisionObject.CompareTag("Ground"))
             on_ground = false;
-    
+
         if (collisionObject.CompareTag("Platform"))
             on_platform = false;
-    
+
         if (collisionObject.CompareTag("Wall"))
             in_wall = false;
 
@@ -96,9 +97,9 @@ public class PlayerMovement : MonoBehaviour
     public float GetVelocityX() => rigidB.linearVelocityX;
     public void SetVelocityX(float newVel) => rigidB.linearVelocityX = newVel;
 
-    [SerializeField] private AudioClip walkingSound; 
+    [SerializeField] private AudioClip walkingSound;
     private AudioSource audioSource;
-    private float lastWalkingSoundTime; 
+    private float lastWalkingSoundTime;
     [SerializeField] private float walkingSoundInterval;
     [SerializeField] private float minPitch;
     [SerializeField] private float maxPitch;
@@ -106,7 +107,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void MovementLogic(float moveDir)
     {
-        print($"{in_wall}, {on_platform}, {on_ground}");
         float RealSpeed = speed;
         if (in_air)
             RealSpeed *= airSpeedMultiplier;

@@ -26,10 +26,12 @@ public class SemiTranspPlatform : MonoBehaviour
     {
         InclusionLogic();
     }
-
+    private float lastGetAxis = 0;
+    private float getAxis = 0;
     void InclusionLogic()
     {
-       // print($"{PlayerTransform.position.y - PlayerTransform.localScale.y / 2.0f}, {this.transform.position.y + this.transform.localScale.y / 2.0f}");
+        getAxis = Input.GetAxis("Vertical");
+        // print($"{PlayerTransform.position.y - PlayerTransform.localScale.y / 2.0f}, {this.transform.position.y + this.transform.localScale.y / 2.0f}");
 
         if (Physics2D.OverlapCircle(this.transform.position, this.transform.localScale.x, satisMask))
         {
@@ -40,6 +42,6 @@ public class SemiTranspPlatform : MonoBehaviour
         }
         else
             coll.enabled = false;
-
+        lastGetAxis = getAxis;
     }
 }
