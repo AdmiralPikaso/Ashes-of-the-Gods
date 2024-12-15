@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private Animator animator;
-    [SerializeField] private float hp;
+    [SerializeField] protected float hp;
     [SerializeField] private AudioClip damageSound;
     [SerializeField] private AudioClip deathSound;
     private AudioSource audioSource;
@@ -14,7 +14,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float volume;
     public float HpNow { get; private set; }
     public float HpMax { get; private set; }
-    [SerializeField] protected float hp;
     void Start()
     {
     audioSource = gameObject.AddComponent<AudioSource>();  
