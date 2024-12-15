@@ -37,7 +37,7 @@ public class MovingPlatform : MonoBehaviour
         lastPosition = currentPosition;
 
         MovementLogic();
-        print($"{targetTransform.position.x}.  {targetTransform.position.y}");
+       // print($"{targetTransform.position.x}.  {targetTransform.position.y}");
     }
 
     private void MovementLogic()

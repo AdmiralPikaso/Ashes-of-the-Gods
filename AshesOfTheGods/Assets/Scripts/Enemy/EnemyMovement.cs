@@ -28,9 +28,12 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-
+    BoxCollider2D coll;
+    CapsuleCollider2D playerColl;
     private void Start()
     {
+        coll = GetComponent<BoxCollider2D>();
+        playerColl = player.GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -89,10 +92,10 @@ public class EnemyMovement : MonoBehaviour
             returnMovement.y = 0;
         }
 
-        RaycastHit2D enemyVisionRight = Physics2D.Raycast(transform.position, Vector2.right, distance,layerMask);
-        RaycastHit2D enemtVisionLeft = Physics2D.Raycast(transform.position, Vector2.left, distance,layerMask);
-        Debug.DrawRay(transform.position, Vector2.right * distance, Color.green);
-        Debug.DrawRay(transform.position, Vector2.left * distance, Color.green);
+        RaycastHit2D enemyVisionRight = Physics2D.Raycast(new Vector3 (transform.position.x, transform.position.y + coll.size.y/2, 0), Vector2.right, distance,layerMask);
+        RaycastHit2D enemtVisionLeft = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left, distance,layerMask);
+        Debug.DrawRay(new Vector3(transform.position.x,  transform.position.y + coll.size.y / 2, 0), Vector2.right * distance, Color.green);
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left * distance, Color.green);
 
         //exit from return, entrance to guard
         if (rb.position.x - transform.localScale.x >= firstGuardedPoint.position.x - 0.1f & rb.position.x + transform.localScale.x <= secondGuardedPoint.position.x + 0.5f & !angryMode)
@@ -114,7 +117,7 @@ public class EnemyMovement : MonoBehaviour
 
         //Debug.Log(player_on_platform.GetOnPlatform());
         //exit from angry, entrance to return
-        if ((playerTransform.position.y - rb.position.y > 0.1f) & angryMode & player_on_platform.GetOnPlatform())
+        if (((playerTransform.position.y - playerColl.size.y/2 > transform.position.y + coll.size.y/2) | (playerTransform.position.y + playerColl.size.y / 2 < transform.position.y - coll.size.y / 2)) & angryMode & !player_on_platform.InAir())
         {
             angryMode = false;
             returnMode = true;
