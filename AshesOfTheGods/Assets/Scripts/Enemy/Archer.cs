@@ -2,14 +2,17 @@ using UnityEngine;
 using System.Collections;
 public class Archer:MonoBehaviour
 {
-
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
     private GameObject player;
     [SerializeField] private Transform firstGuardedPoint;
     [SerializeField] private Transform secondGuardedPoint;
     Rigidbody2D rb;
     private void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         if (firstGuardedPoint.transform.position.x > secondGuardedPoint.transform.position.x)
         {
             Transform transform = firstGuardedPoint;
@@ -48,16 +51,16 @@ public class Archer:MonoBehaviour
         Debug.DrawLine(transform.position, new Vector2(transform.position.x + distance, transform.position.y), Color.red);
         //
 
+        Vector2 movementDirection = Vector2.zero;
 
         if ((enemyVisionLeft.collider != null && enemyVisionLeft.collider.gameObject.CompareTag("Player")) | (enemyVisionRight.collider != null && enemyVisionRight.collider.gameObject.CompareTag("Player")))
         {
-            print("Видит");
+            print("пїЅпїЅпїЅпїЅпїЅ");
             if (Vector2.Distance(player.transform.position, transform.position) <= distance) //exit from guard, entrance to angry
             {
 
                 guardMode = false;
                 shootMode = true;
-
 
             }
             else if (!shootWaitMode & shootMode)
@@ -71,19 +74,37 @@ public class Archer:MonoBehaviour
         }
         else if (!shootWaitMode & shootMode)
         {
-            print("Не видит");
+            print("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
             shootMode = false;
             guardMode = false;
             returnWaitMode = true;
-
         }
 
         if (guardMode)
+        {
             GuardMode();
-        
-        if (shootMode)
+            animator.SetBool("IsWalking", !guardWaitMode);
+            movementDirection = (guardModeRightMove ? Vector2.right : Vector2.left);
+        }
+        else if (shootMode)
+        {
+            animator.SetTrigger("IsAttack");
             ShootMode();
-        
+            animator.SetBool("IsWalking", false);
+            movementDirection = (player.transform.position - transform.position).normalized;
+        }
+        else if (returnWaitMode)
+        {
+            animator.SetBool("IsWalking", false);
+        }
+        else
+        {
+            animator.SetBool("IsWalking", false);
+        }
+        if (movementDirection != Vector2.zero & (!guardMode || !guardWaitMode))
+        {
+            spriteRenderer.flipX = movementDirection.x < 0;
+        }
     }
 
     private bool guardModeRightMove = false;
@@ -124,30 +145,30 @@ public class Archer:MonoBehaviour
         }
 
     }
-   
 
     [SerializeField] private float atackCD;
     [SerializeField] float guardWaitTime;
     [SerializeField] float targetLostTime;
+    //[SerializeField] private float animCD;
     private IEnumerator WaitMode()
     {
         while (true)
         {
             if (guardWaitMode)
             {
-                print("Ждёт");
+                print("пїЅпїЅпїЅ");
                 yield return new WaitForSeconds(guardWaitTime);
                 guardWaitMode = false;
             }
             if (shootWaitMode)
             {
-                print("Кд выстрела");
+                print("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
                 yield return new WaitForSeconds(atackCD);
                 shootWaitMode = false;
             }
             if (returnWaitMode)
             {
-                print("Ждёт ретёрна");
+                print("пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
                 yield return new WaitForSeconds(targetLostTime);
                 returnWaitMode = false;
             }

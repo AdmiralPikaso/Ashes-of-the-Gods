@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     private GameObject player;
     private Transform playerTransform;
@@ -30,6 +31,11 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (animator == null) Debug.LogError("Animator component not found!");
+        if (spriteRenderer == null) Debug.LogError("SpriteRenderer component not found!");
         StartCoroutine(WaitMode());
     }
 
@@ -41,10 +47,9 @@ public class EnemyMovement : MonoBehaviour
     {
        // print($"{guardMode}{angryMode}{returnMode}");
         Debug.DrawRay(new Vector3(firstGuardedPoint.position.x, -500, 0), new Vector3(0, 1000, 0));
-        Debug.DrawRay(new Vector3(secondGuardedPoint.position.x, -500, 0), new Vector3(0, 1000, 0)); 
+        Debug.DrawRay(new Vector3(secondGuardedPoint.position.x, -500, 0), new Vector3(0, 1000, 0));
     }
 
-    
     [Space]
     [Header("дальность атаки и дальность зрения")]
     [SerializeField] float distance;
@@ -55,11 +60,15 @@ public class EnemyMovement : MonoBehaviour
     private bool onAtackDistanse = false;
     private Vector2 returnMovement;
     private bool returnWaitModeFlag = false;
+    private bool isWalking = false;
     private void FixedUpdate()
     { 
         //Atack Distance check
         if (Vector2.Distance(playerTransform.position, transform.position) <= atackDistanse - 1)
+        {
             onAtackDistanse = true;
+        }
+            
 
         else
             onAtackDistanse = false;
@@ -112,17 +121,42 @@ public class EnemyMovement : MonoBehaviour
             returnWaitModeFlag = true;
         }
 
+        Vector2 movementDirection = Vector2.zero;
+        
         if (!onAtackDistanse & angryMode)
+        {
             AngryMode();
-
+            isWalking = true;
+            movementDirection = movement;
+        }
         else if (onAtackDistanse & angryMode & enemyCanAtack)
+        {
+            isWalking = false;
             AtackMode();
-
-        if (returnMode)
+        }
+        else if (returnMode)
+        {
+            isWalking = false;
             ReturnMode();
-
-        if (guardMode)
+            movementDirection = returnMovement;
+        }
+        else if (guardMode)
+        {
             GuardMode();
+            isWalking = !guardWaitMode;
+            movementDirection = (guardModeRightMove ? Vector2.right : Vector2.left);
+        }
+        else
+        {
+            isWalking = false;
+        }
+            
+        animator.SetBool("IsWalking", isWalking);
+
+        if (isWalking)
+        {
+            spriteRenderer.flipX = movementDirection.x < 0;
+        }
     }
 
     [Space]
@@ -162,11 +196,14 @@ public class EnemyMovement : MonoBehaviour
         if (returnWaitModeFlag)
         {
             returnWaitMode = true;
+            isWalking = false;
             returnWaitModeFlag = false;
         }
         if (!returnWaitMode)
+        {
             rb.MovePosition(rb.position + returnMovement * speed * Time.fixedDeltaTime);
-
+            isWalking = true;
+        }
     }
 
     
@@ -175,6 +212,7 @@ public class EnemyMovement : MonoBehaviour
     private void AtackMode()
     {
         Debug.Log("Скелет бьёт");
+        animator.SetTrigger("Attack");
         player.GetComponent<PlayerStats>().ReduceHp(enemyDamage);
         enemyCanAtack = false;
     }
@@ -211,6 +249,7 @@ public class EnemyMovement : MonoBehaviour
 
 
         }
+        
     }
 }
 

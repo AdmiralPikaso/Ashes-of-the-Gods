@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
+    private Animator animator;
+    [SerializeField] private float hp;
     [SerializeField] private AudioClip damageSound;
     [SerializeField] private AudioClip deathSound;
     private AudioSource audioSource;
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
     }
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         HpNow = hp;
         HpMax = hp;
     }
@@ -31,13 +33,15 @@ public class Enemy : MonoBehaviour
         if (HpNow <= 0)
         {
             Die();
-        }      
-        Debug.Log(hp);
+        }
+        Debug.Log("Хп врага" + HpNow);
+
     }
 
     void Die()
     {
-       // AudioSource.PlayClipAtPoint(deathSound, transform.position);
-        Destroy(gameObject);
+        print("Смерть");
+        animator.SetBool("IsDie", true);
+        Destroy(gameObject, 1.5f);
     }
 }
