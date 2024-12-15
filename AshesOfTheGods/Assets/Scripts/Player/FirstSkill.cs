@@ -12,8 +12,12 @@ public class FirstSkill : MonoBehaviour
     private bool ready = true;
     public bool In_armor { get; private set; } = false;
     public int AttacksCount { get; set; }
+    [SerializeField] private AudioClip skillSound;
+    private AudioSource audioSource;
+    [SerializeField] private float volume;
     void Awake()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
         pMovement = this.GetComponent<PlayerMovement>();
     }
 
@@ -39,11 +43,12 @@ public class FirstSkill : MonoBehaviour
         AttacksCount = 0;
         this.GetComponent<SpriteRenderer>().color = Color.grey;
         ready = false;
+        Sounds.Sound(skillSound, audioSource, volume);
     }
     private void RemArmor()
     {
         pMovement.SetSpeed(pMovement.GetSpeed() / 1.5f);
-        this.GetComponent<SpriteRenderer>().color = Color.red;
+        this.GetComponent<SpriteRenderer>().color = Color.white;
         In_armor = false;
         AttacksCount = 0;
     }

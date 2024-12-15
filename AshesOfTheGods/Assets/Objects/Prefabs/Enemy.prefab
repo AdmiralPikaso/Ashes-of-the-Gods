@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00000029802322, y: 0.00000085681677}
+  m_AnchoredPosition: {x: -0.00000023841858, y: 0.000000834465}
   m_SizeDelta: {x: 0, y: 0.14207}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5298084831332191847
@@ -112,8 +112,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.6893}
-  m_SizeDelta: {x: 1.5497, y: 0.14207}
+  m_AnchoredPosition: {x: 0, y: 3.69}
+  m_SizeDelta: {x: 3.1935, y: 0.4296}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &821624109759568350
 Canvas:
@@ -213,7 +213,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.0054413667, y: 0.07123358}
   m_AnchorMax: {x: 0.99386996, y: 0.9404564}
-  m_AnchoredPosition: {x: 0.0002681613, y: 0.00000063329935}
+  m_AnchoredPosition: {x: 0.0002682209, y: 0.00000062584877}
   m_SizeDelta: {x: -0.00053573, y: -0.000000014901}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3521614018581588708
@@ -298,8 +298,10 @@ Transform:
   m_GameObject: {fileID: 7247946130014282256}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+
   m_LocalPosition: {x: -28.6, y: -6.794, z: 0}
   m_LocalScale: {x: 0.4879673, y: 1.6356336, z: 1}
+
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7540118799733456352}
@@ -339,17 +341,19 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.013574719, y: -0.0035922527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3.75, y: 6.81}
+
     newSize: {x: 3.75, y: 6.81}
+
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.8377078, y: 6.840898}
   m_EdgeRadius: 0
 --- !u!50 &5842222868582138476
 Rigidbody2D:
@@ -376,7 +380,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &5697214392246417813
 MonoBehaviour:
@@ -392,16 +396,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstGuardedPoint: {fileID: 0}
   secondGuardedPoint: {fileID: 0}
-  distance: 0
+  distance: 20
   atackDistanse: 5
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   speed: 5
-  enemyDamage: 5
+  enemyDamage: 10
   guardWaitTime: 3
   targetLostTime: 2
-  atackCoodown: 2
+  atackCoodown: 1
 --- !u!212 &3980493810398853486
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -445,8 +449,10 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
+
   m_SortingOrder: 0
   m_Sprite: {fileID: -8315360735845423546, guid: b5123c3b17d61754382f087867e531ec, type: 3}
+
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -469,8 +475,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a67d892859dcb5a44bb9f7b3da045ca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 30
---- !u!95 &2637026294227928776
+
+  damageSound: {fileID: 0}
+  deathSound: {fileID: 0}
+  minPitch: 0
+  maxPitch: 0
+  volume: 0
+  hp: 90
+--- !u!95 &6907300063487929882
+
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -480,7 +493,9 @@ Animator:
   m_GameObject: {fileID: 7247946130014282256}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
+
   m_Controller: {fileID: 9100000, guid: 71806ebc9ec6a314982461aef01fd18c, type: 2}
+
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

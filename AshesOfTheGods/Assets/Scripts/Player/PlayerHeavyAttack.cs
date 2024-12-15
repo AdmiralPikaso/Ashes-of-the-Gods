@@ -7,10 +7,16 @@ public class PlayerHeavyAttack : MonoBehaviour
     [SerializeField] private LayerMask damageableLayerMask;
     [SerializeField] private float damage;
     [SerializeField] private float attackSpeed;
+    [SerializeField] private AudioClip attackSound;
+    private AudioSource audioSource;
+    [SerializeField] private float minPitch;
+    [SerializeField] private float maxPitch;
+    [SerializeField] private float volume;
     private bool waitMode = false;
-    
+    private bool KeyWasPressed = false;
     public void Start()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
         StartCoroutine(AttackCooldown(attackSpeed));
     }
 
@@ -18,9 +24,12 @@ public class PlayerHeavyAttack : MonoBehaviour
     {
         HandleMovement();
 
-        if (Input.GetAxis("Fire2") != 0 && !waitMode)
+        if (Input.GetAxis("Fire2") == 0)
+            KeyWasPressed = false;
+        if (Input.GetAxis("Fire2") != 0 && !waitMode && !KeyWasPressed)
         {
             Attack();
+            KeyWasPressed = true;
         }
     }
 
@@ -53,15 +62,17 @@ public class PlayerHeavyAttack : MonoBehaviour
             hit.collider.GetComponent<Enemy>().TakeDamage(damage);
         }
         waitMode = true;
+
+        Sounds.Sound(attackSound, audioSource, volume, minPitch, maxPitch);
     }
 
-    private IEnumerator AttackCooldown(float attackSpeed)
+    private IEnumerator AttackCooldown(float attackColldown)
     {
         while (true)
         {
             if (waitMode)
             {
-                yield return new WaitForSeconds(attackSpeed);
+                yield return new WaitForSeconds(attackColldown);
                 waitMode = false;
             }
             yield return new WaitForFixedUpdate();

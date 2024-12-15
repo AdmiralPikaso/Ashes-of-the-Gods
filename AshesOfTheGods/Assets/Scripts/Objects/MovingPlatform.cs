@@ -12,10 +12,12 @@ public class MovingPlatform : MonoBehaviour
     private Vector2 lastPosition;     // Позиция объекта в предыдущем кадре
     private Vector2 currentSpeed;     // Текущая скорость объекта
 
+    private Vector2 currentSpeedplayer;
 
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        collisionCheck = this.GetComponentInChildren<CollisionCheck>();
         targetTransform = pointB;
         lastPosition = transform.position;
     }
@@ -35,7 +37,9 @@ public class MovingPlatform : MonoBehaviour
         lastPosition = currentPosition;
 
         MovementLogic();
+        print($"{targetTransform.position.x}.  {targetTransform.position.y}");
     }
+
     private void MovementLogic()
     {
         transform.position = Vector2.MoveTowards(transform.position, targetTransform.position, platformSpeed * Time.deltaTime);
@@ -44,9 +48,8 @@ public class MovingPlatform : MonoBehaviour
             targetTransform = (targetTransform == pointA) ? pointB : pointA;
         }
         if (collisionCheck.contact)
-        {
-            print("ЕДЕМ!");
-            player.MovementLogic(currentSpeed.x);
-        }
+            player.transform.SetParent(this.transform);
+        if (!collisionCheck.contact)
+            player.transform.SetParent(null);
     }
 }

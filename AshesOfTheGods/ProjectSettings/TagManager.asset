@@ -11,6 +11,8 @@ TagManager:
   - Guarded Point
   - Enemy
   - AboveEnemyHead
+  - MovingPlatform
+  - Death
   layers:
   - Default
   - TransparentFX
