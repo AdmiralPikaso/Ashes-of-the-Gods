@@ -44,8 +44,8 @@ public class HealthBar : MonoBehaviour
             
             currentHealth = creature.GetComponent<Enemy>().HpNow;
         }
-        print($"Ьръё ея = {maxHealth}");
-        print($"ея = {currentHealth}");
+        //print($"Ьръё ея = {maxHealth}");
+        //print($"ея = {currentHealth}");
 
         healthBar.fillAmount = currentHealth/maxHealth;
     }

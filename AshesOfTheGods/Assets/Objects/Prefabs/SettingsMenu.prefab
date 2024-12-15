@@ -10,14 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 6584910595662246510}
   - component: {fileID: 5848924006733912473}
-  - component: {fileID: 8777560282148405485}
-  m_Layer: 5
+  - component: {fileID: 3888669864389249261}
+  m_Layer: 0
   m_Name: SettingsMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6584910595662246510
 RectTransform:
   m_ObjectHideFlags: 0
@@ -47,7 +47,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2437001970115161774}
   m_CullTransparentMesh: 1
---- !u!114 &8777560282148405485
+--- !u!114 &3888669864389249261
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
+  m_Color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 2732843559450566684}
   - component: {fileID: 8492786671017159339}
   - component: {fileID: 2911543729082668048}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CloseSettingsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 2469743032928444108}
   - component: {fileID: 6188998404471068688}
   - component: {fileID: 2216604921487253037}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 2180615472962713545}
   - component: {fileID: 5088663287160324699}
   - component: {fileID: 7018600805618934028}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -16,6 +16,10 @@ public class PlayerMovement : MonoBehaviour
         return on_platform;
     }
 
+    public bool InAir()
+    { 
+        return in_air;
+    }
     private Transform targetParent;
 
     private void OnCollisionEnter2D(Collision2D collision)
