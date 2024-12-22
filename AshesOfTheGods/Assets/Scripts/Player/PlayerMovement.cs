@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public bool InAir()
-    { 
+    {
         return in_air;
     }
     private Transform targetParent;
@@ -161,6 +161,9 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        MovementLogic(moveDirection);
+        /*if (Physics2D.Raycast(this.transform.position, new Vector2(0, -1), this.transform.localScale.y / 2 + 0.2f).collider.CompareTag("Ground")
+        && !in_air)
+        Debug.DrawRay((this.transform.position,)*/
+            MovementLogic(moveDirection);
     }
 }
