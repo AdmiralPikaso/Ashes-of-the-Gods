@@ -9,27 +9,18 @@ public class StribogScript : MonoBehaviour
 
     GameObject player;
     Rigidbody2D rb;
-    BoxCollider2D coll;
-    CapsuleCollider2D playerColl;
+   
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(WaitMode());
-        coll = GetComponent<BoxCollider2D>();
-        playerColl = player.GetComponent<CapsuleCollider2D>();
-    }
-
-
-
-    void Update()
-    {
-        
+        StartCoroutine(WaitBeforeAttack());
+        StartCoroutine(WaitAfterAttack());
+        StartCoroutine(WaitJump());
+        StartCoroutine(WaitStun());
     }
 
     [SerializeField] float attackDistance;
-    public LayerMask layerMask;
-    private bool calmMode = true;
     private int attackCount;
     private Vector2 movement;
     private bool waitAfterAttack = false;
@@ -38,6 +29,7 @@ public class StribogScript : MonoBehaviour
     [SerializeField] private Transform bossFightTarget;
 
     public Image im;
+    public Image im2;
     [SerializeField] private Transform jumpPointA;
     [SerializeField] private Transform jumpPointB;
     private Vector2 jumpMove;
@@ -45,20 +37,30 @@ public class StribogScript : MonoBehaviour
     [SerializeField] Transform returnA;
     [SerializeField] Transform returnB;
     [SerializeField] private float jumpSpeed;
+    private bool dashMode = false;
+    public bool Catch { get; set; } = false;
+
+    private bool secondFase = false;
+    private bool secondFaseSkill = false;
+    private Vector2 SecondFaseSkillMove;
+    private bool waitBeforeAttack = false;
+    private bool waitwaitBeforeAttack = false;
     private void FixedUpdate()
     {
-        if (jump == false)
-            im.color = Color.red;
+        if (waitBeforeAttack == false)
+          im.color = Color.red;
         else im.color = Color.green;
+
+        if (waitwaitBeforeAttack == false)
+            im2.color = Color.red;
+        else im2.color = Color.green;
         if (player.transform.position.x > bossFightTarget.position.x & activeFlag == false)
         {
             jump = false;
             activeFlag = true;
         }
 
-        
-
-        if (activeFlag)
+        if (activeFlag & !stun)
         {
             
             if (!jump & Vector2.Distance(gameObject.transform.position, jumpPointA.position) >= Vector2.Distance(gameObject.transform.position, jumpPointB.position))
@@ -70,8 +72,6 @@ public class StribogScript : MonoBehaviour
                 jumpMove = (jumpPointB.position - transform.position).normalized;
             }
 
-            
-
             if (jump)
                 Jump();
 
@@ -80,61 +80,130 @@ public class StribogScript : MonoBehaviour
                 ReturnMode();
             else returnMove = (new Vector2(rb.position.x, bossFightTarget.position.y) - rb.position).normalized;
 
+            
+
             //Vector towards the enemy 
             movement = (player.transform.position - transform.position).normalized;
             movement.y = 0;
-           
-           
-            if (calmMode & !waitAfterAttack & !jump & !returnMode)
+            SecondFaseSkillMove = (player.transform.position - transform.position).normalized;
+
+
+            if (!waitAfterAttack & !jump & !returnMode & !dashMode)
                 CalmMode();
 
-            if (!jump & !returnMode & attackCount >= 2 & (Vector2.Distance(player.transform.position, rb.position) <= attackDistance))
+            
+            if (attackCount >= 2 & !waitwaitBeforeAttack & (Vector2.Distance(player.transform.position, rb.position) <= attackDistance))
             {
-                Attack();
-                attackCount = 0;
+                
+                waitwaitBeforeAttack = true;
+                waitBeforeAttack = true;
+                
             }
 
+            if (attackCount >= 2 & !waitBeforeAttack  )
+            {
+                if (Vector2.Distance(player.transform.position, rb.position) <= attackDistance)
+                    Attack();
+                else
+                {
+                    waitwaitBeforeAttack = false;
+                    attackCount = 0;
+                }
 
+            }
+
+            if (Catch)
+            {
+                dashMode = true;
+            }
+            if (dashMode)
+                Dash();
+
+            if (gameObject.GetComponent<NewStribog>().HpNow <= gameObject.GetComponent<NewStribog>().HpMax/3)
+                secondFase = true;
+
+            if (secondFaseSkill)
+            {
+                SecondFaseSkill();
+            }
+            
         }
     }
 
     [SerializeField] private float speed;
-    private bool afkAggression;
     Vector2 returnMove;
-
     [SerializeField] GameObject airBlast;
-    private void SecondSkill()
+    [SerializeField] private float secondFaseSkillDamage;
+    private float secondFaseAttackCount = 0;
+    private bool stun = false;
+    private bool wasInArmor = false;
+    private void SecondFaseSkill()
+    {
+        if (!returnMode)
+            rb.MovePosition(rb.position + jumpSpeed * Time.fixedDeltaTime * SecondFaseSkillMove);
+        if (Vector2.Distance(player.transform.position, rb.position) <= 5f)
+        {
+            if (secondFaseAttackCount == 0)
+            {
+                if (player.GetComponent<FirstSkill>().In_armor)
+                {
+                    player.GetComponent<FirstSkill>().AttacksCount += 3;
+                    wasInArmor = true;
+                }
+                else player.GetComponent<PlayerStats>().ReduceHp(secondFaseSkillDamage);
+                secondFaseAttackCount++;
+            }
+                returnMode = true;
+      
+        }
+    }
+    
+    private void AirBlastSkill()
     {
         GameObject blast = Instantiate(airBlast, transform.position, Quaternion.identity);
-       // if (blast.GetComponent<AirBlast>().Catch)
-         //   Dash();
-        //else
-        waitAfterAttack = true;
-
     }
 
     private void Dash()
-    { 
-        while (Vector2.Distance(player.transform.position, rb.position) > attackDistance)
-            rb.MovePosition(rb.position + speed * 5 * Time.fixedDeltaTime * movement);
+    {
+        if (Vector2.Distance(player.transform.position, rb.position) > attackDistance)
+            rb.MovePosition(rb.position + speed * 10 * Time.fixedDeltaTime * movement);
+        else
+        {
+            dashMode = false;
+            Catch = false;
+        }
     }
     private void ReturnMode()
     {
        
         rb.MovePosition(rb.position + jumpSpeed * Time.fixedDeltaTime * returnMove);
-        if (rb.position.y - bossFightTarget.position.y <= 0.001f)
+        if (!secondFaseSkill & rb.position.y - bossFightTarget.position.y <= 0.001f)
         {
             returnMode = false;
-            SecondSkill();
+            AirBlastSkill();
         }
+        else if (rb.position.y - bossFightTarget.position.y <= 0.001f)
+        {
+            returnMode = false;
+            secondFaseSkill = false;
+            secondFaseAttackCount = 0;
+            if (wasInArmor)
+            {
+                stun = true;
+                wasInArmor = false;
+            }
+        }
+        
     }
+
+    
     private void CalmMode()
     {
         if (Vector2.Distance(player.transform.position, rb.position) > attackDistance)
         {
             rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * movement);
         }
-        else afkAggression = true;
+        
     }
 
     public void CountAttack()
@@ -143,10 +212,13 @@ public class StribogScript : MonoBehaviour
     }
 
     [SerializeField] private float attackDamage;
+    
     private void Attack()
     {
-            player.GetComponent<PlayerStats>().ReduceHp(attackDamage);
-            waitAfterAttack = true;
+        player.GetComponent<PlayerStats>().ReduceHp(attackDamage);
+        attackCount = 0;
+        waitAfterAttack = true;
+        waitwaitBeforeAttack = false;
     }
 
     
@@ -157,7 +229,10 @@ public class StribogScript : MonoBehaviour
         if (transform.position.y >= jumpPointA.position.y)
         {
             jump = false;
-            returnMode = true;
+            if (secondFase)
+                secondFaseSkill = true;
+            else
+                returnMode = true;
         }
     }
 
@@ -165,38 +240,64 @@ public class StribogScript : MonoBehaviour
    
 
 
-    [SerializeField] private float afkTime;
     [SerializeField] private float afterAtackTime;
+    [SerializeField] private float stunTime;
+    [SerializeField] private float beforeAtackTime;
 
-    private IEnumerator WaitMode()
+    private IEnumerator WaitBeforeAttack()
     {
         while (true)
         {
-           
+            if (waitBeforeAttack)
+        {
 
-            if (afkAggression)
-            {
-                yield return new WaitForSeconds(afkTime);
-                afkAggression = false;
-                if (Vector2.Distance(player.transform.position, rb.position) <= attackDistance)
-                    Attack();
-            }
+            yield return new WaitForSeconds(beforeAtackTime);
+            waitBeforeAttack = false;
 
+        }
+        yield return new WaitForFixedUpdate();
+    }
+}
+    private IEnumerator WaitAfterAttack()
+    {
+        while (true)
+        {
             if (waitAfterAttack)
             {
-                yield return new WaitForSeconds(afterAtackTime);
-                waitAfterAttack = false;
+            yield return new WaitForSeconds(afterAtackTime);
+            waitAfterAttack = false;
             }
+            yield return new WaitForFixedUpdate();
+        
 
+        yield return new WaitForFixedUpdate();
+    }
+}
+
+    private IEnumerator WaitJump()
+    {
+        while (true)
+        {
             if (!jump & activeFlag)
-            {
-                yield return new WaitForSeconds(15);
-                jump = true;
+        {
+            yield return new WaitForSeconds(10);
+            jump = true;
 
+        }
+        yield return new WaitForFixedUpdate();
+        }
+    }
+
+    private IEnumerator WaitStun()
+    {
+        while (true)
+        {
+            if (stun)
+            {
+                yield return new WaitForSeconds(stunTime);
+                stun = false;
             }
-            
             yield return new WaitForFixedUpdate();
         }
-
     }
 }

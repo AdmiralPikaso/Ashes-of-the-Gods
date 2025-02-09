@@ -276,17 +276,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 302fb09957537d74ba2bcebeba5c2512, type: 3}
---- !u!114 &18301651 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 581333140027206126, guid: 302fb09957537d74ba2bcebeba5c2512, type: 3}
-  m_PrefabInstance: {fileID: 18301650}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &68906434 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3670384628923975833, guid: f8072078b0cacf341a8298ccd7cf57f4, type: 3}
@@ -320,6 +309,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1724334753883724472, guid: 399dff1ee77251c48b615d3f424f019a, type: 3}
+      propertyPath: hp
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 3197503770777717079, guid: 399dff1ee77251c48b615d3f424f019a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1026.31
@@ -367,7 +360,11 @@ PrefabInstance:
     - target: {fileID: 6669673448944831305, guid: 399dff1ee77251c48b615d3f424f019a, type: 3}
       propertyPath: im
       value: 
-      objectReference: {fileID: 18301651}
+      objectReference: {fileID: 0}
+    - target: {fileID: 6669673448944831305, guid: 399dff1ee77251c48b615d3f424f019a, type: 3}
+      propertyPath: im2
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6669673448944831305, guid: 399dff1ee77251c48b615d3f424f019a, type: 3}
       propertyPath: arrow
       value: 
@@ -375,6 +372,10 @@ PrefabInstance:
     - target: {fileID: 6669673448944831305, guid: 399dff1ee77251c48b615d3f424f019a, type: 3}
       propertyPath: speed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6669673448944831305, guid: 399dff1ee77251c48b615d3f424f019a, type: 3}
+      propertyPath: afkTime
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6669673448944831305, guid: 399dff1ee77251c48b615d3f424f019a, type: 3}
       propertyPath: returnA
@@ -389,6 +390,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2195181542045423615, guid: 06b699246225fab4683ad66f6915c202, type: 3}
     - target: {fileID: 6669673448944831305, guid: 399dff1ee77251c48b615d3f424f019a, type: 3}
+      propertyPath: stunTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6669673448944831305, guid: 399dff1ee77251c48b615d3f424f019a, type: 3}
       propertyPath: jumpSpeed
       value: 30
       objectReference: {fileID: 0}
@@ -401,9 +406,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 424540874}
     - target: {fileID: 6669673448944831305, guid: 399dff1ee77251c48b615d3f424f019a, type: 3}
+      propertyPath: beforeAtackTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6669673448944831305, guid: 399dff1ee77251c48b615d3f424f019a, type: 3}
       propertyPath: bossFightTarget
       value: 
       objectReference: {fileID: 1904214047}
+    - target: {fileID: 6669673448944831305, guid: 399dff1ee77251c48b615d3f424f019a, type: 3}
+      propertyPath: secondFaseSkillDamage
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -107240,7 +107253,7 @@ Transform:
   m_GameObject: {fileID: 1904214046}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 966.88, y: 64.89, z: -0.20894518}
+  m_LocalPosition: {x: 966.88, y: 65.12, z: -0.20894518}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

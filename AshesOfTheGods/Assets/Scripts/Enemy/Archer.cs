@@ -158,19 +158,19 @@ public class Archer:MonoBehaviour
         {
             if (guardWaitMode)
             {
-                print("���");
+                //print("���");
                 yield return new WaitForSeconds(guardWaitTime);
                 guardWaitMode = false;
             }
             if (shootWaitMode)
             {
-                print("�� ��������");
+                //print("�� ��������");
                 yield return new WaitForSeconds(atackCD);
                 shootWaitMode = false;
             }
             if (returnWaitMode)
             {
-                print("��� ������");
+                //print("��� ������");
                 yield return new WaitForSeconds(targetLostTime);
                 returnWaitMode = false;
             }

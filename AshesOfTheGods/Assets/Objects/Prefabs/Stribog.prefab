@@ -219,17 +219,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDistance: 10
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 256
   bossFightTarget: {fileID: 0}
   im: {fileID: 0}
+  im2: {fileID: 0}
   jumpPointA: {fileID: 0}
   jumpPointB: {fileID: 0}
+  returnA: {fileID: 0}
+  returnB: {fileID: 0}
+  jumpSpeed: 0
   speed: 5
+  airBlast: {fileID: 0}
+  secondFaseSkillDamage: 0
   attackDamage: 10
-  afkTime: 5
   afterAtackTime: 3
+  stunTime: 0
+  beforeAtackTime: 0
 --- !u!1 &5692750726919210757
 GameObject:
   m_ObjectHideFlags: 0
