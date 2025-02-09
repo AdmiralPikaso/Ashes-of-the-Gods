@@ -28,8 +28,7 @@ public class StribogScript : MonoBehaviour
     private bool activeFlag = false;
     [SerializeField] private Transform bossFightTarget;
 
-    public Image im;
-    public Image im2;
+   
     [SerializeField] private Transform jumpPointA;
     [SerializeField] private Transform jumpPointB;
     private Vector2 jumpMove;
@@ -47,13 +46,7 @@ public class StribogScript : MonoBehaviour
     private bool waitwaitBeforeAttack = false;
     private void FixedUpdate()
     {
-        if (waitBeforeAttack == false)
-          im.color = Color.red;
-        else im.color = Color.green;
-
-        if (waitwaitBeforeAttack == false)
-            im2.color = Color.red;
-        else im2.color = Color.green;
+       
         if (player.transform.position.x > bossFightTarget.position.x & activeFlag == false)
         {
             jump = false;
@@ -177,12 +170,12 @@ public class StribogScript : MonoBehaviour
     {
        
         rb.MovePosition(rb.position + jumpSpeed * Time.fixedDeltaTime * returnMove);
-        if (!secondFaseSkill & rb.position.y - bossFightTarget.position.y <= 0.001f)
+        if (!secondFaseSkill & rb.position.y - bossFightTarget.position.y <= 0.01f)
         {
             returnMode = false;
             AirBlastSkill();
         }
-        else if (rb.position.y - bossFightTarget.position.y <= 0.001f)
+        else if (rb.position.y - bossFightTarget.position.y <= 0.01f)
         {
             returnMode = false;
             secondFaseSkill = false;

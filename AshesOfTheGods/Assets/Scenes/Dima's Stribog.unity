@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StaticUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1070927617766903960, guid: 302fb09957537d74ba2bcebeba5c2512, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1159431627027883704, guid: 302fb09957537d74ba2bcebeba5c2512, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.091999054
@@ -371,7 +375,7 @@ PrefabInstance:
       objectReference: {fileID: 2195181542045423615, guid: 06b699246225fab4683ad66f6915c202, type: 3}
     - target: {fileID: 6669673448944831305, guid: 399dff1ee77251c48b615d3f424f019a, type: 3}
       propertyPath: speed
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6669673448944831305, guid: 399dff1ee77251c48b615d3f424f019a, type: 3}
       propertyPath: afkTime
@@ -405,6 +409,14 @@ PrefabInstance:
       propertyPath: jumpPointB
       value: 
       objectReference: {fileID: 424540874}
+    - target: {fileID: 6669673448944831305, guid: 399dff1ee77251c48b615d3f424f019a, type: 3}
+      propertyPath: afterAtackTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6669673448944831305, guid: 399dff1ee77251c48b615d3f424f019a, type: 3}
+      propertyPath: attackDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6669673448944831305, guid: 399dff1ee77251c48b615d3f424f019a, type: 3}
       propertyPath: beforeAtackTime
       value: 0.5
@@ -107253,7 +107265,7 @@ Transform:
   m_GameObject: {fileID: 1904214046}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 966.88, y: 65.12, z: -0.20894518}
+  m_LocalPosition: {x: 966.88, y: 65.23, z: -0.20894518}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

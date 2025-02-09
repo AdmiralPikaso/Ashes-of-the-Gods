@@ -220,20 +220,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 10
   bossFightTarget: {fileID: 0}
-  im: {fileID: 0}
-  im2: {fileID: 0}
   jumpPointA: {fileID: 0}
   jumpPointB: {fileID: 0}
   returnA: {fileID: 0}
   returnB: {fileID: 0}
-  jumpSpeed: 0
-  speed: 5
-  airBlast: {fileID: 0}
-  secondFaseSkillDamage: 0
-  attackDamage: 10
+  jumpSpeed: 10
+  speed: 10
+  airBlast: {fileID: 2195181542045423615, guid: 06b699246225fab4683ad66f6915c202, type: 3}
+  secondFaseSkillDamage: 50
+  attackDamage: 15
   afterAtackTime: 3
-  stunTime: 0
-  beforeAtackTime: 0
+  stunTime: 3
+  beforeAtackTime: 1
 --- !u!1 &5692750726919210757
 GameObject:
   m_ObjectHideFlags: 0
