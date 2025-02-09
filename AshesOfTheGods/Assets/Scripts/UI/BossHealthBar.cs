@@ -21,7 +21,7 @@ public class BossHealthBar : MonoBehaviour
             Destroy(gameObject);
 
         }
-        healthbar.fillAmount = info.GetHp() / info.MaxHp;
-        print(info.GetHp());
+        //healthbar.fillAmount = info.GetHp() / info.MaxHp;
+        //print(info.GetHp());
     }
 }
