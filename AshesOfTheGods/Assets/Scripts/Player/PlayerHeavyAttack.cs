@@ -22,14 +22,17 @@ public class PlayerHeavyAttack : MonoBehaviour
 
     public void Update()
     {
-        HandleMovement();
-
-        if (Input.GetAxis("Fire2") == 0)
-            KeyWasPressed = false;
-        if (Input.GetAxis("Fire2") != 0 && !waitMode && !KeyWasPressed)
+        
+        if (!gameObject.GetComponent<PlayerStats>().IsDead & !gameObject.GetComponent<PlayerStats>().IsEsc)
         {
-            Attack();
-            KeyWasPressed = true;
+            HandleMovement();
+            if (Input.GetAxis("Fire2") == 0)
+                KeyWasPressed = false;
+            if (Input.GetAxis("Fire2") != 0 && !waitMode && !KeyWasPressed)
+            {
+                Attack();
+                KeyWasPressed = true;
+            }
         }
     }
 

@@ -134,11 +134,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce;
     private void JumpLogic()
     {
-        JumpPressed = Input.GetKeyDown(KeyCode.Space);
-        if (!in_air && JumpPressed)
+        if (!gameObject.GetComponent<PlayerStats>().IsDead & !gameObject.GetComponent<PlayerStats>().IsEsc)
         {
-            rigidB.AddForceY(jumpForce, ForceMode2D.Impulse);
-            JumpPressed = false;
+            JumpPressed = Input.GetKeyDown(KeyCode.Space);
+            if (!in_air && JumpPressed)
+            {
+                rigidB.AddForceY(jumpForce, ForceMode2D.Impulse);
+                JumpPressed = false;
+            }
         }
     }
 
@@ -149,14 +152,17 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        moveDirection = Input.GetAxis("Horizontal");
-        in_air = !on_ground && !on_platform && !on_moving_platform;
-        JumpLogic();
-
-        if ((on_ground || on_platform || on_moving_platform) && moveDirection != 0 && walkingSound != null && Time.time - lastWalkingSoundTime >= walkingSoundInterval)
+        if (!gameObject.GetComponent<PlayerStats>().IsDead & !gameObject.GetComponent<PlayerStats>().IsEsc)
         {
-            Sounds.Sound(walkingSound, audioSource, volume, minPitch, maxPitch);
-            lastWalkingSoundTime = Time.time;
+            moveDirection = Input.GetAxis("Horizontal");
+            in_air = !on_ground && !on_platform && !on_moving_platform;
+            JumpLogic();
+
+            if ((on_ground || on_platform || on_moving_platform) && moveDirection != 0 && walkingSound != null && Time.time - lastWalkingSoundTime >= walkingSoundInterval)
+            {
+                Sounds.Sound(walkingSound, audioSource, volume, minPitch, maxPitch);
+                lastWalkingSoundTime = Time.time;
+            }
         }
     }
     void FixedUpdate()

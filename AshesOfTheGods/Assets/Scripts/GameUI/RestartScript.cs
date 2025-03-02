@@ -15,6 +15,7 @@ public class RestartScript : MonoBehaviour
     private void Restart()
     {
         //deathScreen.SetActive(false);
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 0);
         
     }

@@ -47,82 +47,84 @@ public class StribogScript : MonoBehaviour
     private bool waitwaitBeforeAttack = false;
     private void FixedUpdate()
     {
-       
-        if (player.transform.position.x > bossFightTarget.position.x & activeFlag == false)
+        if (!player.GetComponent<PlayerStats>().IsDead)
         {
-            jump = false;
-            activeFlag = true;
-        }
-
-        if (activeFlag & !stun)
-        {
-            
-            if (!jump & Vector2.Distance(gameObject.transform.position, jumpPointA.position) >= Vector2.Distance(gameObject.transform.position, jumpPointB.position))
+            if (player.transform.position.x > bossFightTarget.position.x & activeFlag == false)
             {
-                jumpMove = (jumpPointA.position - transform.position).normalized;
-            }
-            else if (!jump)
-            {
-                jumpMove = (jumpPointB.position - transform.position).normalized;
+                jump = false;
+                activeFlag = true;
             }
 
-            if (jump)
-                Jump();
-
-            
-            if (returnMode)
-                ReturnMode();
-            else returnMove = (new Vector2(rb.position.x, bossFightTarget.position.y) - rb.position).normalized;
-
-            
-
-            //Vector towards the enemy 
-            movement = (player.transform.position - transform.position).normalized;
-            movement.y = 0;
-            SecondFaseSkillMove = (player.transform.position - transform.position).normalized;
-
-
-            if (!waitAfterAttack & !jump & !returnMode & !dashMode)
-                CalmMode();
-
-            
-            if (attackCount >= 2 & !waitwaitBeforeAttack & (Vector2.Distance(player.transform.position, rb.position) <= attackDistance))
+            if (activeFlag & !stun)
             {
-                
-                waitwaitBeforeAttack = true;
-                waitBeforeAttack = true;
-                
-            }
 
-            if (attackCount >= 2 & !waitBeforeAttack  )
-            {
-                if (Vector2.Distance(player.transform.position, rb.position) <= attackDistance)
-                    Attack();
-                else
+                if (!jump & Vector2.Distance(gameObject.transform.position, jumpPointA.position) >= Vector2.Distance(gameObject.transform.position, jumpPointB.position))
                 {
-                    waitwaitBeforeAttack = false;
-                    attackCount = 0;
+                    jumpMove = (jumpPointA.position - transform.position).normalized;
+                }
+                else if (!jump)
+                {
+                    jumpMove = (jumpPointB.position - transform.position).normalized;
+                }
+
+                if (jump)
+                    Jump();
+
+
+                if (returnMode)
+                    ReturnMode();
+                else returnMove = (new Vector2(rb.position.x, bossFightTarget.position.y) - rb.position).normalized;
+
+
+
+                //Vector towards the enemy 
+                movement = (player.transform.position - transform.position).normalized;
+                movement.y = 0;
+                SecondFaseSkillMove = (player.transform.position - transform.position).normalized;
+
+
+                if (!waitAfterAttack & !jump & !returnMode & !dashMode)
+                    CalmMode();
+
+
+                if (attackCount >= 2 & !waitwaitBeforeAttack & (Vector2.Distance(player.transform.position, rb.position) <= attackDistance))
+                {
+
+                    waitwaitBeforeAttack = true;
+                    waitBeforeAttack = true;
+
+                }
+
+                if (attackCount >= 2 & !waitBeforeAttack)
+                {
+                    if (Vector2.Distance(player.transform.position, rb.position) <= attackDistance)
+                        Attack();
+                    else
+                    {
+                        waitwaitBeforeAttack = false;
+                        attackCount = 0;
+                    }
+
+                }
+
+                if (Catch)
+                {
+                    airBlastCount = 3;
+                    inAirBlast = false;
+                    dashMode = true;
+                }
+                if (dashMode)
+                    Dash();
+
+                if (gameObject.GetComponent<NewStribog>().HpNow <= gameObject.GetComponent<NewStribog>().HpMax / 3)
+                    secondFase = true;
+
+                if (secondFaseSkill)
+                {
+                    SecondFaseSkill();
                 }
 
             }
-
-            if (Catch)
-            {
-                airBlastCount = 3;
-                inAirBlast = false;
-                dashMode = true;
-            }
-            if (dashMode)
-                Dash();
-
-            if (gameObject.GetComponent<NewStribog>().HpNow <= gameObject.GetComponent<NewStribog>().HpMax/3)
-                secondFase = true;
-
-            if (secondFaseSkill)
-            {
-                SecondFaseSkill();
-            }
-            
         }
     }
 

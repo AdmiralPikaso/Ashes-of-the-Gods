@@ -6,6 +6,7 @@ public class ContinueButton : MonoBehaviour
 {
     Button button;
     [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject player;
     private void Awake()
     {
         button = GetComponent<Button>();
@@ -16,6 +17,7 @@ public class ContinueButton : MonoBehaviour
     {
         settingsMenu.SetActive(false);
         Time.timeScale = 1f;
+        player.GetComponent<PlayerStats>().IsEsc = false;
     }
 
     private void OnDestroy()

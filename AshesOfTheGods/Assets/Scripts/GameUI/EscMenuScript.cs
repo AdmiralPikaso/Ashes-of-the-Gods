@@ -7,6 +7,7 @@ public class EscMenuScript : MonoBehaviour
     [SerializeField] private GameObject escMenu;
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject player;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -18,8 +19,15 @@ public class EscMenuScript : MonoBehaviour
         {
             escMenu.SetActive(!escMenu.activeSelf);
             if (escMenu.activeSelf == true)
+            {
                 Time.timeScale = 0f;
-            else Time.timeScale = 1f;
+                player.GetComponent<PlayerStats>().IsEsc = true;
+            }
+            else
+            {
+                player.GetComponent<PlayerStats>().IsEsc = false;
+                Time.timeScale = 1f;
+            }
         }
     }
 }

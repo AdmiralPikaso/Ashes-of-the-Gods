@@ -65,100 +65,103 @@ public class EnemyMovement : MonoBehaviour
     private bool returnWaitModeFlag = false;
     private bool isWalking = false;
     private void FixedUpdate()
-    { 
-        //Atack Distance check
-        if (Vector2.Distance(playerTransform.position, transform.position) <= atackDistanse - 1)
+    {
+        if (!player.GetComponent<PlayerStats>().IsDead)
         {
-            onAtackDistanse = true;
-        }
-            
-
-        else
-            onAtackDistanse = false;
-
-        //Vector towards the enemy 
-        movement = (playerTransform.position - transform.position).normalized;
-        movement.y = 0;
-
-        //Vector towards the guarded point
-        if (Vector2.Distance(rb.position, firstGuardedPoint.position) < Vector2.Distance(rb.position, secondGuardedPoint.position))
-        {
-            returnMovement = (firstGuardedPoint.position - transform.position + new Vector3(1, 0, 0)).normalized;
-            returnMovement.y = 0;
-        }
-        else
-        {
-            returnMovement = (secondGuardedPoint.position - transform.position - new Vector3(1, 0, 0)).normalized;
-            returnMovement.y = 0;
-        }
-
-        RaycastHit2D enemyVisionRight = Physics2D.Raycast(new Vector3 (transform.position.x, transform.position.y + coll.size.y/2, 0), Vector2.right, distance,layerMask);
-        RaycastHit2D enemtVisionLeft = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left, distance,layerMask);
-        Debug.DrawRay(new Vector3(transform.position.x,  transform.position.y + coll.size.y / 2, 0), Vector2.right * distance, Color.green);
-        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left * distance, Color.green);
-
-        //exit from return, entrance to guard
-        if (rb.position.x - transform.localScale.x >= firstGuardedPoint.position.x - 0.1f & rb.position.x + transform.localScale.x <= secondGuardedPoint.position.x + 0.5f & !angryMode)
-        {
-            returnMode = false;
-            guardMode = true;
-        }
+            //Atack Distance check
+            if (Vector2.Distance(playerTransform.position, transform.position) <= atackDistanse - 1)
+            {
+                onAtackDistanse = true;
+            }
 
 
-        //exit from guard, entrance to angry
-        //if (playerTransform.position.x > firstGuardedPoint.position.x & playerTransform.position.x < secondGuardedPoint.position.x)
-        if (enemyVisionRight.collider != null | enemtVisionLeft.collider !=null)
-        {
-           // Debug.Log("Enemy Detected");
-            guardMode = false;
-            returnMode = false;
-            angryMode = true;
-        }
+            else
+                onAtackDistanse = false;
 
-        //Debug.Log(player_on_platform.GetOnPlatform());
-        //exit from angry, entrance to return
-        if (((playerTransform.position.y - playerColl.size.y/2 > transform.position.y + coll.size.y/2) | (playerTransform.position.y + playerColl.size.y / 2 < transform.position.y - coll.size.y / 2)) & angryMode & !player_on_platform.InAir())
-        {
-            angryMode = false;
-            returnMode = true;
-            returnWaitModeFlag = true;
-        }
+            //Vector towards the enemy 
+            movement = (playerTransform.position - transform.position).normalized;
+            movement.y = 0;
 
-        Vector2 movementDirection = Vector2.zero;
-        
-        if (!onAtackDistanse & angryMode)
-        {
-            AngryMode();
-            isWalking = true;
-            movementDirection = movement;
-        }
-        else if (onAtackDistanse & angryMode & enemyCanAtack)
-        {
-            isWalking = false;
-            AtackMode();
-        }
-        else if (returnMode)
-        {
-            isWalking = false;
-            ReturnMode();
-            movementDirection = returnMovement;
-        }
-        else if (guardMode)
-        {
-            GuardMode();
-            isWalking = !guardWaitMode;
-            movementDirection = (guardModeRightMove ? Vector2.right : Vector2.left);
-        }
-        else
-        {
-            isWalking = false;
-        }
-            
-        animator.SetBool("IsWalking", isWalking);
+            //Vector towards the guarded point
+            if (Vector2.Distance(rb.position, firstGuardedPoint.position) < Vector2.Distance(rb.position, secondGuardedPoint.position))
+            {
+                returnMovement = (firstGuardedPoint.position - transform.position + new Vector3(1, 0, 0)).normalized;
+                returnMovement.y = 0;
+            }
+            else
+            {
+                returnMovement = (secondGuardedPoint.position - transform.position - new Vector3(1, 0, 0)).normalized;
+                returnMovement.y = 0;
+            }
 
-        if (isWalking)
-        {
-            spriteRenderer.flipX = movementDirection.x < 0;
+            RaycastHit2D enemyVisionRight = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.right, distance, layerMask);
+            RaycastHit2D enemtVisionLeft = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left, distance, layerMask);
+            Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.right * distance, Color.green);
+            Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left * distance, Color.green);
+
+            //exit from return, entrance to guard
+            if (rb.position.x - transform.localScale.x >= firstGuardedPoint.position.x - 0.1f & rb.position.x + transform.localScale.x <= secondGuardedPoint.position.x + 0.5f & !angryMode)
+            {
+                returnMode = false;
+                guardMode = true;
+            }
+
+
+            //exit from guard, entrance to angry
+            //if (playerTransform.position.x > firstGuardedPoint.position.x & playerTransform.position.x < secondGuardedPoint.position.x)
+            if (enemyVisionRight.collider != null | enemtVisionLeft.collider != null)
+            {
+                // Debug.Log("Enemy Detected");
+                guardMode = false;
+                returnMode = false;
+                angryMode = true;
+            }
+
+            //Debug.Log(player_on_platform.GetOnPlatform());
+            //exit from angry, entrance to return
+            if (((playerTransform.position.y - playerColl.size.y / 2 > transform.position.y + coll.size.y / 2) | (playerTransform.position.y + playerColl.size.y / 2 < transform.position.y - coll.size.y / 2)) & angryMode & !player_on_platform.InAir())
+            {
+                angryMode = false;
+                returnMode = true;
+                returnWaitModeFlag = true;
+            }
+
+            Vector2 movementDirection = Vector2.zero;
+
+            if (!onAtackDistanse & angryMode)
+            {
+                AngryMode();
+                isWalking = true;
+                movementDirection = movement;
+            }
+            else if (onAtackDistanse & angryMode & enemyCanAtack)
+            {
+                isWalking = false;
+                AtackMode();
+            }
+            else if (returnMode)
+            {
+                isWalking = false;
+                ReturnMode();
+                movementDirection = returnMovement;
+            }
+            else if (guardMode)
+            {
+                GuardMode();
+                isWalking = !guardWaitMode;
+                movementDirection = (guardModeRightMove ? Vector2.right : Vector2.left);
+            }
+            else
+            {
+                isWalking = false;
+            }
+
+            animator.SetBool("IsWalking", isWalking);
+
+            if (isWalking)
+            {
+                spriteRenderer.flipX = movementDirection.x < 0;
+            }
         }
     }
 

@@ -243,6 +243,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -0.41497803
       objectReference: {fileID: 0}
+    - target: {fileID: 5992553948263555314, guid: 302fb09957537d74ba2bcebeba5c2512, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 525177571}
     - target: {fileID: 6258442971135592181, guid: 302fb09957537d74ba2bcebeba5c2512, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.69999695
@@ -265,6 +269,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7644625561019999462, guid: 302fb09957537d74ba2bcebeba5c2512, type: 3}
       propertyPath: creature
+      value: 
+      objectReference: {fileID: 525177571}
+    - target: {fileID: 7966310592951627930, guid: 302fb09957537d74ba2bcebeba5c2512, type: 3}
+      propertyPath: player
       value: 
       objectReference: {fileID: 525177571}
     - target: {fileID: 7966310592951627930, guid: 302fb09957537d74ba2bcebeba5c2512, type: 3}
@@ -107284,7 +107292,7 @@ Transform:
   m_GameObject: {fileID: 1904214046}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 966.88, y: 65.23, z: -0.20894518}
+  m_LocalPosition: {x: 966.88, y: 65.7, z: -0.20894518}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -107809,6 +107817,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9148015590107469414, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
+      propertyPath: escMenu
+      value: 
+      objectReference: {fileID: 1348822298}
     - target: {fileID: 9148015590107469414, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: deathScreen
       value: 

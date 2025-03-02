@@ -28,8 +28,11 @@ public class FirstSkill : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && ready)
-            GetArmor();
+        if (!gameObject.GetComponent<PlayerStats>().IsDead & !gameObject.GetComponent<PlayerStats>().IsEsc)
+        {
+            if (Input.GetKeyDown(KeyCode.Q) && ready)
+                GetArmor();
+        }
 
         if (AttacksCount >= 5)
             RemArmor();

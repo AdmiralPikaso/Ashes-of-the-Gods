@@ -35,77 +35,80 @@ public class Archer:MonoBehaviour
     public LayerMask layerMask;
     private void FixedUpdate()
     {
-        if (!shootMode & !returnWaitMode & !guardMode)
+        if (!player.GetComponent<PlayerStats>().IsDead)
         {
-            guardMode = true;
-        }
+            if (!shootMode & !returnWaitMode & !guardMode)
+            {
+                guardMode = true;
+            }
 
-        //print($"{guardMode}{shootMode}{returnWaitMode}");
-        //Vector towards the enemy 
-        movement = (player.transform.position - transform.position).normalized;
-        movement.y = 0;
+            //print($"{guardMode}{shootMode}{returnWaitMode}");
+            //Vector towards the enemy 
+            movement = (player.transform.position - transform.position).normalized;
+            movement.y = 0;
 
-        //Archer vision raycast system
-        RaycastHit2D enemyVisionRight = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.right, distance, layerMask);
-        RaycastHit2D enemyVisionLeft = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left, distance, layerMask);
-        
-        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.right * distance, Color.green);
-        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left * distance, Color.green);
+            //Archer vision raycast system
+            RaycastHit2D enemyVisionRight = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.right, distance, layerMask);
+            RaycastHit2D enemyVisionLeft = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left, distance, layerMask);
+
+            Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.right * distance, Color.green);
+            Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left * distance, Color.green);
 
 
-        Vector2 movementDirection = Vector2.zero;
+            Vector2 movementDirection = Vector2.zero;
 
-        if ((enemyVisionLeft.collider != null && enemyVisionLeft.collider.gameObject.CompareTag("Player")) | (enemyVisionRight.collider != null && enemyVisionRight.collider.gameObject.CompareTag("Player")))
-        {
-           
-            if (Vector2.Distance(player.transform.position, transform.position) <= distance) //exit from guard, entrance to angry
+            if ((enemyVisionLeft.collider != null && enemyVisionLeft.collider.gameObject.CompareTag("Player")) | (enemyVisionRight.collider != null && enemyVisionRight.collider.gameObject.CompareTag("Player")))
             {
 
-                guardMode = false;
-                shootMode = true;
+                if (Vector2.Distance(player.transform.position, transform.position) <= distance) //exit from guard, entrance to angry
+                {
+
+                    guardMode = false;
+                    shootMode = true;
+
+                }
+                else if (!shootWaitMode & shootMode)
+                {
+                    shootMode = false;
+                    guardMode = false;
+                    returnWaitMode = true;
+                }
+
 
             }
             else if (!shootWaitMode & shootMode)
             {
+                //print("�� �����");
                 shootMode = false;
                 guardMode = false;
                 returnWaitMode = true;
             }
-            
 
-        }
-        else if (!shootWaitMode & shootMode)
-        {
-            //print("�� �����");
-            shootMode = false;
-            guardMode = false;
-            returnWaitMode = true;
-        }
-
-        if (guardMode)
-        {
-            GuardMode();
-            animator.SetBool("IsWalking", !guardWaitMode);
-            movementDirection = (guardModeRightMove ? Vector2.right : Vector2.left);
-        }
-        else if (shootMode)
-        {
-            animator.SetTrigger("IsAttack");
-            ShootMode();
-            animator.SetBool("IsWalking", false);
-            movementDirection = (player.transform.position - transform.position).normalized;
-        }
-        else if (returnWaitMode)
-        {
-            animator.SetBool("IsWalking", false);
-        }
-        else
-        {
-            animator.SetBool("IsWalking", false);
-        }
-        if (movementDirection != Vector2.zero & (!guardMode || !guardWaitMode))
-        {
-            spriteRenderer.flipX = movementDirection.x < 0;
+            if (guardMode)
+            {
+                GuardMode();
+                animator.SetBool("IsWalking", !guardWaitMode);
+                movementDirection = (guardModeRightMove ? Vector2.right : Vector2.left);
+            }
+            else if (shootMode)
+            {
+                animator.SetTrigger("IsAttack");
+                ShootMode();
+                animator.SetBool("IsWalking", false);
+                movementDirection = (player.transform.position - transform.position).normalized;
+            }
+            else if (returnWaitMode)
+            {
+                animator.SetBool("IsWalking", false);
+            }
+            else
+            {
+                animator.SetBool("IsWalking", false);
+            }
+            if (movementDirection != Vector2.zero & (!guardMode || !guardWaitMode))
+            {
+                spriteRenderer.flipX = movementDirection.x < 0;
+            }
         }
     }
 
