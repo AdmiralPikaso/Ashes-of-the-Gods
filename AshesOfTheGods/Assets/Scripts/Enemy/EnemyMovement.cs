@@ -65,7 +65,9 @@ public class EnemyMovement : MonoBehaviour
     private bool returnWaitModeFlag = false;
     private bool isWalking = false;
     private void FixedUpdate()
-    { 
+    {
+        Debug.Log(enemyCanAtack);
+        Debug.Log("атак" + isAttack);
         //Atack Distance check
         if (Vector2.Distance(playerTransform.position, transform.position) <= atackDistanse - 1)
         {
@@ -129,7 +131,8 @@ public class EnemyMovement : MonoBehaviour
         if (!onAtackDistanse & angryMode)
         {
             AngryMode();
-            isWalking = true;
+            if (!isAttack)
+                isWalking = true;
             movementDirection = movement;
         }
         else if (onAtackDistanse & angryMode & enemyCanAtack)
@@ -156,7 +159,7 @@ public class EnemyMovement : MonoBehaviour
             
         animator.SetBool("IsWalking", isWalking);
 
-        if (isWalking)
+        if (isWalking & !gameObject.GetComponent<Enemy>().isDead)
         {
             spriteRenderer.flipX = movementDirection.x < 0;
         }
@@ -164,9 +167,13 @@ public class EnemyMovement : MonoBehaviour
 
     [Space]
     [SerializeField] private float speed;
+    
     private void AngryMode()
     {
-        rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * movement);
+        if (!isAttack)
+        {
+            rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * movement);
+        }
     }
 
 
@@ -212,12 +219,21 @@ public class EnemyMovement : MonoBehaviour
     
     [SerializeField] float enemyDamage;
     private bool enemyCanAtack = true;
+    private bool isAttack = false;
     private void AtackMode()
     {
+        isAttack = true;
         Debug.Log("Скелет бьёт");
         animator.SetTrigger("Attack");
-        player.GetComponent<PlayerStats>().ReduceHp(enemyDamage);
         enemyCanAtack = false;
+    }
+    
+    private void EnemyAtack()
+    {
+        if (onAtackDistanse)
+        {
+            player.GetComponent<PlayerStats>().ReduceHp(enemyDamage);
+        }
     }
 
     [Space]
@@ -242,17 +258,30 @@ public class EnemyMovement : MonoBehaviour
                 yield return new WaitForSeconds(targetLostTime);
                 returnWaitMode = false;
             }
-            if (!enemyCanAtack)
+            
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    private IEnumerator CD()
+    {
+        if (!enemyCanAtack)
             {
                 //print("Кд атаки");
+                isAttack = false;
                 yield return new WaitForSeconds(atackCoodown);
                 enemyCanAtack = true;
             }
-            yield return new WaitForFixedUpdate();
+    }
 
-
-        }
-        
+    void Destruction()
+    {
+        isWalking = false;
+        //enemyCanAtack = false;
+        returnWaitMode = false;
+        guardWaitMode = false;
+        speed = 0;
+        Destroy(gameObject, 5f);   
     }
 }
 

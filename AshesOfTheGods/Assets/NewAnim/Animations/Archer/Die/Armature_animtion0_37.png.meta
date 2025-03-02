@@ -5,6 +5,9 @@ TextureImporter:
   - first:
       213: 4503688033900852261
     second: Armature_animtion0_37_0
+  - first:
+      213: 3012285674392653338
+    second: Armature_animtion0_37_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -84,6 +87,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
+    buildTarget: Win64
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -97,7 +113,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WindowsStoreApps
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -116,10 +132,10 @@ TextureImporter:
       name: Armature_animtion0_37_0
       rect:
         serializedVersion: 2
-        x: 597
-        y: 490
+        x: 224
+        y: 228
         width: 629
-        height: 301
+        height: 233
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,6 +146,28 @@ TextureImporter:
       bones: []
       spriteID: 52476dfb760508e30800000000000000
       internalID: 4503688033900852261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Armature_animtion0_37_1
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 160
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1e0c207cd9cdc920800000000000000
+      internalID: 3012285674392653338
       vertices: []
       indices: 
       edges: []
@@ -147,8 +185,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Armature_animtion0_37_0: 4503688033900852261
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

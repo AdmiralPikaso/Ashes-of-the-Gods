@@ -90,6 +90,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
+    buildTarget: Win64
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -103,7 +116,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WindowsStoreApps
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -122,9 +135,9 @@ TextureImporter:
       name: Armature_animtion0_08_0
       rect:
         serializedVersion: 2
-        x: 807
-        y: 1080
-        width: 92
+        x: 433
+        y: 750
+        width: 93
         height: 154
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -144,10 +157,10 @@ TextureImporter:
       name: Armature_animtion0_08_1
       rect:
         serializedVersion: 2
-        x: 667
-        y: 521
-        width: 520
-        height: 554
+        x: 294
+        y: 192
+        width: 519
+        height: 553
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,8 +179,8 @@ TextureImporter:
       name: Armature_animtion0_08_2
       rect:
         serializedVersion: 2
-        x: 1080
-        y: 495
+        x: 706
+        y: 165
         width: 6
         height: 6
       alignment: 0
@@ -197,10 +210,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Armature_animtion0_08_0: 8532260105886234417
-      Armature_animtion0_08_1: -6784834452666469806
-      Armature_animtion0_08_2: -7071525358243276538
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

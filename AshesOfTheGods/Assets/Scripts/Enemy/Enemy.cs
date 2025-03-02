@@ -1,3 +1,4 @@
+using System.Xml.Serialization;
 using NUnit.Framework;
 using Unity.Mathematics;
 using UnityEngine;
@@ -36,11 +37,10 @@ public class Enemy : MonoBehaviour
         Debug.Log("Хп врага" + HpNow);
 
     }
-
+    public bool isDead = false;
     void Die()
-    {
+    {   isDead = true;
         print("Смерть");
         animator.SetBool("IsDie", true);
-        Destroy(gameObject, 1.5f);
     }
 }

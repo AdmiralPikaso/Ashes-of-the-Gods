@@ -343,8 +343,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.75, y: 6.81}
-    newSize: {x: 3.75, y: 6.81}
+    oldSize: {x: 9, y: 10}
+    newSize: {x: 9, y: 10}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -398,10 +398,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   speed: 5
-  enemyDamage: 10
+  enemyDamage: 100
   guardWaitTime: 3
   targetLostTime: 2
-  atackCoodown: 1
+  atackCoodown: 1.1
 --- !u!212 &3980493810398853486
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -446,12 +446,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -8315360735845423546, guid: b5123c3b17d61754382f087867e531ec, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9335775d998c8df42ad02af0037e605e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.75, y: 6.81}
+  m_Size: {x: 9, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -475,6 +475,7 @@ MonoBehaviour:
   minPitch: 0
   maxPitch: 0
   volume: 0
+  isDead: 0
 --- !u!95 &6907300063487929882
 Animator:
   serializedVersion: 7

@@ -23,14 +23,17 @@ public class PlayerRegularAttack : MonoBehaviour
 
     public void Update()
     {
-        HandleMovement();
-
-        if (Input.GetAxis("Fire1") == 0)
-            KeyWasPressed = false;
-        if (Input.GetAxis("Fire1") != 0 && !waitMode && !KeyWasPressed)
+        if (!gameObject.GetComponent<PlayerStats>().isEsc)
         {
-            Attack();
-            KeyWasPressed = true;
+            HandleMovement();
+
+            if (Input.GetAxis("Fire1") == 0)
+                KeyWasPressed = false;
+            if (Input.GetAxis("Fire1") != 0 && !waitMode & !KeyWasPressed)
+            {
+                Attack();
+                KeyWasPressed = true;
+            }
         }
     }
 
