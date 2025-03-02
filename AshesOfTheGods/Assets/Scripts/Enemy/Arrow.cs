@@ -27,7 +27,8 @@ public class Arrow : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Enemy")) 
         {
-            player.GetComponent<PlayerStats>().ReduceHp(damage);
+            if (collision.gameObject.CompareTag("Player"))
+                player.GetComponent<PlayerStats>().ReduceHp(damage);
             Destroy(gameObject);
         }
         

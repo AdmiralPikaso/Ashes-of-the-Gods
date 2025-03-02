@@ -72,17 +72,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.08506346, y: 0.072993875}
+  m_Offset: {x: -0.045155704, y: -0.35282516}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.78, y: 6.81}
-    newSize: {x: 4.78, y: 6.81}
+    oldSize: {x: 9, y: 12}
+    newSize: {x: 9, y: 12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.3683062, y: 4.64674}
+  m_Size: {x: 3.2884908, y: 6.958329}
   m_EdgeRadius: 0
 --- !u!50 &2478225852416183989
 Rigidbody2D:
@@ -155,12 +155,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -8315360735845423546, guid: 2d1bff19aaa5c6348af3f9d8637bb440, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 811cf522a42c92e4fadf6f54b476dac4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.78, y: 6.81}
+  m_Size: {x: 9, y: 12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -186,7 +186,7 @@ MonoBehaviour:
     m_Bits: 128
   speed: 5
   arrow: {fileID: 2195181542045423615, guid: 75b53de171b8f6e41aad9688be40ee58, type: 3}
-  atackCD: 2
+  atackCD: 10
   guardWaitTime: 2
   targetLostTime: 3
 --- !u!114 &2726985387058454574
@@ -207,6 +207,7 @@ MonoBehaviour:
   minPitch: 0
   maxPitch: 0
   volume: 0
+  isDead: 0
 --- !u!95 &9166022135201453207
 Animator:
   serializedVersion: 7
@@ -341,7 +342,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.3, y: 3.87}
+  m_AnchoredPosition: {x: 0.22, y: 3.83}
   m_SizeDelta: {x: 3.1935, y: 0.4296}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1543250862115102341

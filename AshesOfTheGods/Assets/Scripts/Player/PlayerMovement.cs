@@ -149,18 +149,22 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        moveDirection = Input.GetAxis("Horizontal");
-        in_air = !on_ground && !on_platform && !on_moving_platform;
-        JumpLogic();
-
-        if ((on_ground || on_platform || on_moving_platform) && moveDirection != 0 && walkingSound != null && Time.time - lastWalkingSoundTime >= walkingSoundInterval)
+        if (!gameObject.GetComponent<PlayerStats>().isEsc)
         {
-            Sounds.Sound(walkingSound, audioSource, volume, minPitch, maxPitch);
-            lastWalkingSoundTime = Time.time;
+            moveDirection = Input.GetAxis("Horizontal");
+            in_air = !on_ground && !on_platform && !on_moving_platform;
+            JumpLogic();
+
+            if ((on_ground || on_platform || on_moving_platform) && moveDirection != 0 && walkingSound != null && Time.time - lastWalkingSoundTime >= walkingSoundInterval)
+            {
+                Sounds.Sound(walkingSound, audioSource, volume, minPitch, maxPitch);
+                lastWalkingSoundTime = Time.time;
+            }
         }
     }
     void FixedUpdate()
     {
-        MovementLogic(moveDirection);
+        if (!gameObject.GetComponent<PlayerStats>().isEsc)
+            MovementLogic(moveDirection);
     }
 }

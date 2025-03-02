@@ -657,6 +657,7 @@ MonoBehaviour:
     m_Y: 192
     m_Width: 390
     m_Height: 99
+
   m_FontFeatureTable:
     m_MultipleSubstitutionRecords: []
     m_LigatureSubstitutionRecords: []
