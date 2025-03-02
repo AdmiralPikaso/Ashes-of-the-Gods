@@ -18,6 +18,7 @@ public class StribogScript : MonoBehaviour
         StartCoroutine(WaitAfterAttack());
         StartCoroutine(WaitJump());
         StartCoroutine(WaitStun());
+        StartCoroutine(AirBlastCd());
     }
 
     [SerializeField] float attackDistance;
@@ -107,6 +108,8 @@ public class StribogScript : MonoBehaviour
 
             if (Catch)
             {
+                airBlastCount = 3;
+                inAirBlast = false;
                 dashMode = true;
             }
             if (dashMode)
@@ -154,6 +157,8 @@ public class StribogScript : MonoBehaviour
     private void AirBlastSkill()
     {
         GameObject blast = Instantiate(airBlast, transform.position, Quaternion.identity);
+        AirBlastSeries = false;
+        airBlastCount++;
     }
 
     private void Dash()
@@ -172,8 +177,11 @@ public class StribogScript : MonoBehaviour
         rb.MovePosition(rb.position + jumpSpeed * Time.fixedDeltaTime * returnMove);
         if (!secondFaseSkill & rb.position.y - bossFightTarget.position.y <= 0.01f)
         {
+            airBlastCount = 0;
             returnMode = false;
+            inAirBlast = true;
             AirBlastSkill();
+            
         }
         else if (rb.position.y - bossFightTarget.position.y <= 0.01f)
         {
@@ -189,13 +197,27 @@ public class StribogScript : MonoBehaviour
         
     }
 
-    
+    int airBlastCount = 3;
+    bool AirBlastSeries = true;
+    bool inAirBlast = false;
+    [SerializeField] private Image im1;
+    [SerializeField] private Image im2;
     private void CalmMode()
     {
-        if (Vector2.Distance(player.transform.position, rb.position) > attackDistance)
+
+        if (AirBlastSeries & airBlastCount < 3)
         {
+            AirBlastSkill();
+            
+        }
+        if (airBlastCount == 3)
+            inAirBlast = false;
+        if (!inAirBlast &Vector2.Distance(player.transform.position, rb.position) > attackDistance)
+        {
+            
             rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * movement);
         }
+        
         
     }
 
@@ -267,16 +289,20 @@ public class StribogScript : MonoBehaviour
     }
 }
 
+    [SerializeField] private float jumpCD;
+    [SerializeField] private float jumpSecondCD;
+    
     private IEnumerator WaitJump()
     {
         while (true)
         {
             if (!jump & activeFlag)
-        {
-            yield return new WaitForSeconds(10);
-            jump = true;
+            {
+                yield return new WaitForSeconds(jumpCD);
+                jump = true;
+                jumpCD = jumpSecondCD;
 
-        }
+            }
         yield return new WaitForFixedUpdate();
         }
     }
@@ -289,6 +315,19 @@ public class StribogScript : MonoBehaviour
             {
                 yield return new WaitForSeconds(stunTime);
                 stun = false;
+            }
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    private IEnumerator AirBlastCd()
+    {
+        while (true)
+        {
+            if (!AirBlastSeries)
+            {
+                yield return new WaitForSeconds(3);
+                AirBlastSeries = true;
             }
             yield return new WaitForFixedUpdate();
         }
