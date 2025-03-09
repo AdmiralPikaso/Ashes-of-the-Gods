@@ -8,9 +8,6 @@ TextureImporter:
   - first:
       213: -2835003639696040888
     second: Armature_animtion0_47_1
-  - first:
-      213: 9068799451297305523
-    second: Armature_animtion0_47_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -90,19 +87,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Win64
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -116,7 +100,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
+    buildTarget: WindowsStoreApps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -135,10 +119,10 @@ TextureImporter:
       name: Armature_animtion0_47_0
       rect:
         serializedVersion: 2
-        x: 135
-        y: 254
+        x: 509
+        y: 584
         width: 95
-        height: 157
+        height: 156
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,10 +141,10 @@ TextureImporter:
       name: Armature_animtion0_47_1
       rect:
         serializedVersion: 2
-        x: 249
-        y: 232
+        x: 622
+        y: 490
         width: 604
-        height: 229
+        height: 301
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,28 +155,6 @@ TextureImporter:
       bones: []
       spriteID: 84c5afec53b08a8d0800000000000000
       internalID: -2835003639696040888
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Armature_animtion0_47_2
-      rect:
-        serializedVersion: 2
-        x: 845
-        y: 160
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3b355d96d09dadd70800000000000000
-      internalID: 9068799451297305523
       vertices: []
       indices: 
       edges: []
@@ -210,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Armature_animtion0_47_0: 1607865090788684768
+      Armature_animtion0_47_1: -2835003639696040888
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

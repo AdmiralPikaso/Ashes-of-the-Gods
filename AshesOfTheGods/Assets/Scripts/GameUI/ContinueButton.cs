@@ -12,10 +12,8 @@ public class ContinueButton : MonoBehaviour
         button.onClick.AddListener(Continue);
     }
 
-    [SerializeField] private GameObject player;
     private void Continue()
     {
-        player.GetComponent<PlayerStats>().isEsc = false;
         settingsMenu.SetActive(false);
         Time.timeScale = 1f;
     }

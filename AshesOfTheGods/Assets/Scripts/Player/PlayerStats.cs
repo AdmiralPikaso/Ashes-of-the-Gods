@@ -37,11 +37,9 @@ public class PlayerStats : MonoBehaviour
         print(HpNow);     
     }
 
-    public bool isEsc { get; set; } = false;
     public void Death()
     {
-        //Destroy(gameObject);
-        isEsc = true;
+        Destroy(gameObject);
         deathScreen.SetActive(true);      
         //LevelManager.instance.Respawn();
     }

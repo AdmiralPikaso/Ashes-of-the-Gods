@@ -1,20 +1,19 @@
-using System.Xml.Serialization;
 using NUnit.Framework;
 using Unity.Mathematics;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    protected Animator animator;
+    private Animator animator;
     [SerializeField] protected float hp;
-    [SerializeField] protected AudioClip damageSound;
-    [SerializeField] protected AudioClip deathSound;
-    protected AudioSource audioSource;
-    [SerializeField] protected float minPitch;
-    [SerializeField] protected float maxPitch;
-    [SerializeField] protected float volume;
-    public float HpNow { get; protected set; }
-    public float HpMax { get; protected set; }
+    [SerializeField] private AudioClip damageSound;
+    [SerializeField] private AudioClip deathSound;
+    private AudioSource audioSource;
+    [SerializeField] private float minPitch;
+    [SerializeField] private float maxPitch;
+    [SerializeField] private float volume;
+    public float HpNow { get; private set; }
+    public float HpMax { get; private set; }
     void Start()
     {
     audioSource = gameObject.AddComponent<AudioSource>();  
@@ -26,7 +25,7 @@ public class Enemy : MonoBehaviour
         HpMax = hp;
     }
 
-    public virtual void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         Sounds.Sound(damageSound, audioSource, volume, minPitch, maxPitch);
         HpNow -= damage;
@@ -37,11 +36,11 @@ public class Enemy : MonoBehaviour
         Debug.Log("Хп врага" + HpNow);
 
     }
-    
-    public bool isDead = false;
+
     void Die()
-    {   isDead = true;
+    {
         print("Смерть");
         animator.SetBool("IsDie", true);
+        Destroy(gameObject, 1.5f);
     }
 }

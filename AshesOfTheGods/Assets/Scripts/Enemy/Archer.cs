@@ -58,12 +58,11 @@ public class Archer:MonoBehaviour
         if ((enemyVisionLeft.collider != null && enemyVisionLeft.collider.gameObject.CompareTag("Player")) | (enemyVisionRight.collider != null && enemyVisionRight.collider.gameObject.CompareTag("Player")))
         {
            
-            if (Vector2.Distance(player.transform.position, transform.position) <= distance & canSomething) //exit from guard, entrance to angry
+            if (Vector2.Distance(player.transform.position, transform.position) <= distance) //exit from guard, entrance to angry
             {
 
                 guardMode = false;
                 shootMode = true;
-                //StartCoroutine(CD());
 
             }
             else if (!shootWaitMode & shootMode)
@@ -92,7 +91,7 @@ public class Archer:MonoBehaviour
         else if (shootMode)
         {
             animator.SetTrigger("IsAttack");
-            //ShootMode();
+            ShootMode();
             animator.SetBool("IsWalking", false);
             movementDirection = (player.transform.position - transform.position).normalized;
         }
@@ -104,7 +103,7 @@ public class Archer:MonoBehaviour
         {
             animator.SetBool("IsWalking", false);
         }
-        if (movementDirection != Vector2.zero & (!guardMode || !guardWaitMode) & canSomething)
+        if (movementDirection != Vector2.zero & (!guardMode || !guardWaitMode))
         {
             spriteRenderer.flipX = movementDirection.x < 0;
         }
@@ -135,9 +134,10 @@ public class Archer:MonoBehaviour
             }
         
     }
+  
 
     [SerializeField] private GameObject arrow;
-    /*private void ShootMode()
+    private void ShootMode()
     {
         
         if (!shootWaitMode)
@@ -146,16 +146,6 @@ public class Archer:MonoBehaviour
             shootWaitMode = true;
         }
 
-    }*/
-
-    private void CreatingAnArrow()
-    {
-        if (!shootWaitMode)
-        {
-            Instantiate(arrow, transform.position, Quaternion.identity);
-            shootWaitMode = true;
-            shootMode = false;
-        }
     }
 
     [SerializeField] private float atackCD;
@@ -168,21 +158,19 @@ public class Archer:MonoBehaviour
         {
             if (guardWaitMode)
             {
-                //print("���");
+                print("���");
                 yield return new WaitForSeconds(guardWaitTime);
                 guardWaitMode = false;
             }
-
             if (shootWaitMode)
             {
-                //print("�� ��������");
+                print("�� ��������");
                 yield return new WaitForSeconds(atackCD);
                 shootWaitMode = false;
             }
-
             if (returnWaitMode)
             {
-                //print("��� ������");
+                print("��� ������");
                 yield return new WaitForSeconds(targetLostTime);
                 returnWaitMode = false;
             }
@@ -190,28 +178,5 @@ public class Archer:MonoBehaviour
 
 
         }
-    }
-    private IEnumerator CD()
-    {
-        if (shootWaitMode)
-            {   
-                //print("�� ��������");
-                yield return new WaitForSeconds(atackCD);
-                shootWaitMode = false;
-                shootMode = true;
-            }
-    }
-
-    private bool canSomething = true;
-    void Destruction()
-    {
-        canSomething = false;
-        guardModeRightMove = false;
-        returnWaitMode = false;
-        guardWaitMode = false;
-        shootMode = false;
-        guardMode = false;
-        speed = 0;
-        Destroy(gameObject, 5f);   
     }
 }

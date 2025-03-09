@@ -90,19 +90,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Win64
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -116,7 +103,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
+    buildTarget: WindowsStoreApps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -135,8 +122,8 @@ TextureImporter:
       name: Armature_animtion0_07_0
       rect:
         serializedVersion: 2
-        x: 304
-        y: 183
+        x: 677
+        y: 513
         width: 210
         height: 175
       alignment: 0
@@ -157,8 +144,8 @@ TextureImporter:
       name: Armature_animtion0_07_1
       rect:
         serializedVersion: 2
-        x: 334
-        y: 321
+        x: 708
+        y: 651
         width: 474
         height: 583
       alignment: 0
@@ -179,8 +166,8 @@ TextureImporter:
       name: Armature_animtion0_07_2
       rect:
         serializedVersion: 2
-        x: 500
-        y: 172
+        x: 873
+        y: 502
         width: 243
         height: 185
       alignment: 0
@@ -210,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Armature_animtion0_07_0: -5712762022835330015
+      Armature_animtion0_07_1: -8210770825194982177
+      Armature_animtion0_07_2: -7488339452215652251
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
