@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public bool InAir()
-    {
+    { 
         return in_air;
     }
     private Transform targetParent;
