@@ -52,7 +52,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -90,6 +90,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
+    buildTarget: Win64
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -103,7 +116,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WindowsStoreApps
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -122,8 +135,8 @@ TextureImporter:
       name: Armature_animtion0_42_0
       rect:
         serializedVersion: 2
-        x: 1051
-        y: 831
+        x: 665
+        y: 332
         width: 6
         height: 6
       alignment: 0
@@ -144,8 +157,8 @@ TextureImporter:
       name: Armature_animtion0_42_1
       rect:
         serializedVersion: 2
-        x: 450
-        y: 579
+        x: 64
+        y: 80
         width: 108
         height: 139
       alignment: 0
@@ -166,8 +179,8 @@ TextureImporter:
       name: Armature_animtion0_42_2
       rect:
         serializedVersion: 2
-        x: 594
-        y: 521
+        x: 208
+        y: 22
         width: 518
         height: 217
       alignment: 0
@@ -188,7 +201,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
