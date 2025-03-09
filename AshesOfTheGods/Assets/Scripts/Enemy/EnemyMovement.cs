@@ -66,8 +66,8 @@ public class EnemyMovement : MonoBehaviour
     private bool isWalking = false;
     private void FixedUpdate()
     {
-        Debug.Log(enemyCanAtack);
-        Debug.Log("атак" + isAttack);
+        //Debug.Log(enemyCanAtack);
+        //Debug.Log("атак" + isAttack);
         //Atack Distance check
         if (Vector2.Distance(playerTransform.position, transform.position) <= atackDistanse - 1)
         {

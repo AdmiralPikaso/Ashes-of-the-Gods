@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 7847002421855298680}
   - component: {fileID: 8095311276489181914}
   - component: {fileID: 5249209757168627313}
-  - component: {fileID: 6769971118741260643}
   - component: {fileID: 1724334753883724472}
-  - component: {fileID: 6669673448944831305}
+  - component: {fileID: 4195342566949544485}
   m_Layer: 3
   m_Name: Stribog
   m_TagString: Enemy
@@ -76,8 +75,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.75, y: 6.81}
-    newSize: {x: 3.75, y: 6.81}
+    oldSize: {x: 9, y: 12}
+    newSize: {x: 3.97, y: 6.84}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -155,39 +154,17 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -8315360735845423546, guid: b5123c3b17d61754382f087867e531ec, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0b7be50f2f576e44b871a0519e42c9ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.75, y: 6.81}
+  m_Size: {x: 3.97, y: 6.84}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6769971118741260643
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4712059694133896754}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 71806ebc9ec6a314982461aef01fd18c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1724334753883724472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +183,8 @@ MonoBehaviour:
   minPitch: 0
   maxPitch: 0
   volume: 0
---- !u!114 &6669673448944831305
+  isDead: 0
+--- !u!114 &4195342566949544485
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,27 +193,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 4712059694133896754}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aea2c7d227f05244a9288b9bdb68f7df, type: 3}
+  m_Script: {fileID: 11500000, guid: 70313051c327a9844a106ac4f51b2b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 10
+  attackDistance: 0
   bossFightTarget: {fileID: 0}
   jumpPointA: {fileID: 0}
   jumpPointB: {fileID: 0}
-  returnA: {fileID: 0}
-  returnB: {fileID: 0}
-  jumpSpeed: 30
+  jumpSpeed: 10
   speed: 10
-  airBlast: {fileID: 2195181542045423615, guid: 06b699246225fab4683ad66f6915c202, type: 3}
-  secondFaseSkillDamage: 50
+  airBlast: {fileID: 2195181542045423615, guid: 3eaf1beaf15eb314788806c4dbdbd21a, type: 3}
+  secondFaseSkillDamage: 30
   im1: {fileID: 0}
   im2: {fileID: 0}
-  attackDamage: 15
-  afterAtackTime: 3
-  stunTime: 2
-  beforeAtackTime: 1
-  jumpCD: 10
-  jumpSecondCD: 20
+  attackDamage: 30
+  afterAtackTime: 1
+  stunTime: 3
+  beforeAtackTime: 2
+  jumpCD: 20
+  jumpSecondCD: 10
 --- !u!1 &5692750726919210757
 GameObject:
   m_ObjectHideFlags: 0

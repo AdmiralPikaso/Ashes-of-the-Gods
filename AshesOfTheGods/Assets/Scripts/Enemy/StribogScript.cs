@@ -34,8 +34,7 @@ public class StribogScript : MonoBehaviour
     [SerializeField] private Transform jumpPointB;
     private Vector2 jumpMove;
     private bool returnMode;
-    [SerializeField] Transform returnA;
-    [SerializeField] Transform returnB;
+    
     [SerializeField] private float jumpSpeed;
     private bool dashMode = false;
     public bool Catch { get; set; } = false;

@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
     }
     
     public bool isDead = false;
-    void Die()
+    protected void Die()
     {   isDead = true;
         print("Смерть");
         animator.SetBool("IsDie", true);
