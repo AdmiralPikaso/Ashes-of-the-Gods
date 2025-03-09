@@ -13,7 +13,7 @@ public class ParallaxBehaivour : MonoBehaviour
         if (!followingTarget)
             followingTarget = Camera.main.transform;
         targetPrevPos = followingTarget.position;
-        print(targetPrevPos);
+        //print(targetPrevPos);
     }
     void FixedUpdate()
     {
@@ -23,6 +23,6 @@ public class ParallaxBehaivour : MonoBehaviour
         targetPrevPos = followingTarget.position;
         //transform.Translate(new Vector3(delta.x * parallaxStenght,delta.y * parallaxStenght,0));
         transform.position = new Vector3(transform.position.x + delta.x * parallaxStenght,transform.position.y + delta.y,10);
-        print(transform.position);
+        //print(transform.position);
     }
 }
