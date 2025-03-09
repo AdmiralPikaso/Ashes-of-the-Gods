@@ -199,6 +199,7 @@ MonoBehaviour:
   escMenu: {fileID: 1846192539003129350}
   deathScreen: {fileID: 3647971817814304063}
   settingsMenu: {fileID: 6981589959903063187}
+  player: {fileID: 0}
 --- !u!1 &1846192539003129350
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,6 +955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsMenu: {fileID: 6981589959903063187}
+  player: {fileID: 0}
 --- !u!1 &3647971817814304063
 GameObject:
   m_ObjectHideFlags: 0

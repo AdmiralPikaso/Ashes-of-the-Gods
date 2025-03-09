@@ -1,6 +1,5 @@
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -14,6 +13,7 @@ public class StribogScript : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
+
         StartCoroutine(WaitBeforeAttack());
         StartCoroutine(WaitAfterAttack());
         StartCoroutine(WaitJump());
