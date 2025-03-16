@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1729840789426286850}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AtackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 1080274902614433886}
   - component: {fileID: 9148015590107469414}
   - component: {fileID: 7046270433244800343}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
