@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
-public class Archer:MonoBehaviour
+
+public class Archer : MonoBehaviour
 {
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -9,18 +10,21 @@ public class Archer:MonoBehaviour
     [SerializeField] private Transform secondGuardedPoint;
     Rigidbody2D rb;
     BoxCollider2D coll;
+
     private void Start()
     {
         coll = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
         if (firstGuardedPoint.transform.position.x > secondGuardedPoint.transform.position.x)
         {
             Transform transform = firstGuardedPoint;
             firstGuardedPoint = secondGuardedPoint;
             secondGuardedPoint = transform;
         }
+
         player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(WaitMode());
     }
@@ -31,55 +35,43 @@ public class Archer:MonoBehaviour
     private bool shootMode = false;
     private Vector2 movement;
     private bool returnWaitMode = false;
+    private bool isAttacking = false;
 
     public LayerMask layerMask;
+
     private void FixedUpdate()
     {
-        if (!shootMode & !returnWaitMode & !guardMode)
+        if (!shootMode && !returnWaitMode && !guardMode)
         {
             guardMode = true;
         }
 
-        //print($"{guardMode}{shootMode}{returnWaitMode}");
-        //Vector towards the enemy 
         movement = (player.transform.position - transform.position).normalized;
         movement.y = 0;
 
-        //Archer vision raycast system
         RaycastHit2D enemyVisionRight = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.right, distance, layerMask);
         RaycastHit2D enemyVisionLeft = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left, distance, layerMask);
-        
+
         Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.right * distance, Color.green);
         Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left * distance, Color.green);
 
-
         Vector2 movementDirection = Vector2.zero;
 
-        if ((enemyVisionLeft.collider != null && enemyVisionLeft.collider.gameObject.CompareTag("Player")) | (enemyVisionRight.collider != null && enemyVisionRight.collider.gameObject.CompareTag("Player")))
-        {
-           
-            if (Vector2.Distance(player.transform.position, transform.position) <= distance & canSomething) //exit from guard, entrance to angry
-            {
+        // Проверка видимости игрока
+        bool playerInSight = (enemyVisionLeft.collider != null && enemyVisionLeft.collider.gameObject.CompareTag("Player")) ||
+                             (enemyVisionRight.collider != null && enemyVisionRight.collider.gameObject.CompareTag("Player"));
 
+        if (playerInSight && Vector2.Distance(player.transform.position, transform.position) <= distance && canSomething)
+        {
+            if (!shootMode && !shootWaitMode)
+            {
                 guardMode = false;
                 shootMode = true;
-                //StartCoroutine(CD());
-
             }
-            else if (!shootWaitMode & shootMode)
-            {
-                shootMode = false;
-                guardMode = false;
-                returnWaitMode = true;
-            }
-            
-
         }
-        else if (!shootWaitMode & shootMode)
+        else if (shootMode && !shootWaitMode)
         {
-            //print("�� �����");
             shootMode = false;
-            guardMode = false;
             returnWaitMode = true;
         }
 
@@ -91,8 +83,11 @@ public class Archer:MonoBehaviour
         }
         else if (shootMode)
         {
-            animator.SetTrigger("IsAttack");
-            //ShootMode();
+            if (!isAttacking && !shootWaitMode)
+            {
+                animator.SetTrigger("IsAttack");
+                isAttacking = true;
+            }
             animator.SetBool("IsWalking", false);
             movementDirection = (player.transform.position - transform.position).normalized;
         }
@@ -104,7 +99,8 @@ public class Archer:MonoBehaviour
         {
             animator.SetBool("IsWalking", false);
         }
-        if (movementDirection != Vector2.zero & (!guardMode || !guardWaitMode) & canSomething)
+
+        if (movementDirection != Vector2.zero && (!guardMode || !guardWaitMode) && canSomething)
         {
             spriteRenderer.flipX = movementDirection.x < 0;
         }
@@ -113,40 +109,79 @@ public class Archer:MonoBehaviour
     private bool guardModeRightMove = false;
     private bool guardWaitMode = false;
     [SerializeField] private float speed;
-    
+
     private void GuardMode()
     {
-        
-            if (guardModeRightMove & !guardWaitMode)
-                rb.MovePosition(rb.position + Vector2.right * speed * Time.fixedDeltaTime);
+        if (guardModeRightMove && !guardWaitMode)
+            rb.MovePosition(rb.position + Vector2.right * speed * Time.fixedDeltaTime);
 
-            if (!guardModeRightMove & !guardWaitMode)
-                rb.MovePosition(rb.position + Vector2.left * speed * Time.fixedDeltaTime);
+        if (!guardModeRightMove && !guardWaitMode)
+            rb.MovePosition(rb.position + Vector2.left * speed * Time.fixedDeltaTime);
 
-            if (rb.position.x + transform.localScale.x >= secondGuardedPoint.position.x & guardModeRightMove)
-            {
-                guardWaitMode = true;
-                guardModeRightMove = false;
-            }
-            else if (rb.position.x - transform.localScale.x <= firstGuardedPoint.position.x & !guardModeRightMove)
-            {
-                guardWaitMode = true;
-                guardModeRightMove = true;
-            }
-        
+        if (rb.position.x + transform.localScale.x >= secondGuardedPoint.position.x && guardModeRightMove)
+        {
+            guardWaitMode = true;
+            guardModeRightMove = false;
+        }
+        else if (rb.position.x - transform.localScale.x <= firstGuardedPoint.position.x && !guardModeRightMove)
+        {
+            guardWaitMode = true;
+            guardModeRightMove = true;
+        }
     }
 
     [SerializeField] private GameObject arrow;
-    /*private void ShootMode()
+    [SerializeField] private float atackCD;
+    [SerializeField] float guardWaitTime;
+    [SerializeField] float targetLostTime;
+
+    private IEnumerator WaitMode()
     {
-        
-        if (!shootWaitMode)
+        while (true)
         {
-            Instantiate(arrow, transform.position, Quaternion.identity);
-            shootWaitMode = true;
+            if (guardWaitMode)
+            {
+                yield return new WaitForSeconds(guardWaitTime);
+                guardWaitMode = false;
+            }
+
+            if (shootWaitMode)
+            {
+                yield return new WaitForSeconds(atackCD);
+                shootWaitMode = false;
+            }
+
+            if (returnWaitMode)
+            {
+                yield return new WaitForSeconds(targetLostTime);
+                returnWaitMode = false;
+            }
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    private IEnumerator CD()
+    {
+        yield return new WaitForSeconds(atackCD);
+        shootWaitMode = false;
+
+        RaycastHit2D enemyVisionRight = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.right, distance, layerMask);
+        RaycastHit2D enemyVisionLeft = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left, distance, layerMask);
+
+        bool playerInSight = (enemyVisionLeft.collider != null && enemyVisionLeft.collider.gameObject.CompareTag("Player")) ||
+                             (enemyVisionRight.collider != null && enemyVisionRight.collider.gameObject.CompareTag("Player"));
+
+        if (playerInSight && Vector2.Distance(player.transform.position, transform.position) <= distance)
+        {
+            shootMode = true;
+        }
+        else
+        {
+            guardMode = true;
         }
 
-    }*/
+        isAttacking = false;
+    }
 
     private void CreatingAnArrow()
     {
@@ -154,56 +189,10 @@ public class Archer:MonoBehaviour
         {
             Instantiate(arrow, transform.position, Quaternion.identity);
             shootWaitMode = true;
-            shootMode = false;
         }
     }
 
-    [SerializeField] private float atackCD;
-    [SerializeField] float guardWaitTime;
-    [SerializeField] float targetLostTime;
-    //[SerializeField] private float animCD;
-    private IEnumerator WaitMode()
-    {
-        while (true)
-        {
-            if (guardWaitMode)
-            {
-                //print("���");
-                yield return new WaitForSeconds(guardWaitTime);
-                guardWaitMode = false;
-            }
-
-            if (shootWaitMode)
-            {
-                //print("�� ��������");
-                yield return new WaitForSeconds(atackCD);
-                shootWaitMode = false;
-            }
-
-            if (returnWaitMode)
-            {
-                //print("��� ������");
-                yield return new WaitForSeconds(targetLostTime);
-                returnWaitMode = false;
-            }
-            yield return new WaitForFixedUpdate();
-
-
-        }
-    }
-    private IEnumerator CD()
-    {
-        if (shootWaitMode)
-            {   
-                //print("�� ��������");
-                yield return new WaitForSeconds(atackCD);
-                shootWaitMode = false;
-                shootMode = true;
-            }
-    }
-
-    private bool canSomething = true;
-    void Destruction()
+    private void Destruction()
     {
         canSomething = false;
         guardModeRightMove = false;
@@ -212,6 +201,8 @@ public class Archer:MonoBehaviour
         shootMode = false;
         guardMode = false;
         speed = 0;
-        Destroy(gameObject, 5f);   
+        Destroy(gameObject, 5f);
     }
+
+    private bool canSomething = true;
 }
