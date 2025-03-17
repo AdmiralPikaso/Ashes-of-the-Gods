@@ -69,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 127.9
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -90,7 +90,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -297,7 +297,14 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "\u041A\u0440\u044B\u0448\u0430@2x_0": -4783071014686015877
+      "\u041A\u0440\u044B\u0448\u0430@2x_1": 8000846875152479463
+      "\u041A\u0440\u044B\u0448\u0430@2x_2": -1643584388233756861
+      "\u041A\u0440\u044B\u0448\u0430@2x_3": -6779180148689613028
+      "\u041A\u0440\u044B\u0448\u0430@2x_4": -8516709555112007144
+      "\u041A\u0440\u044B\u0448\u0430@2x_5": 4302105145477607041
+      "\u041A\u0440\u044B\u0448\u0430@2x_6": 9223325619651570254
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
