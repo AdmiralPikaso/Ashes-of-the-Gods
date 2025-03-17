@@ -183,10 +183,10 @@ MonoBehaviour:
   distance: 20
   layerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 256
   speed: 5
   arrow: {fileID: 2195181542045423615, guid: 75b53de171b8f6e41aad9688be40ee58, type: 3}
-  atackCD: 10
+  atackCD: 4
   guardWaitTime: 2
   targetLostTime: 3
 --- !u!114 &2726985387058454574
