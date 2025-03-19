@@ -11,6 +11,8 @@ public class Archer : MonoBehaviour
     Rigidbody2D rb;
     BoxCollider2D coll;
 
+
+    private float distance;
     private void Start()
     {
         coll = GetComponent<BoxCollider2D>();
@@ -27,10 +29,12 @@ public class Archer : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(WaitMode());
+
+        distance = Vector2.Distance(firstGuardedPoint.position, secondGuardedPoint.position)*3/4;
     }
 
     private bool shootWaitMode = false;
-    [SerializeField] float distance;
+    
     private bool guardMode = true;
     private bool shootMode = false;
     private Vector2 movement;
@@ -39,27 +43,42 @@ public class Archer : MonoBehaviour
 
     public LayerMask layerMask;
 
+    private Vector2 visionVec;
     private void FixedUpdate()
     {
-        if (!shootMode && !returnWaitMode && !guardMode)
+        Debug.Log($"GuardMode {guardMode}");
+        Debug.Log($"ShootMode {shootMode}");
+
+        Debug.Log($"shootwait{shootWaitMode}");
+        Debug.Log($"guardWait {guardWaitMode}");
+        Debug.Log($"returnWait {returnWaitMode}");
+
+        Debug.Log($"isAttacking {isAttacking}"); 
+        
+
+        if (!shootMode & !returnWaitMode & !guardMode)
         {
             guardMode = true;
         }
 
         movement = (player.transform.position - transform.position).normalized;
+        visionVec = movement;
         movement.y = 0;
+        //RaycastHit2D enemyVisionRight = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), visionVec, distance, layerMask);
+        //RaycastHit2D enemyVisionLeft = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), visionVec, distance, layerMask);
+        RaycastHit2D enemyVision = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), visionVec, distance, layerMask); ;
 
-        RaycastHit2D enemyVisionRight = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.right, distance, layerMask);
-        RaycastHit2D enemyVisionLeft = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left, distance, layerMask);
 
-        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.right * distance, Color.green);
-        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left * distance, Color.green);
+
+
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), visionVec * distance, Color.green);
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), visionVec * distance, Color.green);
 
         Vector2 movementDirection = Vector2.zero;
 
         // Проверка видимости игрока
-        bool playerInSight = (enemyVisionLeft.collider != null && enemyVisionLeft.collider.gameObject.CompareTag("Player")) ||
-                             (enemyVisionRight.collider != null && enemyVisionRight.collider.gameObject.CompareTag("Player"));
+        bool playerInSight = (enemyVision.collider != null && enemyVision.collider.gameObject.CompareTag("Player"));
+        //Debug.Log($"Вижн {playerInSight && Vector2.Distance(player.transform.position, transform.position) <= distance}");
 
         if (playerInSight && Vector2.Distance(player.transform.position, transform.position) <= distance && canSomething)
         {
@@ -67,12 +86,14 @@ public class Archer : MonoBehaviour
             {
                 guardMode = false;
                 shootMode = true;
+               
             }
         }
-        else if (shootMode && !shootWaitMode)
+        else if (shootMode && !shootWaitMode && !isAttacking)
         {
             shootMode = false;
             returnWaitMode = true;
+            
         }
 
         if (guardMode)
@@ -121,11 +142,13 @@ public class Archer : MonoBehaviour
         if (rb.position.x + transform.localScale.x >= secondGuardedPoint.position.x && guardModeRightMove)
         {
             guardWaitMode = true;
+            //isAttacking = false;
             guardModeRightMove = false;
         }
         else if (rb.position.x - transform.localScale.x <= firstGuardedPoint.position.x && !guardModeRightMove)
         {
             guardWaitMode = true;
+            //isAttacking = false;
             guardModeRightMove = true;
         }
     }
@@ -149,6 +172,7 @@ public class Archer : MonoBehaviour
             {
                 yield return new WaitForSeconds(atackCD);
                 shootWaitMode = false;
+                isAttacking = false;
             }
 
             if (returnWaitMode)
@@ -160,16 +184,24 @@ public class Archer : MonoBehaviour
         }
     }
 
+    
     private IEnumerator CD()
     {
-        yield return new WaitForSeconds(atackCD);
-        shootWaitMode = false;
 
-        RaycastHit2D enemyVisionRight = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.right, distance, layerMask);
-        RaycastHit2D enemyVisionLeft = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left, distance, layerMask);
+        //yield return new WaitForSeconds(atackCD);
+        //shootWaitMode = false;
+        yield return new WaitForSeconds(0);
 
-        bool playerInSight = (enemyVisionLeft.collider != null && enemyVisionLeft.collider.gameObject.CompareTag("Player")) ||
-                             (enemyVisionRight.collider != null && enemyVisionRight.collider.gameObject.CompareTag("Player"));
+
+
+
+        //RaycastHit2D enemyVisionRight = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.right, distance, layerMask);
+        //RaycastHit2D enemyVisionLeft = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left, distance, layerMask);
+
+        /*RaycastHit2D enemyVision = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), visionVec, distance, layerMask);
+
+        bool playerInSight = (enemyVision.collider != null && enemyVision.collider.gameObject.CompareTag("Player"));
+                             
 
         if (playerInSight && Vector2.Distance(player.transform.position, transform.position) <= distance)
         {
@@ -179,9 +211,10 @@ public class Archer : MonoBehaviour
         {
             guardMode = true;
         }
+        */
 
-        isAttacking = false;
     }
+    
 
     private void CreatingAnArrow()
     {
