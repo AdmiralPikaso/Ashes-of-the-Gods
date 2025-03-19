@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8095311276489181914}
   - component: {fileID: 5249209757168627313}
   - component: {fileID: 1724334753883724472}
-  - component: {fileID: 4195342566949544485}
+  - component: {fileID: 6535565520487383411}
   m_Layer: 3
   m_Name: Stribog
   m_TagString: Enemy
@@ -75,8 +75,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9, y: 12}
-    newSize: {x: 3.97, y: 6.84}
+    oldSize: {x: 9, y: 10}
+    newSize: {x: 9, y: 12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -154,12 +154,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 0b7be50f2f576e44b871a0519e42c9ec, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fe95e85e29db94e49bdbf261a6afe8ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.97, y: 6.84}
+  m_Size: {x: 9, y: 12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -184,7 +184,7 @@ MonoBehaviour:
   maxPitch: 0
   volume: 0
   isDead: 0
---- !u!114 &4195342566949544485
+--- !u!114 &6535565520487383411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,25 +193,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 4712059694133896754}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70313051c327a9844a106ac4f51b2b3a, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b92046d2c2a83b479b9d6ac231ad1e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackDistance: 0
   bossFightTarget: {fileID: 0}
   jumpPointA: {fileID: 0}
   jumpPointB: {fileID: 0}
-  jumpSpeed: 10
-  speed: 10
-  airBlast: {fileID: 2195181542045423615, guid: 3eaf1beaf15eb314788806c4dbdbd21a, type: 3}
-  secondFaseSkillDamage: 30
-  im1: {fileID: 0}
-  im2: {fileID: 0}
-  attackDamage: 30
-  afterAtackTime: 1
-  stunTime: 3
-  beforeAtackTime: 2
-  jumpCD: 20
-  jumpSecondCD: 10
+  jumpSpeed: 0
+  speed: 0
+  airBlast: {fileID: 0}
+  secondFaseSkillDamage: 0
+  attackDamage: 0
+  afterAtackTime: 0
+  stunTime: 0
+  beforeAtackTime: 0
+  jumpCD: 0
+  jumpSecondCD: 0
 --- !u!1 &5692750726919210757
 GameObject:
   m_ObjectHideFlags: 0
