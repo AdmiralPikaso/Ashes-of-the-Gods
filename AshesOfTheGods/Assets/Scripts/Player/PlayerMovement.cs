@@ -1,3 +1,4 @@
+using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -17,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public bool InAir()
-    { 
+    {
         return in_air;
     }
     private Transform targetParent;
@@ -84,8 +85,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private Rigidbody2D rigidB;
+    private SecondSkill dash;
     void Awake()
     {
+        dash = GetComponent<SecondSkill>();
         rigidB = GetComponent<Rigidbody2D>();
     }
 
@@ -112,22 +115,49 @@ public class PlayerMovement : MonoBehaviour
     public void MovementLogic(float moveDir)
     {
         float RealSpeed = speed;
-        if (in_air)
-            RealSpeed *= airSpeedMultiplier;
-        if (in_enemy)
+        if (!dash.GetinDash())
         {
-            RealSpeed /= 2;
-            in_enemy = false;
+            if (in_air)
+                RealSpeed *= airSpeedMultiplier;
+            if (in_enemy)
+            {
+                RealSpeed /= 2;
+                in_enemy = false;
+            }
+            if (!in_wall)
+                rigidB.linearVelocityX = RealSpeed * moveDir;
+            else
+            {
+                if (lastMoveDir == moveDir)
+                    rigidB.linearVelocityX = 0;
+                else rigidB.linearVelocityX = RealSpeed * moveDir;
+                lastMoveDir = moveDir;
+            }
         }
-        if (!in_wall)
-            rigidB.linearVelocityX = RealSpeed * moveDir;
-        else
+    }
+    private float DashlastMoveDir;
+    public void DastLogic(float movedir)
+    {
+        bool wasDashing = false;
+        if (dash.GetinDash())
         {
-            if (lastMoveDir == moveDir)
-                rigidB.linearVelocityX = 0;
-            else rigidB.linearVelocityX = RealSpeed * moveDir;
-            lastMoveDir = moveDir;
+            float RealSpeed = dash.GetDashDistance() / dash.GetDashTime();
+            rigidB.linearVelocityX = RealSpeed * DashlastMoveDir;
+            rigidB.linearVelocityY = 0;
+            wasDashing = true;
         }
+        else if (wasDashing)
+        {
+            rigidB.linearVelocityX = 0;
+        }
+        if (!dash.GetinDash() && movedir != 0)
+            DashlastMoveDir = movedir;
+
+    }
+
+    public void ImpulseLogic(float force)
+    {
+        rigidB.AddForceX(force);
     }
 
     private bool JumpPressed;
@@ -165,6 +195,9 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (!gameObject.GetComponent<PlayerStats>().isEsc)
+        {
             MovementLogic(moveDirection);
+            DastLogic(moveDirection);
+        }
     }
 }
