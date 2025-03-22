@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerHeavyAttack : MonoBehaviour
 {
+    //private Animator animator;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask damageableLayerMask;
     [SerializeField] private float damage;
@@ -16,6 +17,7 @@ public class PlayerHeavyAttack : MonoBehaviour
     private bool KeyWasPressed = false;
     public void Start()
     {
+        //animator = GetComponent<Animator>();
         audioSource = gameObject.AddComponent<AudioSource>();
         StartCoroutine(AttackCooldown(attackSpeed));
     }
@@ -24,19 +26,20 @@ public class PlayerHeavyAttack : MonoBehaviour
     {
         if (!gameObject.GetComponent<PlayerStats>().isEsc)
         {
-            HandleMovement();
+            //HandleMovement();
 
             if (Input.GetAxis("Fire2") == 0)
                 KeyWasPressed = false;
             if (Input.GetAxis("Fire2") != 0 & !waitMode & !KeyWasPressed)
             {
                 HeavyAttack();
+                //animator.SetTrigger("Attack");
                 KeyWasPressed = true;
             }
         }
     }
 
-    private void HandleMovement()
+    /*private void HandleMovement()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
 
@@ -48,18 +51,18 @@ public class PlayerHeavyAttack : MonoBehaviour
         {
             attackPoint.localPosition = new Vector3(-attackPoint.localPosition.x, attackPoint.localPosition.y, attackPoint.localPosition.z);
         }
-    }
+    }*/
 
     public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, attackPoint.position - transform.position);
+        Gizmos.DrawRay(GetComponent<CapsuleCollider2D>().bounds.center, attackPoint.position - GetComponent<CapsuleCollider2D>().bounds.center);
     }
 
     public void HeavyAttack()
     {
-        Vector2 direction = attackPoint.position - transform.position;
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction, direction.magnitude, damageableLayerMask);
+        Vector2 direction = attackPoint.position - GetComponent<CapsuleCollider2D>().bounds.center;
+        RaycastHit2D[] hits = Physics2D.RaycastAll(GetComponent<CapsuleCollider2D>().bounds.center, direction, direction.magnitude, damageableLayerMask);
         foreach (RaycastHit2D hit in hits)
         {
             hit.collider.GetComponent<Enemy>().TakeDamage(damage);

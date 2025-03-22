@@ -79696,7 +79696,7 @@ Transform:
   m_GameObject: {fileID: 1584082337}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -252.65027, y: -12.766298, z: -10}
+  m_LocalPosition: {x: -252.65027, y: -12.584998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -79813,7 +79813,7 @@ Transform:
   m_GameObject: {fileID: 1632389905}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -252.65027, y: -12.766298, z: -10}
+  m_LocalPosition: {x: -252.65027, y: -12.584998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -81484,6 +81484,22 @@ PrefabInstance:
       propertyPath: firstSkillShade
       value: 
       objectReference: {fileID: 337916142}
+    - target: {fileID: 1421830942121657589, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
+      propertyPath: DashTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421830942121657589, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
+      propertyPath: CoolDownTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421830942121657589, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
+      propertyPath: DashDistance
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7046270433244800343, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8304520932180182166, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: m_Mass
       value: 1

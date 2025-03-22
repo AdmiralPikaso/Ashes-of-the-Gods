@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Animator animator;
     private bool on_ground = false;
     private bool on_platform = false;
     private bool on_moving_platform = false;
@@ -28,10 +29,16 @@ public class PlayerMovement : MonoBehaviour
         GameObject collisionObject = collision.gameObject;
 
         if (collisionObject.CompareTag("Ground"))
+        {
             on_ground = true;
+            animator.SetBool("Jump", false);
+        }
 
         if (collisionObject.CompareTag("Platform"))
+        {
             on_platform = true;
+            animator.SetBool("Jump", false);
+        }
 
         if (collisionObject.CompareTag("PlatformDown"))
         {
@@ -40,13 +47,17 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (collisionObject.CompareTag("Wall"))
+        {
             in_wall = true;
+            animator.SetBool("Jump", false);
+        }
 
         if (collisionObject.CompareTag("MovingPlatform"))
         {
             on_moving_platform = true;
             targetParent = collisionObject.transform;
             transform.SetParent(targetParent);
+            animator.SetBool("Jump", false);
         }
     }
 
@@ -100,9 +111,14 @@ public class PlayerMovement : MonoBehaviour
     public float GetMoveDir() => lastMoveDir;
     public float GetSpeed() => speed;
     public void SetSpeed(float newSpeed) => speed = newSpeed;
-
+    
     public float GetVelocityX() => rigidB.linearVelocityX;
     public void SetVelocityX(float newVel) => rigidB.linearVelocityX = newVel;
+
+    public float GetMoveDirection()
+    {
+        return moveDirection;
+    }
 
     [SerializeField] private AudioClip walkingSound;
     private AudioSource audioSource;
@@ -111,14 +127,25 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float minPitch;
     [SerializeField] private float maxPitch;
     [SerializeField] private float volume;
+    private bool canMove = true;
+    private void CanNotMove()
+    {
+        canMove = false;
+    }
+    private void CanMove()
+    {
+        canMove = true;
+    }
+    public Vector2 direction;
+    
     public void MovementLogic(float moveDir)
     {
         PlayerRegularAttack script = FindAnyObjectByType<PlayerRegularAttack>();
-        if (script.canMove)
+        if (canMove)
         {
-            float RealSpeed = speed;
             if (!dash.GetinDash())
             {
+                float RealSpeed = speed;
                 if (in_air)
                     RealSpeed *= airSpeedMultiplier;
                 if (in_enemy)
@@ -127,35 +154,70 @@ public class PlayerMovement : MonoBehaviour
                     in_enemy = false;
                 }
                 if (!in_wall)
+                {
                     rigidB.linearVelocityX = RealSpeed * moveDir;
+                    animator.SetBool("Walk", moveDir != 0);
+                    if (moveDir > 0)
+                    {
+                        transform.localScale = new Vector3(direction.x, direction.y);
+                    }
+                    else if (moveDir < 0)
+                    {
+                        transform.localScale = new Vector3(-direction.x, direction.y);
+                    }
+                }
                 else
                 {
                     if (lastMoveDir == moveDir)
+                    {
                         rigidB.linearVelocityX = 0;
-                    else rigidB.linearVelocityX = RealSpeed * moveDir;
+                        animator.SetBool("Walk", false);
+                    }
+                    else 
+                    {
+                        rigidB.linearVelocityX = RealSpeed * moveDir;
+                        animator.SetBool("Walk", moveDir != 0);
+                        if (moveDir > 0)
+                        {
+                            transform.localScale = new Vector3(direction.x, direction.y);
+                        }
+                        else if (moveDir < 0)
+                        {
+                            transform.localScale = new Vector3(-direction.x, direction.y);
+                        }
+                    }
                     lastMoveDir = moveDir;
                 }
             }
+        }
+        else
+        {
+            if (!in_air)
+                rigidB.linearVelocityX = 0;
+            animator.SetBool("Walk", false);
         }
     }
     private float DashlastMoveDir;
     public void DastLogic(float movedir)
     {
-        bool wasDashing = false;
-        if (dash.GetinDash())
+        PlayerRegularAttack script = FindAnyObjectByType<PlayerRegularAttack>();
+        if (canMove)
         {
-            float RealSpeed = dash.GetDashDistance() / dash.GetDashTime();
-            rigidB.linearVelocityX = RealSpeed * DashlastMoveDir;
-            rigidB.linearVelocityY = 0;
-            wasDashing = true;
+            bool wasDashing = false;
+            if (dash.GetinDash())
+            {
+                float RealSpeed = dash.GetDashDistance() / dash.GetDashTime();
+                rigidB.linearVelocityX = RealSpeed * DashlastMoveDir;
+                rigidB.linearVelocityY = 0;
+                wasDashing = true;
+            }
+            else if (wasDashing)
+            {
+                rigidB.linearVelocityX = 0;
+            }
+            if (!dash.GetinDash() && movedir != 0)
+                DashlastMoveDir = movedir;
         }
-        else if (wasDashing)
-        {
-            rigidB.linearVelocityX = 0;
-        }
-        if (!dash.GetinDash() && movedir != 0)
-            DashlastMoveDir = movedir;
-
     }
 
     public void ImpulseLogic(float force)
@@ -169,12 +231,13 @@ public class PlayerMovement : MonoBehaviour
     private void JumpLogic()
     {
         PlayerRegularAttack script = FindAnyObjectByType<PlayerRegularAttack>();
-        if (script.canMove)
+        if (canMove)
         {
             JumpPressed = Input.GetKeyDown(KeyCode.Space);
             if (!in_air && JumpPressed)
             {
                 rigidB.AddForceY(jumpForce, ForceMode2D.Impulse);
+                animator.SetBool("Jump", true);
                 JumpPressed = false;
             }
         }
@@ -182,7 +245,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         audioSource = gameObject.AddComponent<AudioSource>();
+        direction = transform.localScale;
     }
 
     void Update()
