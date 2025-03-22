@@ -1,6 +1,4 @@
-using Mono.Cecil;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class ParallaxBehaivour : MonoBehaviour
 {

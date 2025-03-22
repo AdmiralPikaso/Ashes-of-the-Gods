@@ -79769,7 +79769,7 @@ Transform:
   m_GameObject: {fileID: 1584082337}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -254.38889, y: -10.95, z: -10}
+  m_LocalPosition: {x: -193.83888, y: -11.339999, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -79886,7 +79886,7 @@ Transform:
   m_GameObject: {fileID: 1632389905}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -254.38889, y: -10.95, z: -10}
+  m_LocalPosition: {x: -193.83888, y: -11.339999, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -81434,11 +81434,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 488907195182511806, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -260.5
+      value: -204.28
       objectReference: {fileID: 0}
     - target: {fileID: 488907195182511806, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -18.2
+      value: -18.59
       objectReference: {fileID: 0}
     - target: {fileID: 488907195182511806, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -81480,6 +81480,34 @@ PrefabInstance:
       propertyPath: firstSkillShade
       value: 
       objectReference: {fileID: 337916142}
+    - target: {fileID: 1421830942121657589, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
+      propertyPath: DashTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421830942121657589, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
+      propertyPath: CoolDownTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421830942121657589, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
+      propertyPath: DashDistance
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691612100282242337, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
+      propertyPath: DashTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691612100282242337, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
+      propertyPath: distance
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691612100282242337, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
+      propertyPath: speedInDash
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691612100282242337, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
+      propertyPath: CoolDownTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4612449579389695582, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: attackSpeed
       value: 1

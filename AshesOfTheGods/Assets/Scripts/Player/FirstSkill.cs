@@ -77,7 +77,7 @@ public class FirstSkill : MonoBehaviour
     {
         while (true)
         {
-            
+
             if (firstSkillUiReload)
             {
                 firstSkillShade.SetActive(true);
@@ -86,7 +86,7 @@ public class FirstSkill : MonoBehaviour
                 {
                     cd += Time.deltaTime;
                     print("Кдшится");
-                    firstSkillFill.fillAmount = cd/CoolDownTime;
+                    firstSkillFill.fillAmount = cd / CoolDownTime;
                     if (ready == true)
                         cd = 1;
                     yield return null;

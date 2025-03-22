@@ -13,7 +13,7 @@ public class StartButtonScript : MonoBehaviour
 
     private void GameStart()
     {
-        SceneManager.LoadScene("First_Level");//Название сцены, которую надо загрузить
+        SceneManager.LoadScene("True_First_Level");//Название сцены, которую надо загрузить
     }
 
     private void OnDestroy()

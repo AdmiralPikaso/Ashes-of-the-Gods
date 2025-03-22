@@ -1,6 +1,5 @@
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -199,8 +198,6 @@ public class StribogScript : MonoBehaviour
     int airBlastCount = 3;
     bool AirBlastSeries = true;
     bool inAirBlast = false;
-    [SerializeField] private Image im1;
-    [SerializeField] private Image im2;
     private void CalmMode()
     {
 
