@@ -85,7 +85,7 @@ public class FirstSkill : MonoBehaviour
                 while (cd != 1)
                 {
                     cd += Time.deltaTime;
-                    print("Кдшится");
+                    //print("Кдшится");
                     firstSkillFill.fillAmount = cd / CoolDownTime;
                     if (ready == true)
                         cd = 1;
