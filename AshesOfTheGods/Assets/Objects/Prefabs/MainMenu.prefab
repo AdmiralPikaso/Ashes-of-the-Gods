@@ -1097,7 +1097,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2437001970115161774, guid: 48b37504a78ed5f468d83c49ba3da49a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3936765833264084233, guid: 48b37504a78ed5f468d83c49ba3da49a, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1268,7 +1268,9 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3521343926493473046, guid: 48b37504a78ed5f468d83c49ba3da49a, type: 3}
+    - {fileID: 8391985507739198718, guid: 48b37504a78ed5f468d83c49ba3da49a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48b37504a78ed5f468d83c49ba3da49a, type: 3}

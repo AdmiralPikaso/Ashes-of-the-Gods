@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80c822d36209c28408240ddf627f6585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
+  hp: 300
   damageSound: {fileID: 0}
   deathSound: {fileID: 0}
   minPitch: 0
@@ -196,20 +196,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b92046d2c2a83b479b9d6ac231ad1e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 0
+  attackDistance: 10
   bossFightTarget: {fileID: 0}
   jumpPointA: {fileID: 0}
   jumpPointB: {fileID: 0}
-  jumpSpeed: 0
-  speed: 0
+  jumpSpeed: 35
+  speed: 15
   airBlast: {fileID: 0}
-  secondFaseSkillDamage: 0
-  attackDamage: 0
-  afterAtackTime: 0
-  stunTime: 0
-  beforeAtackTime: 0
-  jumpCD: 0
-  jumpSecondCD: 0
+  secondFaseSkillDamage: 20
+  attackDamage: 30
+  afterAtackTime: 1
+  stunTime: 2
+  beforeAtackTime: 1
+  jumpCD: 10
+  jumpSecondCD: 20
 --- !u!1 &5692750726919210757
 GameObject:
   m_ObjectHideFlags: 0
