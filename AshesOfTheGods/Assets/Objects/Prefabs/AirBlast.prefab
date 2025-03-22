@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6148072491082608458}
   - component: {fileID: 8990835475646062130}
-  - component: {fileID: 7014757742089096488}
   - component: {fileID: -7106712545859689815}
   - component: {fileID: 1592195855792871113}
+  - component: {fileID: 2213161329184457991}
   m_Layer: 0
   m_Name: AirBlast
   m_TagString: Untagged
@@ -90,20 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7014757742089096488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2195181542045423615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 686bfec755018854e8a720bee80119e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 30
-  damage: 10
 --- !u!50 &-7106712545859689815
 Rigidbody2D:
   serializedVersion: 5
@@ -177,3 +163,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.27171642, y: 0.2526313}
   m_EdgeRadius: 0
+--- !u!114 &2213161329184457991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2195181542045423615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5a0a24607b1dad46991c3118341f56a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 60
+  damage: 50

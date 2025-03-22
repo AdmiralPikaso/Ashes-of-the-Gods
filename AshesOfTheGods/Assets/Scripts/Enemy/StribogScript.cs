@@ -173,7 +173,7 @@ public class StribogScript : MonoBehaviour
     {
        
         rb.MovePosition(rb.position + jumpSpeed * Time.fixedDeltaTime * returnMove);
-        if (!secondFaseSkill & rb.position.y - bossFightTarget.position.y <= 0.01f)
+        if (!secondFaseSkill & rb.position.y - bossFightTarget.position.y <= 0.1f)
         {
             airBlastCount = 0;
             returnMode = false;
