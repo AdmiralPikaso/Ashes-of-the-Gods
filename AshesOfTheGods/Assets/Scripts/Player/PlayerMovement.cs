@@ -111,27 +111,30 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float minPitch;
     [SerializeField] private float maxPitch;
     [SerializeField] private float volume;
-
     public void MovementLogic(float moveDir)
     {
-        float RealSpeed = speed;
-        if (!dash.GetinDash())
+        PlayerRegularAttack script = FindAnyObjectByType<PlayerRegularAttack>();
+        if (script.canMove)
         {
-            if (in_air)
-                RealSpeed *= airSpeedMultiplier;
-            if (in_enemy)
+            float RealSpeed = speed;
+            if (!dash.GetinDash())
             {
-                RealSpeed /= 2;
-                in_enemy = false;
-            }
-            if (!in_wall)
-                rigidB.linearVelocityX = RealSpeed * moveDir;
-            else
-            {
-                if (lastMoveDir == moveDir)
-                    rigidB.linearVelocityX = 0;
-                else rigidB.linearVelocityX = RealSpeed * moveDir;
-                lastMoveDir = moveDir;
+                if (in_air)
+                    RealSpeed *= airSpeedMultiplier;
+                if (in_enemy)
+                {
+                    RealSpeed /= 2;
+                    in_enemy = false;
+                }
+                if (!in_wall)
+                    rigidB.linearVelocityX = RealSpeed * moveDir;
+                else
+                {
+                    if (lastMoveDir == moveDir)
+                        rigidB.linearVelocityX = 0;
+                    else rigidB.linearVelocityX = RealSpeed * moveDir;
+                    lastMoveDir = moveDir;
+                }
             }
         }
     }
@@ -158,17 +161,22 @@ public class PlayerMovement : MonoBehaviour
     public void ImpulseLogic(float force)
     {
         rigidB.AddForceX(force);
+
     }
 
     private bool JumpPressed;
     [SerializeField] private float jumpForce;
     private void JumpLogic()
     {
-        JumpPressed = Input.GetKeyDown(KeyCode.Space);
-        if (!in_air && JumpPressed)
+        PlayerRegularAttack script = FindAnyObjectByType<PlayerRegularAttack>();
+        if (script.canMove)
         {
-            rigidB.AddForceY(jumpForce, ForceMode2D.Impulse);
-            JumpPressed = false;
+            JumpPressed = Input.GetKeyDown(KeyCode.Space);
+            if (!in_air && JumpPressed)
+            {
+                rigidB.AddForceY(jumpForce, ForceMode2D.Impulse);
+                JumpPressed = false;
+            }
         }
     }
 

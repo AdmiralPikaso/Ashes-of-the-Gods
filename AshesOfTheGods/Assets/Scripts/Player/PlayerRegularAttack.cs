@@ -1,9 +1,11 @@
 using System.Collections;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class PlayerRegularAttack : MonoBehaviour
 {
+    private Animator animator;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask damageableLayerMask;
     [SerializeField] private float damage;
@@ -15,8 +17,10 @@ public class PlayerRegularAttack : MonoBehaviour
     [SerializeField] private float volume;
     private bool waitMode = false;
     private bool KeyWasPressed = false;
+    public bool canMove = true;
     public void Start()
     {
+        animator = GetComponent<Animator>();
         audioSource = gameObject.AddComponent<AudioSource>();
         StartCoroutine(AttackCooldown(attackSpeed));
     }
@@ -31,7 +35,7 @@ public class PlayerRegularAttack : MonoBehaviour
                 KeyWasPressed = false;
             if (Input.GetAxis("Fire1") != 0 && !waitMode & !KeyWasPressed)
             {
-                Attack();
+                animator.SetTrigger("Attack");
                 KeyWasPressed = true;
             }
         }
@@ -57,7 +61,7 @@ public class PlayerRegularAttack : MonoBehaviour
         Gizmos.DrawRay(transform.position, attackPoint.position - transform.position);
     }
 
-    public void Attack()
+    public void RegularAttack()
     {
         Vector2 direction = attackPoint.position - transform.position;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, direction.magnitude, damageableLayerMask);
@@ -68,6 +72,15 @@ public class PlayerRegularAttack : MonoBehaviour
         waitMode = true;
         
         Sounds.Sound(attackSound, audioSource, volume, minPitch, maxPitch);
+    }
+
+    private void CanNotMove()
+    {
+        canMove = false;
+    }
+    private void CanMove()
+    {
+        canMove = true;
     }
 
     private IEnumerator AttackCooldown(float attackColldown)
