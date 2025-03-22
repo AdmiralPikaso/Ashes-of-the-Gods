@@ -114,26 +114,27 @@ public class PlayerMovement : MonoBehaviour
     public void MovementLogic(float moveDir)
     {
         PlayerRegularAttack script = FindAnyObjectByType<PlayerRegularAttack>();
-        if (script.canMove) 
+        if (script.canMove)
         {
-        float RealSpeed = speed;
-        if (!dash.GetinDash())
-        {
-            if (in_air)
-                RealSpeed *= airSpeedMultiplier;
-            if (in_enemy)
+            float RealSpeed = speed;
+            if (!dash.GetinDash())
             {
-                RealSpeed /= 2;
-                in_enemy = false;
-            }
-            if (!in_wall)
-                rigidB.linearVelocityX = RealSpeed * moveDir;
-            else
-            {
-                if (lastMoveDir == moveDir)
-                    rigidB.linearVelocityX = 0;
-                else rigidB.linearVelocityX = RealSpeed * moveDir;
-                lastMoveDir = moveDir;
+                if (in_air)
+                    RealSpeed *= airSpeedMultiplier;
+                if (in_enemy)
+                {
+                    RealSpeed /= 2;
+                    in_enemy = false;
+                }
+                if (!in_wall)
+                    rigidB.linearVelocityX = RealSpeed * moveDir;
+                else
+                {
+                    if (lastMoveDir == moveDir)
+                        rigidB.linearVelocityX = 0;
+                    else rigidB.linearVelocityX = RealSpeed * moveDir;
+                    lastMoveDir = moveDir;
+                }
             }
         }
     }
@@ -170,12 +171,12 @@ public class PlayerMovement : MonoBehaviour
         PlayerRegularAttack script = FindAnyObjectByType<PlayerRegularAttack>();
         if (script.canMove)
         {
-        JumpPressed = Input.GetKeyDown(KeyCode.Space);
-        if (!in_air && JumpPressed)
-        {
-            rigidB.AddForceY(jumpForce, ForceMode2D.Impulse);
-            JumpPressed = false;
-        }
+            JumpPressed = Input.GetKeyDown(KeyCode.Space);
+            if (!in_air && JumpPressed)
+            {
+                rigidB.AddForceY(jumpForce, ForceMode2D.Impulse);
+                JumpPressed = false;
+            }
         }
     }
 
