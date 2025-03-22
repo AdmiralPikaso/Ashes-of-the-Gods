@@ -108,9 +108,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float minPitch;
     [SerializeField] private float maxPitch;
     [SerializeField] private float volume;
-
     public void MovementLogic(float moveDir)
     {
+        PlayerRegularAttack script = FindAnyObjectByType<PlayerRegularAttack>();
+        if (script.canMove) 
+        {
         float RealSpeed = speed;
         if (in_air)
             RealSpeed *= airSpeedMultiplier;
@@ -128,17 +130,22 @@ public class PlayerMovement : MonoBehaviour
             else rigidB.linearVelocityX = RealSpeed * moveDir;
             lastMoveDir = moveDir;
         }
+        }
     }
 
     private bool JumpPressed;
     [SerializeField] private float jumpForce;
     private void JumpLogic()
     {
+        PlayerRegularAttack script = FindAnyObjectByType<PlayerRegularAttack>();
+        if (script.canMove)
+        {
         JumpPressed = Input.GetKeyDown(KeyCode.Space);
         if (!in_air && JumpPressed)
         {
             rigidB.AddForceY(jumpForce, ForceMode2D.Impulse);
             JumpPressed = false;
+        }
         }
     }
 

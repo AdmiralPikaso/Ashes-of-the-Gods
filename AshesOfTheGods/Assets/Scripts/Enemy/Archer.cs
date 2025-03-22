@@ -174,11 +174,12 @@ public class Archer : MonoBehaviour
         if (playerInSight && Vector2.Distance(player.transform.position, transform.position) <= distance)
         {
             shootMode = true;
+            guardMode = false;
         }
-        else
+        /*else
         {
             guardMode = true;
-        }
+        }*/
 
         isAttacking = false;
     }

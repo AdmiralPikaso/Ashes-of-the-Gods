@@ -30,7 +30,7 @@ public class PlayerHeavyAttack : MonoBehaviour
                 KeyWasPressed = false;
             if (Input.GetAxis("Fire2") != 0 & !waitMode & !KeyWasPressed)
             {
-                Attack();
+                HeavyAttack();
                 KeyWasPressed = true;
             }
         }
@@ -56,7 +56,7 @@ public class PlayerHeavyAttack : MonoBehaviour
         Gizmos.DrawRay(transform.position, attackPoint.position - transform.position);
     }
 
-    public void Attack()
+    public void HeavyAttack()
     {
         Vector2 direction = attackPoint.position - transform.position;
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction, direction.magnitude, damageableLayerMask);
