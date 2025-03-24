@@ -27,9 +27,10 @@ public class PlayerRegularAttack : MonoBehaviour
         StartCoroutine(AttackCooldown(attackSpeed));
     }
 
+    public bool InAttackAnim = false;
     public void Update()
     {
-        if (!gameObject.GetComponent<PlayerStats>().isEsc)
+        if (!gameObject.GetComponent<FirstSkill>().inArmorAnim && !gameObject.GetComponent<PlayerStats>().isEsc)
         {
             //HandleMovement();
 
@@ -38,11 +39,16 @@ public class PlayerRegularAttack : MonoBehaviour
             if (Input.GetAxis("Fire1") != 0 && !waitMode & !KeyWasPressed)
             {
                 animator.SetTrigger("Attack");
+                InAttackAnim = true;
                 KeyWasPressed = true;
             }
         }
     }
 
+    private void OffAttackAnim()
+    {
+        InAttackAnim = false;
+    }
     /*private void HandleMovement()
     {
         if (canMove)

@@ -199,7 +199,6 @@ MonoBehaviour:
   minPitch: 0
   maxPitch: 0
   volume: 0
-  canMove: 1
 --- !u!114 &8330952764653955981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +218,7 @@ MonoBehaviour:
   minPitch: 0
   maxPitch: 0
   volume: 0
+  direction: {x: 0, y: 0}
   jumpForce: 35
 --- !u!114 &1080274902614433886
 MonoBehaviour:

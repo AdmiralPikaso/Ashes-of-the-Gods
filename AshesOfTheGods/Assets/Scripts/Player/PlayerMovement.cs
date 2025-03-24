@@ -1,4 +1,5 @@
 using Unity.IO.LowLevel.Unsafe;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -140,7 +141,6 @@ public class PlayerMovement : MonoBehaviour
     
     public void MovementLogic(float moveDir)
     {
-        PlayerRegularAttack script = FindAnyObjectByType<PlayerRegularAttack>();
         if (canMove)
         {
             if (!dash.GetinDash())
@@ -157,14 +157,9 @@ public class PlayerMovement : MonoBehaviour
                 {
                     rigidB.linearVelocityX = RealSpeed * moveDir;
                     animator.SetBool("Walk", moveDir != 0);
-                    if (moveDir > 0)
-                    {
-                        transform.localScale = new Vector3(direction.x, direction.y);
-                    }
-                    else if (moveDir < 0)
-                    {
-                        transform.localScale = new Vector3(-direction.x, direction.y);
-                    }
+                    /*if (moveDirection != 0)
+                        transform.localScale = new Vector2(math.sign(moveDirection)*transform.localScale.x, transform.localScale.y);*/
+                    
                 }
                 else
                 {
@@ -177,14 +172,8 @@ public class PlayerMovement : MonoBehaviour
                     {
                         rigidB.linearVelocityX = RealSpeed * moveDir;
                         animator.SetBool("Walk", moveDir != 0);
-                        if (moveDir > 0)
-                        {
-                            transform.localScale = new Vector3(direction.x, direction.y);
-                        }
-                        else if (moveDir < 0)
-                        {
-                            transform.localScale = new Vector3(-direction.x, direction.y);
-                        }
+                        /*if (moveDirection != 0)
+                            transform.localScale = new Vector2(math.sign(moveDirection)*transform.localScale.x, transform.localScale.y);*/
                     }
                     lastMoveDir = moveDir;
                 }
@@ -200,7 +189,6 @@ public class PlayerMovement : MonoBehaviour
     private float DashlastMoveDir;
     public void DastLogic(float movedir)
     {
-        PlayerRegularAttack script = FindAnyObjectByType<PlayerRegularAttack>();
         if (canMove)
         {
             bool wasDashing = false;
@@ -230,7 +218,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce;
     private void JumpLogic()
     {
-        PlayerRegularAttack script = FindAnyObjectByType<PlayerRegularAttack>();
         if (canMove)
         {
             JumpPressed = Input.GetKeyDown(KeyCode.Space);
@@ -243,8 +230,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private SpriteRenderer spriteRenderer;
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         audioSource = gameObject.AddComponent<AudioSource>();
         direction = transform.localScale;
@@ -252,7 +241,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (!gameObject.GetComponent<PlayerStats>().isEsc)
+        if (gameObject.GetComponent<FirstSkill>().inArmorAnim)
+                rigidB.linearVelocityX = 0;
+        if (!gameObject.GetComponent<FirstSkill>().inArmorAnim && !gameObject.GetComponent<PlayerStats>().isEsc)
         {
             moveDirection = Input.GetAxis("Horizontal");
             in_air = !on_ground && !on_platform && !on_moving_platform;
@@ -267,7 +258,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (!gameObject.GetComponent<PlayerStats>().isEsc)
+        if (!gameObject.GetComponent<FirstSkill>().inArmorAnim && !gameObject.GetComponent<PlayerStats>().isEsc)
         {
             MovementLogic(moveDirection);
             DastLogic(moveDirection);

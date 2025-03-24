@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 
 public class FirstSkill : MonoBehaviour
 {
+    private Animator animator;
     [SerializeField] private float CoolDownTime = 10;
     private PlayerMovement pMovement;
     private bool ready = true;
@@ -23,27 +24,34 @@ public class FirstSkill : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         StartCoroutine(WaitMode());
         StartCoroutine(ReloadUi());
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) & ready & gameObject.GetComponent<PlayerStats>().isEsc == false)
+        if (!gameObject.GetComponent<SecondSkill>().GetinDash() & !gameObject.GetComponent<PlayerRegularAttack>().InAttackAnim & Input.GetKeyDown(KeyCode.Q) & ready & gameObject.GetComponent<PlayerStats>().isEsc == false)
             GetArmor();
 
         if (AttacksCount >= 5)
             RemArmor();
         //print($"{In_armor}, {ready}, {AttacksCount}");
     }
-
+    public bool inArmorAnim = false;
     private void GetArmor()
     {
+        inArmorAnim = true;
+        animator.SetTrigger("FirstSkill");
         In_armor = true;
         pMovement.SetSpeed((float)(pMovement.GetSpeed() * 1.5));
         AttacksCount = 0;
         this.GetComponent<SpriteRenderer>().color = Color.grey;
         ready = false;
         Sounds.Sound(skillSound, audioSource, volume);
+    }
+    private void OffArmorAnim()
+    {
+        inArmorAnim = false;
     }
     private void RemArmor()
     {
