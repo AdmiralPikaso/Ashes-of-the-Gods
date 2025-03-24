@@ -157,8 +157,8 @@ public class PlayerMovement : MonoBehaviour
                 {
                     rigidB.linearVelocityX = RealSpeed * moveDir;
                     animator.SetBool("Walk", moveDir != 0);
-                    /*if (moveDirection != 0)
-                        transform.localScale = new Vector2(math.sign(moveDirection)*transform.localScale.x, transform.localScale.y);*/
+                    if (moveDir != 0)
+                        transform.localScale = new Vector2(moveDir*math.abs(transform.localScale.x), transform.localScale.y);
                     
                 }
                 else
@@ -172,8 +172,8 @@ public class PlayerMovement : MonoBehaviour
                     {
                         rigidB.linearVelocityX = RealSpeed * moveDir;
                         animator.SetBool("Walk", moveDir != 0);
-                        /*if (moveDirection != 0)
-                            transform.localScale = new Vector2(math.sign(moveDirection)*transform.localScale.x, transform.localScale.y);*/
+                        if (moveDir != 0)
+                            transform.localScale = new Vector2(moveDir*math.abs(transform.localScale.x), transform.localScale.y);
                     }
                     lastMoveDir = moveDir;
                 }
@@ -236,7 +236,6 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         audioSource = gameObject.AddComponent<AudioSource>();
-        direction = transform.localScale;
     }
 
     void Update()
