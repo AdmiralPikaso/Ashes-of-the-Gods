@@ -17,11 +17,13 @@ public class PlayerRegularAttack : MonoBehaviour
     [SerializeField] private float volume;
     private bool waitMode = false;
     private bool KeyWasPressed = false;
-    public bool canMove = true;
+    //public bool canMove = true;
+    private PlayerMovement playerMovement;
     public void Start()
     {
         animator = GetComponent<Animator>();
         audioSource = gameObject.AddComponent<AudioSource>();
+        playerMovement = GetComponent<PlayerMovement>();
         StartCoroutine(AttackCooldown(attackSpeed));
     }
 
@@ -29,7 +31,7 @@ public class PlayerRegularAttack : MonoBehaviour
     {
         if (!gameObject.GetComponent<PlayerStats>().isEsc)
         {
-            HandleMovement();
+            //HandleMovement();
 
             if (Input.GetAxis("Fire1") == 0)
                 KeyWasPressed = false;
@@ -41,30 +43,33 @@ public class PlayerRegularAttack : MonoBehaviour
         }
     }
 
-    private void HandleMovement()
+    /*private void HandleMovement()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
+        if (canMove)
+        {
+            float moveDir = playerMovement.GetMoveDirection();
 
-        if (horizontalInput == 1 && attackPoint.localPosition.x < 0)
-        {
-            attackPoint.localPosition = new Vector3(-attackPoint.localPosition.x, attackPoint.localPosition.y, attackPoint.localPosition.z);
+            if (moveDir > 0)
+            {
+                attackPoint.localPosition = new Vector2(-Mathf.Abs(attackPoint.localPosition.x), attackPoint.localPosition.y);
+            }
+            if (moveDir < 0)
+            {
+                attackPoint.localPosition = new Vector2(Mathf.Abs(attackPoint.localPosition.x), attackPoint.localPosition.y);
+            }
         }
-        else if (horizontalInput == -1 && attackPoint.localPosition.x > 0)
-        {
-            attackPoint.localPosition = new Vector3(-attackPoint.localPosition.x, attackPoint.localPosition.y, attackPoint.localPosition.z);
-        }
-    }
+    }*/
 
     public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, attackPoint.position - transform.position);
+        Gizmos.DrawRay(GetComponent<CapsuleCollider2D>().bounds.center, attackPoint.position - GetComponent<CapsuleCollider2D>().bounds.center);
     }
 
     public void RegularAttack()
     {
-        Vector2 direction = attackPoint.position - transform.position;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, direction.magnitude, damageableLayerMask);
+        Vector2 direction = attackPoint.position - GetComponent<CapsuleCollider2D>().bounds.center;
+        RaycastHit2D hit = Physics2D.Raycast(GetComponent<CapsuleCollider2D>().bounds.center, direction, direction.magnitude, damageableLayerMask);
         if (hit.collider != null)
         {
             hit.collider.GetComponent<Enemy>().TakeDamage(damage);
@@ -74,14 +79,14 @@ public class PlayerRegularAttack : MonoBehaviour
         Sounds.Sound(attackSound, audioSource, volume, minPitch, maxPitch);
     }
 
-    private void CanNotMove()
+    /*private void CanNotMove()
     {
         canMove = false;
     }
     private void CanMove()
     {
         canMove = true;
-    }
+    }*/
 
     private IEnumerator AttackCooldown(float attackColldown)
     {
