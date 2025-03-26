@@ -46,14 +46,14 @@ public class Archer : MonoBehaviour
     private Vector2 visionVec;
     private void FixedUpdate()
     {
-        Debug.Log($"GuardMode {guardMode}");
-        Debug.Log($"ShootMode {shootMode}");
+        //Debug.Log($"GuardMode {guardMode}");
+        //Debug.Log($"ShootMode {shootMode}");
 
-        Debug.Log($"shootwait{shootWaitMode}");
-        Debug.Log($"guardWait {guardWaitMode}");
-        Debug.Log($"returnWait {returnWaitMode}");
+        //Debug.Log($"shootwait{shootWaitMode}");
+        //Debug.Log($"guardWait {guardWaitMode}");
+        //Debug.Log($"returnWait {returnWaitMode}");
 
-        Debug.Log($"isAttacking {isAttacking}"); 
+        //Debug.Log($"isAttacking {isAttacking}"); 
         
 
         if (!shootMode & !returnWaitMode & !guardMode)

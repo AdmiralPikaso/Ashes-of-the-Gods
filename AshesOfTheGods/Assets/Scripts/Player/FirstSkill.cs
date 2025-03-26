@@ -69,10 +69,10 @@ public class FirstSkill : MonoBehaviour
         {
             if (!ready && !In_armor)
             {
-                print("Кнопка уходит в кд");
+                //print("Кнопка уходит в кд");
                 firstSkillUiReload = true;
                 yield return new WaitForSeconds(CoolDownTime);
-                print("Кнопка вышла из кд");
+                //print("Кнопка вышла из кд");
                 ready = true;
             }
             yield return new WaitForFixedUpdate();
@@ -94,7 +94,7 @@ public class FirstSkill : MonoBehaviour
                 while (cd != 1)
                 {
                     cd += Time.deltaTime;
-                    print("Кдшится");
+                    //print("Кдшится");
                     firstSkillFill.fillAmount = cd / CoolDownTime;
                     if (ready == true)
                         cd = 1;
