@@ -199,7 +199,7 @@ MonoBehaviour:
   minPitch: 0
   maxPitch: 0
   volume: 0
-  canMove: 1
+  InAttackAnim: 0
 --- !u!114 &8330952764653955981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +219,7 @@ MonoBehaviour:
   minPitch: 0
   maxPitch: 0
   volume: 0
+  direction: {x: 0, y: 0}
   jumpForce: 35
 --- !u!114 &1080274902614433886
 MonoBehaviour:
@@ -235,6 +236,7 @@ MonoBehaviour:
   CoolDownTime: 10
   skillSound: {fileID: 0}
   volume: 0
+  inArmorAnim: 0
   firstSkillFill: {fileID: 0}
   firstSkillShade: {fileID: 0}
 --- !u!114 &9148015590107469414

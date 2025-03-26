@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
+    private Animator animator;
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private float hp;
     public float HpNow { get; private set; }
@@ -14,6 +15,7 @@ public class PlayerStats : MonoBehaviour
     Collider2D col;
     void Awake()
     {
+        animator = GetComponent<Animator>();
         dash = this.GetComponent<SecondSkill>();
 
         HpNow = hp;
@@ -35,7 +37,7 @@ public class PlayerStats : MonoBehaviour
                     HpNow -= damage;
                 }
                 if (HpNow <= 0)
-                    Death();
+                    animator.SetBool("Die", true);
             }
         }
     }
@@ -43,7 +45,7 @@ public class PlayerStats : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Death"))
-            Death();
+            animator.SetBool("Die", true);
     }
     public void Lose()
     {
