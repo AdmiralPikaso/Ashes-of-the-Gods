@@ -191,7 +191,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: CanNotMove
+    functionName: CanNotMoveInAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -205,7 +205,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.6666667
-    functionName: CanMove
+    functionName: CanMoveInAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

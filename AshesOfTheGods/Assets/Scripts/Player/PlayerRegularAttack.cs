@@ -28,6 +28,7 @@ public class PlayerRegularAttack : MonoBehaviour
     }
 
     public bool InAttackAnim = false;
+    //public bool InRegularAttackArmorAnim = false;
     public void Update()
     {
         if (!gameObject.GetComponent<FirstSkill>().inArmorAnim && !gameObject.GetComponent<PlayerStats>().isEsc)
@@ -38,8 +39,16 @@ public class PlayerRegularAttack : MonoBehaviour
                 KeyWasPressed = false;
             if (Input.GetAxis("Fire1") != 0 && !waitMode & !KeyWasPressed)
             {
-                animator.SetTrigger("Attack");
-                InAttackAnim = true;
+                //if (!InRegularAttackArmorAnim)
+                //{
+                    animator.SetTrigger("Attack");
+                    InAttackAnim = true;
+                //}
+                /*if (!InAttackAnim)
+                {
+                    animator.SetTrigger("ArmorRegularAttack");
+                    InRegularAttackArmorAnim = true;
+                }*/
                 KeyWasPressed = true;
             }
         }
@@ -49,6 +58,10 @@ public class PlayerRegularAttack : MonoBehaviour
     {
         InAttackAnim = false;
     }
+    /*private void OffRegularAttackArmorAnim()
+    {
+        InRegularAttackArmorAnim = false;
+    }*/
     /*private void HandleMovement()
     {
         if (canMove)

@@ -128,20 +128,34 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float minPitch;
     [SerializeField] private float maxPitch;
     [SerializeField] private float volume;
-    private bool canMove = true;
-    private void CanNotMove()
+    public bool canMoveInAttack = true;
+    public bool canMoveInRegularAttackArmor = true;
+    public bool Death = false;
+    private void CanNotMoveInAttack()
     {
-        canMove = false;
+        canMoveInAttack = false;
     }
-    private void CanMove()
+    private void CanMoveInAttack()
     {
-        canMove = true;
+        canMoveInAttack = true;
+    }
+    private void CanNotMoveInRegularAttackArmor()
+    {
+        canMoveInRegularAttackArmor = false;
+    }
+    private void CanMoveInRegularAttackArmor()
+    {
+        canMoveInRegularAttackArmor = true;
+    }
+    private void CanNotMoveInDeath()
+    {
+        Death = true;
     }
     public Vector2 direction;
     
     public void MovementLogic(float moveDir)
     {
-        if (canMove)
+        if (canMoveInAttack & canMoveInRegularAttackArmor)
         {
             if (!dash.GetinDash())
             {
@@ -157,9 +171,9 @@ public class PlayerMovement : MonoBehaviour
                 {
                     rigidB.linearVelocityX = RealSpeed * moveDir;
                     animator.SetBool("Walk", moveDir != 0);
+                    animator.SetBool("WalkArmor", moveDir != 0);
                     if (moveDir != 0)
                         transform.localScale = new Vector2(moveDir*math.abs(transform.localScale.x), transform.localScale.y);
-                    
                 }
                 else
                 {
@@ -167,11 +181,13 @@ public class PlayerMovement : MonoBehaviour
                     {
                         rigidB.linearVelocityX = 0;
                         animator.SetBool("Walk", false);
+                        animator.SetBool("WalkArmor", false);
                     }
                     else 
                     {
                         rigidB.linearVelocityX = RealSpeed * moveDir;
                         animator.SetBool("Walk", moveDir != 0);
+                        animator.SetBool("WalkArmor", moveDir != 0);
                         if (moveDir != 0)
                             transform.localScale = new Vector2(moveDir*math.abs(transform.localScale.x), transform.localScale.y);
                     }
@@ -184,12 +200,13 @@ public class PlayerMovement : MonoBehaviour
             if (!in_air)
                 rigidB.linearVelocityX = 0;
             animator.SetBool("Walk", false);
+            animator.SetBool("WalkArmor", false);
         }
     }
     private float DashlastMoveDir;
     public void DastLogic(float movedir)
     {
-        if (canMove)
+        if (canMoveInAttack & canMoveInRegularAttackArmor)
         {
             bool wasDashing = false;
             if (dash.GetinDash())
@@ -211,14 +228,13 @@ public class PlayerMovement : MonoBehaviour
     public void ImpulseLogic(float force)
     {
         rigidB.AddForceX(force);
-
     }
 
     private bool JumpPressed;
     [SerializeField] private float jumpForce;
     private void JumpLogic()
     {
-        if (canMove)
+        if (canMoveInAttack & canMoveInRegularAttackArmor)
         {
             JumpPressed = Input.GetKeyDown(KeyCode.Space);
             if (!in_air && JumpPressed)
@@ -242,7 +258,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (gameObject.GetComponent<FirstSkill>().inArmorAnim)
                 rigidB.linearVelocityX = 0;
-        if (!gameObject.GetComponent<FirstSkill>().inArmorAnim && !gameObject.GetComponent<PlayerStats>().isEsc)
+        if (!gameObject.GetComponent<FirstSkill>().inArmorAnim & !Death & !gameObject.GetComponent<PlayerStats>().isEsc)
         {
             moveDirection = Input.GetAxis("Horizontal");
             in_air = !on_ground && !on_platform && !on_moving_platform;
@@ -257,7 +273,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (!gameObject.GetComponent<FirstSkill>().inArmorAnim && !gameObject.GetComponent<PlayerStats>().isEsc)
+        if (!gameObject.GetComponent<FirstSkill>().inArmorAnim & !Death & !gameObject.GetComponent<PlayerStats>().isEsc)
         {
             MovementLogic(moveDirection);
             DastLogic(moveDirection);

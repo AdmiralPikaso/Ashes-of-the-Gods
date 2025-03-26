@@ -33,7 +33,7 @@ public class FirstSkill : MonoBehaviour
         if (!gameObject.GetComponent<SecondSkill>().GetinDash() & !gameObject.GetComponent<PlayerRegularAttack>().InAttackAnim & Input.GetKeyDown(KeyCode.Q) & ready & gameObject.GetComponent<PlayerStats>().isEsc == false)
             GetArmor();
 
-        if (AttacksCount >= 5)
+        if (AttacksCount >= 1)
             RemArmor();
         //print($"{In_armor}, {ready}, {AttacksCount}");
     }
@@ -55,6 +55,7 @@ public class FirstSkill : MonoBehaviour
     }
     private void RemArmor()
     {
+        animator.SetTrigger("ArmorUnwear");
         pMovement.SetSpeed(pMovement.GetSpeed() / 1.5f);
         this.GetComponent<SpriteRenderer>().color = Color.white;
         In_armor = false;
