@@ -9,15 +9,38 @@ public class FirePillar : MonoBehaviour
     [SerializeField] private float damage;
 
 
+    private SpriteRenderer renderer;
     void Start()
     {
+
+        renderer = GetComponent<SpriteRenderer>();
+        
         player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(WaitAfterAttack());
     }
 
-    private void Update()
+    public bool IsOn = false;
+    [SerializeField] private float appearTime;
+    private bool fire = false;
+    private float currentAlpha = 0f;
+    private float fadeTimer = 0f;
+
+    private void FixedUpdate()
     {
-        //Debug.Log($"wait {waitAfterAttack}");
+        if (IsOn && !fire)
+        {
+            fadeTimer += Time.fixedDeltaTime;
+            currentAlpha = Mathf.Clamp01(fadeTimer / appearTime);
+
+            Color color = renderer.color;
+            color.a = currentAlpha;
+            renderer.color = color;
+
+            if (currentAlpha >= 1f)
+            {
+                fire = true;
+            }
+        }
     }
 
     private bool waitAfterAttack = false;
@@ -46,4 +69,6 @@ public class FirePillar : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
     }
+
+    
 }

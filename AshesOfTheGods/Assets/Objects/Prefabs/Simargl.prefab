@@ -184,6 +184,13 @@ MonoBehaviour:
   maxPitch: 0
   volume: 0
   isDead: 0
+  bossFightPoint: {fileID: 0}
+  fireA: {fileID: 0}
+  fireB: {fileID: 0}
+  fireC: {fileID: 0}
+  fireD: {fileID: 0}
+  fireE: {fileID: 0}
+  fireF: {fileID: 0}
 --- !u!114 &3181152777230612350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,9 +203,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b004ec3df4a7eaa4d963da14730f008d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  calmSpeed: 15
+  speed: 15
   attackDistance: 15
-  attackDamage: 30
+  fireBlast: {fileID: 2195181542045423615, guid: 467e61dbd6d20b848a0248e880c31eb3, type: 3}
+  attackDamage: 0
+  jumpTarget: {fileID: 0}
+  fireTarget1: {fileID: 0}
+  fireTarget2: {fileID: 0}
   afterAtackTime: 5
 --- !u!1 &5692750726919210757
 GameObject:

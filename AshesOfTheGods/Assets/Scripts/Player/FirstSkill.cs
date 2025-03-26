@@ -60,10 +60,10 @@ public class FirstSkill : MonoBehaviour
         {
             if (!ready && !In_armor)
             {
-                print("Кнопка уходит в кд");
+                //print("Кнопка уходит в кд");
                 firstSkillUiReload = true;
                 yield return new WaitForSeconds(CoolDownTime);
-                print("Кнопка вышла из кд");
+                //print("Кнопка вышла из кд");
                 ready = true;
             }
             yield return new WaitForFixedUpdate();
