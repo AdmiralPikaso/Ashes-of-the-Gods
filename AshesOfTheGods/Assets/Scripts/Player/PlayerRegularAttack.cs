@@ -24,14 +24,14 @@ public class PlayerRegularAttack : MonoBehaviour
         animator = GetComponent<Animator>();
         audioSource = gameObject.AddComponent<AudioSource>();
         playerMovement = GetComponent<PlayerMovement>();
-        StartCoroutine(AttackCooldown(attackSpeed));
+        StartCoroutine(AttackCoolDown(attackSpeed));
     }
 
     public bool InAttackAnim = false;
     //public bool InRegularAttackArmorAnim = false;
     public void Update()
     {
-        if (!gameObject.GetComponent<FirstSkill>().inArmorAnim && !gameObject.GetComponent<PlayerStats>().isEsc)
+        if (!gameObject.GetComponent<FirstSkill>().inArmorAnim & !gameObject.GetComponent<PlayerStats>().isEsc & !InAttackAnim)
         {
             //HandleMovement();
 
@@ -39,16 +39,8 @@ public class PlayerRegularAttack : MonoBehaviour
                 KeyWasPressed = false;
             if (Input.GetAxis("Fire1") != 0 && !waitMode & !KeyWasPressed)
             {
-                //if (!InRegularAttackArmorAnim)
-                //{
-                    animator.SetTrigger("Attack");
-                    InAttackAnim = true;
-                //}
-                /*if (!InAttackAnim)
-                {
-                    animator.SetTrigger("ArmorRegularAttack");
-                    InRegularAttackArmorAnim = true;
-                }*/
+                animator.SetTrigger("Attack");
+                InAttackAnim = true;
                 KeyWasPressed = true;
             }
         }
@@ -94,27 +86,19 @@ public class PlayerRegularAttack : MonoBehaviour
             hit.collider.GetComponent<Enemy>().TakeDamage(damage);
         }
         waitMode = true;
-        
+        Debug.Log("waitMode = true");
         Sounds.Sound(attackSound, audioSource, volume, minPitch, maxPitch);
     }
 
-    /*private void CanNotMove()
-    {
-        canMove = false;
-    }
-    private void CanMove()
-    {
-        canMove = true;
-    }*/
-
-    private IEnumerator AttackCooldown(float attackColldown)
+    private IEnumerator AttackCoolDown(float attackCollDown)
     {
         while (true)
         {
             if (waitMode)
             {
-                yield return new WaitForSeconds(attackColldown);
+                yield return new WaitForSeconds(attackCollDown);
                 waitMode = false;
+                Debug.Log("waitMode = false");
             }
             yield return new WaitForFixedUpdate();
         }

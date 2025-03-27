@@ -219,6 +219,10 @@ MonoBehaviour:
   minPitch: 0
   maxPitch: 0
   volume: 0
+  canMoveInAttack: 1
+  canMoveInRegularAttackArmor: 1
+  canMoveInHeavyAttackArmor: 1
+  Death: 0
   direction: {x: 0, y: 0}
   jumpForce: 35
 --- !u!114 &1080274902614433886
@@ -237,6 +241,7 @@ MonoBehaviour:
   skillSound: {fileID: 0}
   volume: 0
   inArmorAnim: 0
+  inArmor: 0
   firstSkillFill: {fileID: 0}
   firstSkillShade: {fileID: 0}
 --- !u!114 &9148015590107469414

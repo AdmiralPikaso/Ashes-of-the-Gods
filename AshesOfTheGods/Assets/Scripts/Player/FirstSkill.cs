@@ -38,14 +38,16 @@ public class FirstSkill : MonoBehaviour
         //print($"{In_armor}, {ready}, {AttacksCount}");
     }
     public bool inArmorAnim = false;
+    public bool inArmor = false;
     private void GetArmor()
     {
+        inArmor = true;
         inArmorAnim = true;
         animator.SetTrigger("FirstSkill");
         In_armor = true;
         pMovement.SetSpeed((float)(pMovement.GetSpeed() * 1.5));
         AttacksCount = 0;
-        this.GetComponent<SpriteRenderer>().color = Color.grey;
+        //this.GetComponent<SpriteRenderer>().color = Color.grey;
         ready = false;
         Sounds.Sound(skillSound, audioSource, volume);
     }
@@ -55,9 +57,10 @@ public class FirstSkill : MonoBehaviour
     }
     private void RemArmor()
     {
+        inArmor = false;
         animator.SetTrigger("ArmorUnwear");
         pMovement.SetSpeed(pMovement.GetSpeed() / 1.5f);
-        this.GetComponent<SpriteRenderer>().color = Color.white;
+        //this.GetComponent<SpriteRenderer>().color = Color.white;
         In_armor = false;
         AttacksCount = 0;
     }
