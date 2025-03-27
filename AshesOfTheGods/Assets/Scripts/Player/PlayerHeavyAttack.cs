@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerHeavyAttack : MonoBehaviour
 {
-    //private Animator animator;
+    private Animator animator;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask damageableLayerMask;
     [SerializeField] private float damage;
@@ -17,14 +17,13 @@ public class PlayerHeavyAttack : MonoBehaviour
     private bool KeyWasPressed = false;
     public void Start()
     {
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         audioSource = gameObject.AddComponent<AudioSource>();
         StartCoroutine(AttackCooldown(attackSpeed));
     }
-
     public void Update()
     {
-        if (!gameObject.GetComponent<PlayerStats>().isEsc)
+        if (!gameObject.GetComponent<PlayerStats>().isEsc & !GetComponent<PlayerRegularAttack>().InAttackAnim & GetComponent<FirstSkill>().inArmor & !gameObject.GetComponent<FirstSkill>().inArmorAnim)
         {
             //HandleMovement();
 
@@ -32,8 +31,8 @@ public class PlayerHeavyAttack : MonoBehaviour
                 KeyWasPressed = false;
             if (Input.GetAxis("Fire2") != 0 & !waitMode & !KeyWasPressed)
             {
-                HeavyAttack();
-                //animator.SetTrigger("Attack");
+                animator.SetTrigger("HeavyAttack");
+                GetComponent<PlayerRegularAttack>().InAttackAnim = true;
                 KeyWasPressed = true;
             }
         }

@@ -27,7 +27,7 @@ public class SecondSkill : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) & GetComponent<PlayerMovement>().canMoveInAttack & GetComponent<PlayerMovement>().canMoveInRegularAttackArmor & !GetComponent<PlayerMovement>().Death & !GetComponent<FirstSkill>().inArmorAnim)
+        if (Input.GetKeyDown(KeyCode.LeftShift) & GetComponent<PlayerMovement>().canMoveInAttack & GetComponent<PlayerMovement>().canMoveInRegularAttackArmor & GetComponent<PlayerMovement>().canMoveInHeavyAttackArmor & !GetComponent<PlayerMovement>().Death & !GetComponent<FirstSkill>().inArmorAnim)
             Dash();
     }
     private bool inDash = false;

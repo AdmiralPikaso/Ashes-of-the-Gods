@@ -130,6 +130,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float volume;
     public bool canMoveInAttack = true;
     public bool canMoveInRegularAttackArmor = true;
+    public bool canMoveInHeavyAttackArmor = true;
     public bool Death = false;
     private void CanNotMoveInAttack()
     {
@@ -147,6 +148,14 @@ public class PlayerMovement : MonoBehaviour
     {
         canMoveInRegularAttackArmor = true;
     }
+    private void CanNotMoveInHeavyAttackArmor()
+    {
+        canMoveInHeavyAttackArmor = false;
+    }
+    private void CanMoveInHeavyAttackArmor()
+    {
+        canMoveInHeavyAttackArmor = true;
+    }
     private void CanNotMoveInDeath()
     {
         Death = true;
@@ -155,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
     
     public void MovementLogic(float moveDir)
     {
-        if (canMoveInAttack & canMoveInRegularAttackArmor)
+        if (canMoveInAttack & canMoveInRegularAttackArmor & canMoveInHeavyAttackArmor)
         {
             if (!dash.GetinDash())
             {
@@ -170,8 +179,16 @@ public class PlayerMovement : MonoBehaviour
                 if (!in_wall)
                 {
                     rigidB.linearVelocityX = RealSpeed * moveDir;
-                    animator.SetBool("Walk", moveDir != 0);
-                    animator.SetBool("WalkArmor", moveDir != 0);
+                    if (!in_air)
+                    {
+                        animator.SetBool("Walk", moveDir != 0);
+                        animator.SetBool("WalkArmor", moveDir != 0);
+                    }
+                    else
+                    {
+                        animator.SetBool("Walk", false);
+                        animator.SetBool("WalkArmor", false);
+                    }
                     if (moveDir != 0)
                         transform.localScale = new Vector2(moveDir*math.abs(transform.localScale.x), transform.localScale.y);
                 }
@@ -180,14 +197,30 @@ public class PlayerMovement : MonoBehaviour
                     if (lastMoveDir == moveDir)
                     {
                         rigidB.linearVelocityX = 0;
+                        if (!in_air)
+                    {
+                        animator.SetBool("Walk", moveDir != 0);
+                        animator.SetBool("WalkArmor", moveDir != 0);
+                    }
+                    else
+                    {
                         animator.SetBool("Walk", false);
                         animator.SetBool("WalkArmor", false);
+                    }
                     }
                     else 
                     {
                         rigidB.linearVelocityX = RealSpeed * moveDir;
+                        if (!in_air)
+                    {
                         animator.SetBool("Walk", moveDir != 0);
                         animator.SetBool("WalkArmor", moveDir != 0);
+                    }
+                    else
+                    {
+                        animator.SetBool("Walk", false);
+                        animator.SetBool("WalkArmor", false);
+                    }
                         if (moveDir != 0)
                             transform.localScale = new Vector2(moveDir*math.abs(transform.localScale.x), transform.localScale.y);
                     }
@@ -199,14 +232,22 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!in_air)
                 rigidB.linearVelocityX = 0;
-            animator.SetBool("Walk", false);
-            animator.SetBool("WalkArmor", false);
+            if (!in_air)
+                    {
+                        animator.SetBool("Walk", moveDir != 0);
+                        animator.SetBool("WalkArmor", moveDir != 0);
+                    }
+                    else
+                    {
+                        animator.SetBool("Walk", false);
+                        animator.SetBool("WalkArmor", false);
+                    }
         }
     }
     private float DashlastMoveDir;
     public void DastLogic(float movedir)
     {
-        if (canMoveInAttack & canMoveInRegularAttackArmor)
+        if (canMoveInAttack & canMoveInRegularAttackArmor & canMoveInHeavyAttackArmor)
         {
             bool wasDashing = false;
             if (dash.GetinDash())
@@ -234,13 +275,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce;
     private void JumpLogic()
     {
-        if (canMoveInAttack & canMoveInRegularAttackArmor)
+        if (canMoveInAttack & canMoveInRegularAttackArmor & canMoveInHeavyAttackArmor)
         {
             JumpPressed = Input.GetKeyDown(KeyCode.Space);
             if (!in_air && JumpPressed)
             {
                 rigidB.AddForceY(jumpForce, ForceMode2D.Impulse);
-                animator.SetBool("Jump", true);
+                animator.SetTrigger("Jump");
                 JumpPressed = false;
             }
         }
@@ -256,7 +297,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (gameObject.GetComponent<FirstSkill>().inArmorAnim)
+        if (gameObject.GetComponent<FirstSkill>().inArmorAnim & !in_air)
                 rigidB.linearVelocityX = 0;
         if (!gameObject.GetComponent<FirstSkill>().inArmorAnim & !Death & !gameObject.GetComponent<PlayerStats>().isEsc)
         {
