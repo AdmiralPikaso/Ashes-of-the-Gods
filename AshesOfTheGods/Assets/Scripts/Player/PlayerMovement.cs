@@ -184,11 +184,6 @@ public class PlayerMovement : MonoBehaviour
                         animator.SetBool("Walk", moveDir != 0);
                         animator.SetBool("WalkArmor", moveDir != 0);
                     }
-                    else
-                    {
-                        animator.SetBool("Walk", false);
-                        animator.SetBool("WalkArmor", false);
-                    }
                     if (moveDir != 0)
                         transform.localScale = new Vector2(moveDir*math.abs(transform.localScale.x), transform.localScale.y);
                 }
@@ -202,11 +197,6 @@ public class PlayerMovement : MonoBehaviour
                         animator.SetBool("Walk", moveDir != 0);
                         animator.SetBool("WalkArmor", moveDir != 0);
                     }
-                    else
-                    {
-                        animator.SetBool("Walk", false);
-                        animator.SetBool("WalkArmor", false);
-                    }
                     }
                     else 
                     {
@@ -215,11 +205,6 @@ public class PlayerMovement : MonoBehaviour
                     {
                         animator.SetBool("Walk", moveDir != 0);
                         animator.SetBool("WalkArmor", moveDir != 0);
-                    }
-                    else
-                    {
-                        animator.SetBool("Walk", false);
-                        animator.SetBool("WalkArmor", false);
                     }
                         if (moveDir != 0)
                             transform.localScale = new Vector2(moveDir*math.abs(transform.localScale.x), transform.localScale.y);
@@ -233,15 +218,10 @@ public class PlayerMovement : MonoBehaviour
             if (!in_air)
                 rigidB.linearVelocityX = 0;
             if (!in_air)
-                    {
-                        animator.SetBool("Walk", moveDir != 0);
-                        animator.SetBool("WalkArmor", moveDir != 0);
-                    }
-                    else
-                    {
-                        animator.SetBool("Walk", false);
-                        animator.SetBool("WalkArmor", false);
-                    }
+                {
+                    animator.SetBool("Walk", moveDir != 0);
+                    animator.SetBool("WalkArmor", moveDir != 0);
+                }
         }
     }
     private float DashlastMoveDir;
@@ -278,10 +258,10 @@ public class PlayerMovement : MonoBehaviour
         if (canMoveInAttack & canMoveInRegularAttackArmor & canMoveInHeavyAttackArmor)
         {
             JumpPressed = Input.GetKeyDown(KeyCode.Space);
-            if (!in_air && JumpPressed)
+            if (!in_air & JumpPressed & !FindFirstObjectByType<SecondSkill>().GetinDash())
             {
                 rigidB.AddForceY(jumpForce, ForceMode2D.Impulse);
-                animator.SetTrigger("Jump");
+                animator.SetBool("Jump", true);
                 JumpPressed = false;
             }
         }

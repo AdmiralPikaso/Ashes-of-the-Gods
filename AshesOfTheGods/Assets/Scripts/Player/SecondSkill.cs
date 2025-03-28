@@ -6,6 +6,7 @@ using NUnit.Framework;
 using System.Runtime.InteropServices.WindowsRuntime;
 public class SecondSkill : MonoBehaviour
 {
+    private Animator animator;
     [SerializeField] private float CoolDownTime;
     [SerializeField] private float DashDistance = 15;
     [SerializeField] private float DashTime = 0.25f;
@@ -21,13 +22,14 @@ public class SecondSkill : MonoBehaviour
     }
     void Start()
     {
+        animator = GetComponent<Animator>();
         StartCoroutine(DashTimer());
-         StartCoroutine(DashCoolDown());
+        StartCoroutine(DashCoolDown());
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) & GetComponent<PlayerMovement>().canMoveInAttack & GetComponent<PlayerMovement>().canMoveInRegularAttackArmor & GetComponent<PlayerMovement>().canMoveInHeavyAttackArmor & !GetComponent<PlayerMovement>().Death & !GetComponent<FirstSkill>().inArmorAnim)
+        if (Input.GetKeyDown(KeyCode.LeftShift) & GetComponent<PlayerMovement>().canMoveInAttack & GetComponent<PlayerMovement>().canMoveInRegularAttackArmor & GetComponent<PlayerMovement>().canMoveInHeavyAttackArmor & !GetComponent<PlayerMovement>().Death & !GetComponent<FirstSkill>().inArmorAnim & !inDash)
             Dash();
     }
     private bool inDash = false;
@@ -36,7 +38,10 @@ public class SecondSkill : MonoBehaviour
     void Dash()
     {
         if (!cd)
+        {
+            animator.SetTrigger("Dash");
             inDash = true;
+        }
     }
 
     private IEnumerator DashTimer()
