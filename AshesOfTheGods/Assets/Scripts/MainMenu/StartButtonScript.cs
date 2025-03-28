@@ -5,6 +5,10 @@ using UnityEngine.UI;
 public class StartButtonScript : MonoBehaviour
 {
     Button button;
+    [Space]
+    [Header ("в настройках билда сценам присваиваются номера")]
+   
+    [SerializeField] private int sceneBuildIndex;
     private void Awake()
     {
         button = GetComponent<Button>();
@@ -13,7 +17,7 @@ public class StartButtonScript : MonoBehaviour
 
     private void GameStart()
     {
-        SceneManager.LoadScene("True_First_Level");//Название сцены, которую надо загрузить
+        SceneManager.LoadScene(sceneBuildIndex); //Название сцены, которую надо загрузить
     }
 
     private void OnDestroy()
