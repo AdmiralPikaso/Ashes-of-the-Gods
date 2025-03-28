@@ -1091,6 +1091,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5437327238662416209}
     m_Modifications:
+    - target: {fileID: 1221523164549827190, guid: 48b37504a78ed5f468d83c49ba3da49a, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 2437001970115161774, guid: 48b37504a78ed5f468d83c49ba3da49a, type: 3}
       propertyPath: m_Name
       value: SettingsMenu
@@ -1268,7 +1272,9 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3521343926493473046, guid: 48b37504a78ed5f468d83c49ba3da49a, type: 3}
+    - {fileID: 8391985507739198718, guid: 48b37504a78ed5f468d83c49ba3da49a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48b37504a78ed5f468d83c49ba3da49a, type: 3}

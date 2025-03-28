@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 7847002421855298680}
   - component: {fileID: 8095311276489181914}
   - component: {fileID: 5249209757168627313}
-  - component: {fileID: 1724334753883724472}
-  - component: {fileID: 6535565520487383411}
+  - component: {fileID: 1406593930606163856}
+  - component: {fileID: 3181152777230612350}
   m_Layer: 3
-  m_Name: Stribog
+  m_Name: Simargl
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,7 +165,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1724334753883724472
+--- !u!114 &1406593930606163856
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,17 +174,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 4712059694133896754}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80c822d36209c28408240ddf627f6585, type: 3}
+  m_Script: {fileID: 11500000, guid: 21e905fd07f04cd4ea5458327be2c736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 300
+  hp: 0
   damageSound: {fileID: 0}
   deathSound: {fileID: 0}
   minPitch: 0
   maxPitch: 0
   volume: 0
   isDead: 0
---- !u!114 &6535565520487383411
+  bossFightPoint: {fileID: 0}
+  fireA: {fileID: 0}
+  fireB: {fileID: 0}
+  fireC: {fileID: 0}
+  fireD: {fileID: 0}
+  fireE: {fileID: 0}
+  fireF: {fileID: 0}
+--- !u!114 &3181152777230612350
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,23 +200,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 4712059694133896754}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b92046d2c2a83b479b9d6ac231ad1e1, type: 3}
+  m_Script: {fileID: 11500000, guid: b004ec3df4a7eaa4d963da14730f008d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 10
-  bossFightTarget: {fileID: 0}
-  jumpPointA: {fileID: 0}
-  jumpPointB: {fileID: 0}
-  jumpSpeed: 35
   speed: 15
-  airBlast: {fileID: 0}
-  secondFaseSkillDamage: 20
-  attackDamage: 30
-  afterAtackTime: 1
-  stunTime: 2
-  beforeAtackTime: 1
-  jumpCD: 10
-  jumpSecondCD: 20
+  attackDistance: 15
+  fireBlast: {fileID: 2195181542045423615, guid: 467e61dbd6d20b848a0248e880c31eb3, type: 3}
+  attackDamage: 0
+  jumpTarget: {fileID: 0}
+  fireTarget1: {fileID: 0}
+  fireTarget2: {fileID: 0}
+  afterAtackTime: 5
 --- !u!1 &5692750726919210757
 GameObject:
   m_ObjectHideFlags: 0
