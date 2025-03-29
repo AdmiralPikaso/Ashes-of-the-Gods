@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SaveSettings Scene.unity
     guid: 3d3b68368bdbec442a9caf3f92e64bad
   - enabled: 1
+    path: Assets/Scenes/Simargl.unity
+    guid: fa04df6e1447d1846b5d04367d996a19
+  - enabled: 0
     path: Assets/Scenes/Test Scene.unity
     guid: b821625fcef0a0548b3a7e31ef4d432c
   m_configObjects:
