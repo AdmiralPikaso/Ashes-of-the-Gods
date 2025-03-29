@@ -213,4 +213,8 @@ MonoBehaviour:
   jumpTarget: {fileID: 0}
   fireTarget1: {fileID: 0}
   fireTarget2: {fileID: 0}
+  fireTarget3: {fileID: 0}
+  fireTarget4: {fileID: 0}
+  fireTarget5: {fileID: 0}
+  fireTarget6: {fileID: 0}
   afterAtackTime: 5
