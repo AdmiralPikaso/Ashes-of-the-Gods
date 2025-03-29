@@ -4,7 +4,7 @@ using UnityEngine;
 public class AirBlast : MonoBehaviour
 {
     private GameObject player;
-    private GameObject enemy;
+    
     private Rigidbody2D rb;
     [SerializeField] private float force;
     [SerializeField] private float damage;
@@ -21,12 +21,12 @@ public class AirBlast : MonoBehaviour
         float rot = Mathf.Atan2(-direction.y, -direction.x)* Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot);
 
-        enemy = GameObject.Find("Stribog");
     }
 
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.gameObject.CompareTag("Ground"))
             Destroy(gameObject);
             if (collision.gameObject.CompareTag("Player"))
