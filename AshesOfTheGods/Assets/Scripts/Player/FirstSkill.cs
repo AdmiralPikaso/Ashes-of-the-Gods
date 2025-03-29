@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 
 public class FirstSkill : MonoBehaviour
 {
+    [SerializeField] private int armorHealth = 5;
     private Animator animator;
     [SerializeField] private float CoolDownTime = 10;
     private PlayerMovement pMovement;
@@ -33,7 +34,7 @@ public class FirstSkill : MonoBehaviour
         if (!gameObject.GetComponent<SecondSkill>().GetinDash() & !gameObject.GetComponent<PlayerRegularAttack>().InAttackAnim & Input.GetKeyDown(KeyCode.Q) & ready & gameObject.GetComponent<PlayerStats>().isEsc == false)
             GetArmor();
 
-        if (AttacksCount >= 1)
+        if (AttacksCount >= armorHealth)
             RemArmor();
         //print($"{In_armor}, {ready}, {AttacksCount}");
     }

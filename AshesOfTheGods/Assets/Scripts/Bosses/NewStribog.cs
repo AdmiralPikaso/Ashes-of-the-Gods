@@ -23,7 +23,6 @@ public class NewStribog : Enemy
         {
             Die();
         }
-        //Debug.Log("Хп врага" + HpNow);
-
+        //Debug.Log("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ" + HpNow);
     }
 }
