@@ -4,6 +4,7 @@ public class SettingsButtonScript : MonoBehaviour
 {
     Button button;
     [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject levelManagerWindow;
     private void Awake()
     {
         button = GetComponent<Button>();
@@ -12,6 +13,7 @@ public class SettingsButtonScript : MonoBehaviour
 
     private void OpenSettings()
     {
+        levelManagerWindow.SetActive(false);
         settingsMenu.SetActive(true);
     }
 

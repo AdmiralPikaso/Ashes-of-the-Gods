@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class StartButtonScript : MonoBehaviour
+public class StartSecondLevelScript : MonoBehaviour
 {
     Button button;
     
@@ -19,7 +19,7 @@ public class StartButtonScript : MonoBehaviour
     private void GameStart()
     {
         PlayerPrefs.DeleteAll();
-        PlayerPrefs.SetInt("LevelNumber", 1);
+        PlayerPrefs.SetInt("LevelNumber", 2);
         SceneManager.LoadScene(PlayerPrefs.GetInt("LevelNumber"));
     }
 
