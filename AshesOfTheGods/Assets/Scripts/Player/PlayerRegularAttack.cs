@@ -86,7 +86,7 @@ public class PlayerRegularAttack : MonoBehaviour
             hit.collider.GetComponent<Enemy>().TakeDamage(damage);
         }
         waitMode = true;
-        Debug.Log("waitMode = true");
+       
         Sounds.Sound(attackSound, audioSource, volume, minPitch, maxPitch);
     }
 
@@ -98,7 +98,7 @@ public class PlayerRegularAttack : MonoBehaviour
             {
                 yield return new WaitForSeconds(attackCollDown);
                 waitMode = false;
-                Debug.Log("waitMode = false");
+                
             }
             yield return new WaitForFixedUpdate();
         }

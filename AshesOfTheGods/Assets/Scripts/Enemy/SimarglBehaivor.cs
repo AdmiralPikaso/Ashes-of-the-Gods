@@ -33,27 +33,36 @@ public class SimarglBehaivor : MonoBehaviour
     private Vector2 attackVector;
     private bool secondFaseJump = false;
     private float blastSeries = 0;
+    private Vector3 playerPos;
     private void FixedUpdate() // flip x = false => повернут влево
     {
-        Debug.Log($"Кд после атаки {waitAfterOneAttack}");
-        Debug.Log($"Атака в кд {waitAfterAttack}");
-        Debug.Log($"Кол-во атак {attackCount}");
+        playerPos = player.GetComponent<CapsuleCollider2D>().bounds.center;
+        
 
-        if (transform.position.x < ActivePillar.transform.position.x)
-            attackCount = 0;
 
         if (gameObject.GetComponent<SimarglScript>().IsActive)
         {
+            
+
+            //Debug.Log($"Бьёт влево {attackVector == Vector2.left.normalized}");
+            //Debug.Log($"Бьёт вправо {attackVector == Vector2.right.normalized}");
+            //Debug.Log($"Идёт к игроку {attackCount == 0 & (Vector2.Distance(rb.position, playerPos) > attackDistance)}");
+            //Debug.Log($"Кол-во атак {attackCount}");
+
+            if (transform.position.x < LeftPillar.transform.position.x || transform.position.x > RightPillar.transform.position.x)
+                attackCount = 0;
+
             //Вектор в сторону игрока 
-            movement = (player.transform.position - transform.position).normalized;
+            movement = (playerPos - transform.position).normalized;
             movement.y = 0;
 
             if (!secondFaseJump & !waitAfterAttack)
             {
-                if ((Vector2.Distance(player.transform.position, rb.position) <= attackDistance & !waitAfterOneAttack) | (attackCount>0 & !waitAfterOneAttack))
+                if ((Vector2.Distance(playerPos, rb.position) <= attackDistance & !waitAfterOneAttack) | (attackCount>0 & !waitAfterOneAttack))
                 {
                     if (attackCount == 0)
                     {
+
                         if (!gameObject.GetComponent<SpriteRenderer>().flipX)
                             attackVector = Vector2.left.normalized;
                         else attackVector = Vector2.right.normalized;
@@ -61,18 +70,22 @@ public class SimarglBehaivor : MonoBehaviour
                     BasicAttack();
 
                 }
+                
                 if (attackCount > 0)
                     BasicAttackMove();
 
                 
-                if (attackCount == 0 &(Vector2.Distance(rb.position, playerRB.position) > attackDistance))
+                if (attackCount == 0 & 
+                    (Vector2.Distance(rb.position, playerPos) > attackDistance | 
+                    (gameObject.GetComponent<SpriteRenderer>().flipX == false & playerPos.x > transform.position.x) 
+                    | ((gameObject.GetComponent<SpriteRenderer>().flipX == true & playerPos.x < transform.position.x))))
                     CalmMode();
 
             }
 
-            Debug.Log(secondFaseJump);
+            
 
-            if (!secondFaseJump & (gameObject.GetComponent<SimarglScript>().HpNow <= ((gameObject.GetComponent<SimarglScript>().HpMax / 4) * 1)))
+            if (!secondFaseJump & (gameObject.GetComponent<SimarglScript>().HpNow <= ((gameObject.GetComponent<SimarglScript>().HpMax / 3) * 1)))
                 secondFaseJump = true;
 
             if (secondFaseJump)
@@ -93,13 +106,29 @@ public class SimarglBehaivor : MonoBehaviour
     private bool waitAfterBlast;
     private void FireBlastAttack()
     {
-        if (blastSeries == 0 | blastSeries == 2 || blastSeries == 3)
+        if (blastSeries == 0 | blastSeries == 3)
         {
             GameObject blast = Instantiate(fireBlast, fireTarget1.transform.position, Quaternion.identity);
         }
-        else
-        { 
+        else if (blastSeries == 2 | blastSeries == 8)
+        {
             GameObject blast = Instantiate(fireBlast, fireTarget2.transform.position, Quaternion.identity);
+        }
+        else if (blastSeries == 1 | blastSeries == 7)
+        {
+            GameObject blast = Instantiate(fireBlast, fireTarget3.transform.position, Quaternion.identity);
+        }
+        else if (blastSeries == 6 | blastSeries == 10)
+        {
+            GameObject blast = Instantiate(fireBlast, fireTarget4.transform.position, Quaternion.identity);
+        }
+        else if (blastSeries == 5 | blastSeries == 11)
+        {
+            GameObject blast = Instantiate(fireBlast, fireTarget5.transform.position, Quaternion.identity);
+        }
+        else if (blastSeries == 4 | blastSeries == 9)
+        {
+            GameObject blast = Instantiate(fireBlast, fireTarget6.transform.position, Quaternion.identity);
         }
         blastSeries++;
         waitAfterBlast = true;
@@ -108,6 +137,11 @@ public class SimarglBehaivor : MonoBehaviour
 
     private void CalmMode()
     {
+        if (transform.position.x < playerPos.x)
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        
+        else gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        
         rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * movement);
     }
 
@@ -121,15 +155,15 @@ public class SimarglBehaivor : MonoBehaviour
     private bool waitAfterOneAttack = false;
     private void BasicAttack()
     {
-        
+
         
         //не сломать!
         //Урон регается только в случае, если симаргл атакует влево и гг стоит слева от него на дистанции тычки
-        if (attackVector == Vector2.left.normalized & (Vector2.Distance(player.transform.position, rb.position) <= attackDistance) & playerRB.transform.position.x <= transform.position.x)
+        if (attackVector == Vector2.left.normalized & (Vector2.Distance(playerPos, rb.position) <= attackDistance) & playerRB.transform.position.x <= transform.position.x)
             player.GetComponent<PlayerStats>().ReduceHp(attackDamage);
 
         //Либо симаргл атакует вправо и гг стоит справа от него на дистанции тычки
-        else if (attackVector == Vector2.right.normalized & (Vector2.Distance(player.transform.position, rb.position) <= attackDistance) & playerRB.transform.position.x >= transform.position.x)
+        else if (attackVector == Vector2.right.normalized & (Vector2.Distance(playerPos, rb.position) <= attackDistance) & playerRB.transform.position.x >= transform.position.x)
             player.GetComponent<PlayerStats>().ReduceHp(attackDamage);
 
         attackCount++;
@@ -141,13 +175,21 @@ public class SimarglBehaivor : MonoBehaviour
         }
     }
 
-    public GameObject ActivePillar;
+    public GameObject LeftPillar;
+    public GameObject RightPillar;
+
+    [Space]
+    [Header ("скорость при атаке")]
+    [SerializeField] private float speedInAttack;
     private void BasicAttackMove()
     {
+
         //он продолжает двигаться в том направлении, куда двигался в начале атаки
-        if (Vector2.Distance(rb.position, ActivePillar.transform.position) >= 5f)
-            rb.MovePosition(rb.position + speed/2 * Time.fixedDeltaTime * attackVector);
-        
+        if ((attackVector == Vector2.left.normalized & rb.position.x - LeftPillar.transform.position.x >= 5f) | (attackVector == Vector2.right.normalized & RightPillar.transform.position.x - rb.position.x >= 5f))
+        {
+            Debug.Log("едет к столбам");
+            rb.MovePosition(rb.position + speedInAttack * Time.fixedDeltaTime * attackVector);
+        }
     }
 
 
@@ -159,10 +201,17 @@ public class SimarglBehaivor : MonoBehaviour
     [Header("точки стрельбы")]
     [SerializeField] private GameObject fireTarget1;
     [SerializeField] private GameObject fireTarget2;
+    [SerializeField] private GameObject fireTarget3;
+    [SerializeField] private GameObject fireTarget4;
+    [SerializeField] private GameObject fireTarget5;
+    [SerializeField] private GameObject fireTarget6;
 
     private bool FireAttack = false;
     private void SecondFaseJump()
     {
+        LeftPillar.SetActive(false);
+        RightPillar.SetActive(false);
+
         Vector2 jumpVector = (jumpTarget.transform.position - transform.position).normalized;
         if (Vector2.Distance(rb.position, jumpTarget.transform.position) >= 5f)
             rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * jumpVector);
@@ -186,7 +235,7 @@ public class SimarglBehaivor : MonoBehaviour
         {
             if (waitAfterAttack)
             {
-                yield return new WaitForSeconds(3);
+                yield return new WaitForSeconds(afterAtackTime);
                 waitAfterAttack = false;
             }
             yield return new WaitForFixedUpdate();
@@ -199,7 +248,7 @@ public class SimarglBehaivor : MonoBehaviour
         {
             if (waitAfterOneAttack)
             {
-                yield return new WaitForSeconds(afterAtackTime);
+                yield return new WaitForSeconds(1);
                 waitAfterOneAttack = false;
             }
             yield return new WaitForFixedUpdate();
@@ -212,7 +261,7 @@ public class SimarglBehaivor : MonoBehaviour
         {
             if (waitAfterBlast)
             {
-                yield return new WaitForSeconds(3);
+                yield return new WaitForSeconds(2);
                 waitAfterBlast = false;
             }
 

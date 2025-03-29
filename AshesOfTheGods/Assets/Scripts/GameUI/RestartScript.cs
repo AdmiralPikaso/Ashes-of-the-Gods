@@ -15,7 +15,7 @@ public class RestartScript : MonoBehaviour
     private void Restart()
     {
         //deathScreen.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 0);
+        SceneManager.LoadScene(PlayerPrefs.GetInt("LevelNumber"));
         
     }
     private void OnDestroy()
