@@ -5,12 +5,15 @@ using UnityEngine.UI;
 
 public class StribogScript : MonoBehaviour
 {
-
+    private SpriteRenderer spriteRenderer;
+    private Animator animator;
     GameObject player;
     Rigidbody2D rb;
    
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(WaitBeforeAttack());
@@ -43,16 +46,22 @@ public class StribogScript : MonoBehaviour
     private Vector2 SecondFaseSkillMove;
     private bool waitBeforeAttack = false;
     private bool waitwaitBeforeAttack = false;
+    private bool deathFlag = false;
     private void FixedUpdate()
     {
-       
-        if (player.transform.position.x > bossFightTarget.position.x & activeFlag == false)
+        if (movement.x > 0 && !spriteRenderer.flipX)
+            spriteRenderer.flipX = true;
+        else if (movement.x < 0 && spriteRenderer.flipX)
+            spriteRenderer.flipX = false;
+        if (player.GetComponent<PlayerStats>().HpNow <= 0)
+            deathFlag = true;
+        if (player.transform.position.x > bossFightTarget.position.x & activeFlag == false & !deathFlag)
         {
             jump = false;
             activeFlag = true;
         }
 
-        if (activeFlag & !stun)
+        if (activeFlag & !stun & !deathFlag)
         {
             
             if (!jump & Vector2.Distance(gameObject.transform.position, jumpPointA.position) >= Vector2.Distance(gameObject.transform.position, jumpPointB.position))
@@ -64,7 +73,7 @@ public class StribogScript : MonoBehaviour
                 jumpMove = (jumpPointB.position - transform.position).normalized;
             }
 
-            if (jump)
+            if (jump & !inAttackAnim)
                 Jump();
 
             
@@ -91,11 +100,13 @@ public class StribogScript : MonoBehaviour
                 waitBeforeAttack = true;
                 
             }
-
-            if (attackCount >= 2 & !waitBeforeAttack  )
+            if (attackCount >= 2 & !waitBeforeAttack)
             {
                 if (Vector2.Distance(player.transform.position, rb.position) <= attackDistance)
-                    Attack();
+                {
+                    attackCount = 0;
+                    animator.SetTrigger("Attack");
+                }
                 else
                 {
                     waitwaitBeforeAttack = false;
@@ -120,7 +131,9 @@ public class StribogScript : MonoBehaviour
             {
                 SecondFaseSkill();
             }
-            
+            /*if (!gameObject.GetComponent<Enemy>().isDead)
+            {
+            }*/
         }
     }
 
@@ -133,6 +146,7 @@ public class StribogScript : MonoBehaviour
     private bool wasInArmor = false;
     private void SecondFaseSkill()
     {
+        animator.SetBool("Fly", true);
         if (!returnMode)
             rb.MovePosition(rb.position + jumpSpeed * Time.fixedDeltaTime * SecondFaseSkillMove);
         if (Vector2.Distance(player.transform.position, rb.position) <= 5f)
@@ -148,7 +162,6 @@ public class StribogScript : MonoBehaviour
                 secondFaseAttackCount++;
             }
                 returnMode = true;
-      
         }
     }
     
@@ -171,15 +184,14 @@ public class StribogScript : MonoBehaviour
     }
     private void ReturnMode()
     {
-       
+        animator.SetBool("Fly", false);
         rb.MovePosition(rb.position + jumpSpeed * Time.fixedDeltaTime * returnMove);
-        if (!secondFaseSkill & rb.position.y - bossFightTarget.position.y <= 0.1f)
+        if (!secondFaseSkill & rb.position.y - bossFightTarget.position.y <= 0.1f & !inRangeAttackAnim)
         {
             airBlastCount = 0;
             returnMode = false;
             inAirBlast = true;
-            AirBlastSkill();
-            
+            animator.SetTrigger("RangeAttack");
         }
         else if (rb.position.y - bossFightTarget.position.y <= 0.01f)
         {
@@ -201,9 +213,9 @@ public class StribogScript : MonoBehaviour
     private void CalmMode()
     {
 
-        if (AirBlastSeries & airBlastCount < 3)
+        if (AirBlastSeries & airBlastCount < 3 & !inRangeAttackAnim)
         {
-            AirBlastSkill();
+            animator.SetTrigger("RangeAttack");
             
         }
         if (airBlastCount == 3)
@@ -226,16 +238,36 @@ public class StribogScript : MonoBehaviour
     
     private void Attack()
     {
-        player.GetComponent<PlayerStats>().ReduceHp(attackDamage);
-        attackCount = 0;
         waitAfterAttack = true;
         waitwaitBeforeAttack = false;
+        if (Vector2.Distance(player.transform.position, rb.position) <= attackDistance)
+            player.GetComponent<PlayerStats>().ReduceHp(attackDamage);
     }
 
-    
+    private bool inAttackAnim = false;
+    private bool inRangeAttackAnim = false;
+    private void InAnim()
+    {
+        inAttackAnim = true;
+    }
+
+    private void NotInAnim()
+    {
+        inAttackAnim = false;
+    }
+
+    private void InRangeAttackAnim()
+    {
+        inRangeAttackAnim = true;
+    }
+
+    private void NotInRangeAttackAnim()
+    {
+        inRangeAttackAnim = false;
+    }
+
     private void Jump()
     {
-        
         rb.MovePosition(rb.position + jumpSpeed * Time.fixedDeltaTime * jumpMove);
         if (transform.position.y >= jumpPointA.position.y)
         {
@@ -275,7 +307,7 @@ public class StribogScript : MonoBehaviour
         {
             if (waitAfterAttack)
             {
-            yield return new WaitForSeconds(afterAtackTime);
+            yield return new WaitForSeconds(afterAtackTime + 1);
             waitAfterAttack = false;
             }
             yield return new WaitForFixedUpdate();
@@ -327,5 +359,10 @@ public class StribogScript : MonoBehaviour
             }
             yield return new WaitForFixedUpdate();
         }
+    }
+    private void Death()
+    {
+        deathFlag = true;
+        Destroy(gameObject, 5f);
     }
 }

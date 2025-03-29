@@ -15,7 +15,7 @@ public class AirBlast : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
 
-        Vector3 direction = player.transform.position - transform.position;
+        Vector3 direction = player.GetComponent<CapsuleCollider2D>().bounds.center - transform.position;
         rb.AddForce((Vector2)direction.normalized * force, ForceMode2D.Impulse);
 
         float rot = Mathf.Atan2(-direction.y, -direction.x)* Mathf.Rad2Deg;
@@ -27,21 +27,20 @@ public class AirBlast : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        if (collision.gameObject.CompareTag("Player")) 
-        {
-
-            if (player.GetComponent<FirstSkill>().In_armor)
-            {
-                player.GetComponent<FirstSkill>().AttacksCount += 3;
-            }
-            else
-            {
-                player.GetComponent<PlayerStats>().ReduceHp(damage);
-                enemy.GetComponent<StribogScript>().Catch = true;
-            }
+        if (collision.gameObject.CompareTag("Ground"))
             Destroy(gameObject);
-        }
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                if (player.GetComponent<FirstSkill>().In_armor)
+                {
+                    player.GetComponent<FirstSkill>().AttacksCount += 3;
+                }
+                else
+                {
+                    player.GetComponent<PlayerStats>().ReduceHp(damage);
+                    enemy.GetComponent<StribogScript>().Catch = true;
+                }
+                Destroy(gameObject);
+            }
     }
- 
 }
