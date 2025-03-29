@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed8f5a77d08fea489fbe9174723a0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  armorHealth: 5
   CoolDownTime: 10
   skillSound: {fileID: 0}
   volume: 0
