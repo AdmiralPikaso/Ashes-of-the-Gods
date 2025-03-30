@@ -16,6 +16,8 @@ TagManager:
   - SavePoint
   - NextLevel
   - Sky
+  - SavePoint1
+  - SavePoint2
   layers:
   - Default
   - TransparentFX

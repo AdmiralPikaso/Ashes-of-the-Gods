@@ -11,33 +11,46 @@ public class SaveManagerScript : MonoBehaviour
     private const string Sky_Y_KEY = "SkyPosY";
     private const string Sky_Z_KEY = "SkyPosZ";
 
-    private GameObject savePoint;
     
-    private bool IsSaved = false;
+    
+    private bool IsSaved1 = false;
+    private bool IsSaved2 = false;
 
     private Transform SkyPos;
     private void Awake()
     {
-        SkyPos = GameObject.Find("Sky").transform;
+        SkyPos = GameObject.FindGameObjectWithTag("Sky").transform;
+        
     }
     private void Start()
     {
-        savePoint = GameObject.FindGameObjectWithTag("SavePoint");
+        
         Debug.Log($"{PlayerPrefs.HasKey(POS_X_KEY) & PlayerPrefs.HasKey(POS_Y_KEY) & PlayerPrefs.HasKey(POS_Z_KEY)}");
         if (PlayerPrefs.HasKey(POS_X_KEY) & PlayerPrefs.HasKey(POS_Y_KEY) & PlayerPrefs.HasKey(POS_Z_KEY) & PlayerPrefs.HasKey(Sky_X_KEY) & PlayerPrefs.HasKey(Sky_Y_KEY) & PlayerPrefs.HasKey(Sky_Z_KEY))
         {
             transform.position = LoadPlayerPosition();
             SkyPos.position = LoadSkyPosition();
         }
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("SavePoint1") && !IsSaved1)
+        {
+            SavePlayerPosition(transform.position, SkyPos.position);
+            IsSaved1 = true;
+        }
+        else if (collision.gameObject.CompareTag("SavePoint2") && !IsSaved2)
+        {
+            SavePlayerPosition(transform.position, SkyPos.position);
+            IsSaved2 = true;
+        }
     }
 
     private void Update()
     {
-        if (transform.position.x >= savePoint.transform.position.x & !IsSaved)
-        { 
-            SavePlayerPosition(transform.position,SkyPos.position);
-            IsSaved = true;
-        }
+        
     }
 
 
@@ -47,12 +60,13 @@ public class SaveManagerScript : MonoBehaviour
         PlayerPrefs.SetFloat(POS_Y_KEY, pos.y);
         PlayerPrefs.SetFloat(POS_Z_KEY, pos.z);
 
-        PlayerPrefs.SetFloat(Sky_X_KEY, pos.x);
-        PlayerPrefs.SetFloat(Sky_Y_KEY, pos.y);
-        PlayerPrefs.SetFloat(Sky_Z_KEY, pos.z);
+        PlayerPrefs.SetFloat(Sky_X_KEY, SkyPos.x);
+        PlayerPrefs.SetFloat(Sky_Y_KEY, SkyPos.y);
+        PlayerPrefs.SetFloat(Sky_Z_KEY, SkyPos.z);
 
         PlayerPrefs.Save();
         Debug.Log("Saved");
+        Debug.Log($"Sky Position {SkyPos.x} {SkyPos.y} {SkyPos.z}");
 
 
     }
@@ -73,7 +87,7 @@ public class SaveManagerScript : MonoBehaviour
         float Skyz = PlayerPrefs.GetFloat(Sky_Z_KEY, 0f);
 
         Vector3 loadedSkyPosition = new Vector3(Skyx, Skyy, Skyz);
-
+        Debug.Log($"Sky Position loaded: {loadedSkyPosition}");
         return loadedSkyPosition;
     }
 }

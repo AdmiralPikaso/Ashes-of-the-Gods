@@ -266,8 +266,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2826109157273681319, guid: 662aad9c5f447844880f8c732fd0ae21, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3354692126748149529, guid: 662aad9c5f447844880f8c732fd0ae21, type: 3}
+      propertyPath: levelManagerWindow
+      value: 
+      objectReference: {fileID: 1667068041}
     - target: {fileID: 5437327238662416209, guid: 662aad9c5f447844880f8c732fd0ae21, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -437,6 +441,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1667068041 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5291324651612001248, guid: 662aad9c5f447844880f8c732fd0ae21, type: 3}
+  m_PrefabInstance: {fileID: 1205863159}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
