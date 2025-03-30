@@ -52,6 +52,12 @@ public class PlayerStats : MonoBehaviour
         print(HpNow);
     }
 
+    public void Heal(float heal)
+    {
+        HpNow += heal;
+        if (HpNow > 100)
+            HpNow = 100;
+    }
     public bool isEsc { get; set; } = false;
     public void Death()
     {

@@ -1008,7 +1008,7 @@ GameObject:
   - component: {fileID: 1156964092488528807}
   - component: {fileID: 3078832700409327794}
   - component: {fileID: 3803357164565894149}
-  - component: {fileID: 8023510572984282075}
+  - component: {fileID: 7120189471877039752}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -1118,7 +1118,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8023510572984282075
+--- !u!114 &7120189471877039752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1127,7 +1127,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5602483368735374348}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41c642cb47fea1549a68cff1fe5d5257, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d46475574a0882468179a5933755c7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   settingsMenu: {fileID: 2826109157273681319}
