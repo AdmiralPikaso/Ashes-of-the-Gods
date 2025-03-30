@@ -373,7 +373,7 @@ public class StribogScript : MonoBehaviour
     {
         deathFlag = true;
         //gameObject.SetActive(false);
-        healthBar.SetActive(false);
+        //healthBar.SetActive(false);
         //Destroy(gameObject, 5f);
     }
 }
