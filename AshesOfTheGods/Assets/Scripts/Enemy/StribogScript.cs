@@ -47,8 +47,14 @@ public class StribogScript : MonoBehaviour
     private bool waitBeforeAttack = false;
     private bool waitwaitBeforeAttack = false;
     private bool deathFlag = false;
+
+    [SerializeField] GameObject healthBar;
     private void FixedUpdate()
     {
+        if (activeFlag)
+        { 
+            healthBar.SetActive(true);
+        }
         if (movement.x > 0 && !spriteRenderer.flipX)
             spriteRenderer.flipX = true;
         else if (movement.x < 0 && spriteRenderer.flipX)
@@ -241,7 +247,10 @@ public class StribogScript : MonoBehaviour
         waitAfterAttack = true;
         waitwaitBeforeAttack = false;
         if (Vector2.Distance(player.transform.position, rb.position) <= attackDistance)
+        {
             player.GetComponent<PlayerStats>().ReduceHp(attackDamage);
+            player.GetComponent<FirstSkill>().AttacksCount += 3;
+        }
     }
 
     private bool inAttackAnim = false;
@@ -363,6 +372,8 @@ public class StribogScript : MonoBehaviour
     private void Death()
     {
         deathFlag = true;
-        Destroy(gameObject, 5f);
+        //gameObject.SetActive(false);
+        healthBar.SetActive(false);
+        //Destroy(gameObject, 5f);
     }
 }

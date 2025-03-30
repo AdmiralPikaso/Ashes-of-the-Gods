@@ -46,7 +46,7 @@ public class FirstSkill : MonoBehaviour
         inArmorAnim = true;
         animator.SetTrigger("FirstSkill");
         In_armor = true;
-        pMovement.SetSpeed((float)(pMovement.GetSpeed() * 1.5));
+        pMovement.SetSpeed((float)(pMovement.GetSpeed() * 1.25));
         AttacksCount = 0;
         //this.GetComponent<SpriteRenderer>().color = Color.grey;
         ready = false;
@@ -60,7 +60,7 @@ public class FirstSkill : MonoBehaviour
     {
         inArmor = false;
         animator.SetTrigger("ArmorUnwear");
-        pMovement.SetSpeed(pMovement.GetSpeed() / 1.5f);
+        pMovement.SetSpeed(pMovement.GetSpeed() / 1.25f);
         //this.GetComponent<SpriteRenderer>().color = Color.white;
         In_armor = false;
         AttacksCount = 0;

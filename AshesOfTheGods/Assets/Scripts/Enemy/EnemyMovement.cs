@@ -48,7 +48,7 @@ public class EnemyMovement : MonoBehaviour
     private bool returnMode = false;
     void Update()
     {
-        print($"{guardMode}{angryMode}{returnMode}");
+        //print($"{guardMode}{angryMode}{returnMode}");
         Debug.DrawRay(new Vector3(firstGuardedPoint.position.x, -500, 0), new Vector3(0, 1000, 0));
         Debug.DrawRay(new Vector3(secondGuardedPoint.position.x, -500, 0), new Vector3(0, 1000, 0));
     }
