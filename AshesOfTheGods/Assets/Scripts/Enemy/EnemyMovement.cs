@@ -109,7 +109,7 @@ public class EnemyMovement : MonoBehaviour
 
         //exit from guard, entrance to angry
         //if (playerTransform.position.x > firstGuardedPoint.position.x & playerTransform.position.x < secondGuardedPoint.position.x)
-        if (enemyVisionRight.collider != null | enemtVisionLeft.collider !=null)
+        if (enemyVisionRight.collider != null && enemyVisionRight.collider.gameObject.CompareTag("Player") | enemtVisionLeft.collider !=null && enemyVisionRight.collider.gameObject.CompareTag("Player"))
         {
            // Debug.Log("Enemy Detected");
             guardMode = false;

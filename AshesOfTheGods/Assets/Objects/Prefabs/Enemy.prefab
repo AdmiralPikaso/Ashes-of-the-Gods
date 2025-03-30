@@ -339,7 +339,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.021833062, y: 0.5686183}
+  m_Offset: {x: 0.021833062, y: -0.23087955}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -349,7 +349,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.8321102, y: 5.7811146}
+  m_Size: {x: 3.8321102, y: 7.3801103}
   m_EdgeRadius: 0
 --- !u!50 &5842222868582138476
 Rigidbody2D:
@@ -392,13 +392,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstGuardedPoint: {fileID: 0}
   secondGuardedPoint: {fileID: 0}
-  distance: 20
+  distance: 15
   atackDistanse: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 256
   speed: 5
-  enemyDamage: 100
+  enemyDamage: 15
   guardWaitTime: 3
   targetLostTime: 2
   atackCoodown: 1.1
@@ -445,7 +445,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 5200b635e8efaab46b2686b361fb4163, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

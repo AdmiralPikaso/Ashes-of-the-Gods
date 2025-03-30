@@ -12,7 +12,7 @@ public class Archer : MonoBehaviour
     BoxCollider2D coll;
 
 
-    private float distance;
+    [SerializeField]private float distance;
     private void Start()
     {
         coll = GetComponent<BoxCollider2D>();
@@ -30,7 +30,7 @@ public class Archer : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(WaitMode());
 
-        distance = Vector2.Distance(firstGuardedPoint.position, secondGuardedPoint.position)*3/4;
+        //distance = Vector2.Distance(firstGuardedPoint.position, secondGuardedPoint.position)*3/4;
     }
 
     private bool shootWaitMode = false;

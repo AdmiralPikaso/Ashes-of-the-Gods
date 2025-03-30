@@ -180,6 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstGuardedPoint: {fileID: 0}
   secondGuardedPoint: {fileID: 0}
+  distance: 35
   layerMask:
     serializedVersion: 2
     m_Bits: 256
