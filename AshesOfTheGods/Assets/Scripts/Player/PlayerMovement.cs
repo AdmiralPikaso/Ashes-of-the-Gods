@@ -185,8 +185,8 @@ public class PlayerMovement : MonoBehaviour
                         animator.SetBool("WalkArmor", moveDir != 0);
                     }
                     if (moveDir != 0)
-                        transform.localScale = new Vector2(moveDir*math.abs(transform.localScale.x), transform.localScale.y);
-                }
+                        transform.localScale = new Vector2(moveDir < 0 ? -math.abs(transform.localScale.x) : math.abs(transform.localScale.x), transform.localScale.y);
+                    }
                 else
                 {
                     if (lastMoveDir == moveDir)
@@ -207,7 +207,7 @@ public class PlayerMovement : MonoBehaviour
                         animator.SetBool("WalkArmor", moveDir != 0);
                     }
                         if (moveDir != 0)
-                            transform.localScale = new Vector2(moveDir*math.abs(transform.localScale.x), transform.localScale.y);
+                         transform.localScale = new Vector2(moveDir < 0 ? -math.abs(transform.localScale.x) : math.abs(transform.localScale.x), transform.localScale.y);
                     }
                     lastMoveDir = moveDir;
                 }

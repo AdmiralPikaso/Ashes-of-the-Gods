@@ -183,8 +183,8 @@ MonoBehaviour:
   distance: 35
   layerMask:
     serializedVersion: 2
-    m_Bits: 256
-  speed: 5
+    m_Bits: 1792
+  speed: 10
   arrow: {fileID: 2195181542045423615, guid: 75b53de171b8f6e41aad9688be40ee58, type: 3}
   atackCD: 4
   guardWaitTime: 2
@@ -366,7 +366,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!114 &8899359604448826176
 MonoBehaviour:

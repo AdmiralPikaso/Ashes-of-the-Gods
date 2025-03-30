@@ -66,7 +66,7 @@ public class Archer : MonoBehaviour
         movement.y = 0;
         //RaycastHit2D enemyVisionRight = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), visionVec, distance, layerMask);
         //RaycastHit2D enemyVisionLeft = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), visionVec, distance, layerMask);
-        RaycastHit2D enemyVision = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), visionVec, distance, layerMask); ;
+        RaycastHit2D enemyVision = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), visionVec, distance,layerMask);
 
 
 
@@ -221,7 +221,7 @@ public class Archer : MonoBehaviour
     {
         if (!shootWaitMode)
         {
-            Instantiate(arrow, transform.position, Quaternion.identity);
+            Instantiate(arrow,gameObject.GetComponent<BoxCollider2D>().bounds.max, Quaternion.identity);
             shootWaitMode = true;
         }
     }

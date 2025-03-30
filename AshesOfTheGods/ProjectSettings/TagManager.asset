@@ -14,7 +14,11 @@ TagManager:
   - MovingPlatform
   - Death
   - SavePoint
+<<<<<<< Updated upstream
   - NextLevel
+=======
+  - Sky
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -25,8 +29,8 @@ TagManager:
   - UI
   - Platform
   - Player
-  - 
-  - 
+  - Ground
+  - Walls
   - 
   - 
   - 

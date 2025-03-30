@@ -48,7 +48,7 @@ public class EnemyMovement : MonoBehaviour
     private bool returnMode = false;
     void Update()
     {
-       // print($"{guardMode}{angryMode}{returnMode}");
+        print($"{guardMode}{angryMode}{returnMode}");
         Debug.DrawRay(new Vector3(firstGuardedPoint.position.x, -500, 0), new Vector3(0, 1000, 0));
         Debug.DrawRay(new Vector3(secondGuardedPoint.position.x, -500, 0), new Vector3(0, 1000, 0));
     }
@@ -94,8 +94,8 @@ public class EnemyMovement : MonoBehaviour
             returnMovement.y = 0;
         }
 
-        RaycastHit2D enemyVisionRight = Physics2D.Raycast(new Vector3 (transform.position.x, transform.position.y + coll.size.y/2, 0), Vector2.right, distance,layerMask);
-        RaycastHit2D enemtVisionLeft = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left, distance,layerMask);
+        RaycastHit2D enemyVisionRight = Physics2D.Raycast(new Vector3 (transform.position.x, transform.position.y + coll.size.y/2, 0), Vector2.right, distance);
+        RaycastHit2D enemyVisionLeft = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left, distance);
         Debug.DrawRay(new Vector3(transform.position.x,  transform.position.y + coll.size.y / 2, 0), Vector2.right * distance, Color.green);
         Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + coll.size.y / 2, 0), Vector2.left * distance, Color.green);
 
@@ -109,7 +109,10 @@ public class EnemyMovement : MonoBehaviour
 
         //exit from guard, entrance to angry
         //if (playerTransform.position.x > firstGuardedPoint.position.x & playerTransform.position.x < secondGuardedPoint.position.x)
-        if (enemyVisionRight.collider != null && enemyVisionRight.collider.gameObject.CompareTag("Player") | enemtVisionLeft.collider !=null && enemyVisionRight.collider.gameObject.CompareTag("Player"))
+        if ((enemyVisionRight.collider != null && enemyVisionRight.collider.gameObject.CompareTag("Player") 
+        && !enemyVisionRight.collider.gameObject.CompareTag("Ground")  && !enemyVisionRight.collider.gameObject.CompareTag("Wall"))
+        || (enemyVisionLeft.collider != null && enemyVisionLeft.collider.gameObject.CompareTag("Player") 
+        && !enemyVisionLeft.collider.gameObject.CompareTag("Ground")  && !enemyVisionLeft.collider.gameObject.CompareTag("Wall")))
         {
            // Debug.Log("Enemy Detected");
             guardMode = false;

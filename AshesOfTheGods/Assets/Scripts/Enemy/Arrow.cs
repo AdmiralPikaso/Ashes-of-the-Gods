@@ -14,7 +14,7 @@ public class Arrow : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
 
-        Vector3 direction = player.transform.position - transform.position;
+        Vector3 direction = player.GetComponent<CapsuleCollider2D>().bounds.center - transform.position;
         rb.AddForce((Vector2)direction.normalized * force, ForceMode2D.Impulse);
 
         float rot = Mathf.Atan2(-direction.y, -direction.x)* Mathf.Rad2Deg;

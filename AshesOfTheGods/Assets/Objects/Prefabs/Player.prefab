@@ -195,7 +195,7 @@ MonoBehaviour:
   damageableLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  damage: 10
+  damage: 15
   attackSpeed: 0.3
   attackSound: {fileID: 0}
   minPitch: 0
