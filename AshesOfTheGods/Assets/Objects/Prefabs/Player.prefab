@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 765442160797108687}
   - component: {fileID: 1421830942121657589}
   - component: {fileID: 5569446548572771476}
+  - component: {fileID: 3661215739747115609}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -335,6 +336,8 @@ MonoBehaviour:
   CoolDownTime: 1
   DashDistance: 15
   DashTime: 0.25
+  secondSkillFill: {fileID: 0}
+  secondSkillShade: {fileID: 0}
 --- !u!114 &5569446548572771476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,5 +348,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0ce77f7ca41b8544b03ddf8f5392b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3661215739747115609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8334443902525607045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f834783132ea514db3f75ffcf4405f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
