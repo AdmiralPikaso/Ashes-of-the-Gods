@@ -81347,7 +81347,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 250460472}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
 --- !u!1 &1417814147
 GameObject:
   m_ObjectHideFlags: 0
@@ -81379,13 +81378,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 824568601}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-=======
 --- !u!4 &1452965272 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2185943553117637240, guid: a4c0e956a11dbb540add12768e949bdc, type: 3}
   m_PrefabInstance: {fileID: 1741450063}
   m_PrefabAsset: {fileID: 0}
->>>>>>> Stashed changes
 --- !u!1 &1474232808
 GameObject:
   m_ObjectHideFlags: 0
