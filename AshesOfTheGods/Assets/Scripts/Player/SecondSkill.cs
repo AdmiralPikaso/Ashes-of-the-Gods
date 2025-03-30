@@ -1,9 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using System.Collections;
 using NUnit.Framework;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Runtime.CompilerServices;
+using System;
+using UnityEngine.UI;
+using Unity.VisualScripting;
+
 public class SecondSkill : MonoBehaviour
 {
     private Animator animator;
@@ -25,6 +29,7 @@ public class SecondSkill : MonoBehaviour
         animator = GetComponent<Animator>();
         StartCoroutine(DashTimer());
         StartCoroutine(DashCoolDown());
+        StartCoroutine(ReloadUi());
     }
 
     void Update()
@@ -41,6 +46,7 @@ public class SecondSkill : MonoBehaviour
         {
             animator.SetTrigger("Dash");
             inDash = true;
+            ready = false;
         }
     }
 
@@ -57,14 +63,49 @@ public class SecondSkill : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
     }
+
+    private bool secondSkillUiReload = false;
     private IEnumerator DashCoolDown()
     {
         while (true)
         {
-            if (cd == true)
+            if (!ready && cd)
             {
+                secondSkillUiReload = true;
                 yield return new WaitForSeconds(CoolDownTime);
                 cd = false;
+                ready = true;
+            }
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    [SerializeField] Image secondSkillFill;
+    [SerializeField] GameObject secondSkillShade;
+    private float skillCd = 0;
+    private bool ready = true;
+
+    private IEnumerator ReloadUi()
+    {
+        while (true)
+        {
+
+            if (secondSkillUiReload)
+            {
+                secondSkillShade.SetActive(true);
+                secondSkillFill.fillAmount = 0;
+                while (skillCd != 1)
+                {
+                    skillCd += Time.deltaTime;
+                    //print("Êהרטעסÿ");
+                    secondSkillFill.fillAmount = skillCd / CoolDownTime;
+                    if (ready == true)
+                        skillCd = 1;
+                    yield return null;
+                }
+                secondSkillUiReload = false;
+                secondSkillShade.SetActive(false);
+                skillCd = 0;
             }
             yield return new WaitForFixedUpdate();
         }
