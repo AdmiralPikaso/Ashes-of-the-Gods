@@ -1649,7 +1649,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsMenu: {fileID: 6590787479777473815}
-  levelManagerWindow: {fileID: 0}
 --- !u!1 &7698672412779289510
 GameObject:
   m_ObjectHideFlags: 0
