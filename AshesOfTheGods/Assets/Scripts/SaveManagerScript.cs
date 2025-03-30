@@ -8,6 +8,7 @@ public class SaveManagerScript : MonoBehaviour
     
     
     private GameObject savePoint;
+    
     private bool IsSaved = false;
 
     private void Awake()

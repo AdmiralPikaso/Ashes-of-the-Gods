@@ -151,6 +151,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.0000009536743
       objectReference: {fileID: 0}
+    - target: {fileID: 492009958436722269, guid: 302fb09957537d74ba2bcebeba5c2512, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1070927617766903960, guid: 302fb09957537d74ba2bcebeba5c2512, type: 3}
       propertyPath: m_Name
       value: StaticUI
@@ -80376,6 +80380,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 250460472}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1652620005 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 491849084552460251, guid: 302fb09957537d74ba2bcebeba5c2512, type: 3}
+  m_PrefabInstance: {fileID: 18301650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1652890450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80706,6 +80721,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
   m_PrefabInstance: {fileID: 361331139}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1691059383 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7758218404157924446, guid: 302fb09957537d74ba2bcebeba5c2512, type: 3}
+  m_PrefabInstance: {fileID: 18301650}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1722007041
 GameObject:
@@ -82419,6 +82439,14 @@ PrefabInstance:
       propertyPath: firstSkillShade
       value: 
       objectReference: {fileID: 337916142}
+    - target: {fileID: 1421830942121657589, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
+      propertyPath: secondSkillFill
+      value: 
+      objectReference: {fileID: 1652620005}
+    - target: {fileID: 1421830942121657589, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
+      propertyPath: secondSkillShade
+      value: 
+      objectReference: {fileID: 1691059383}
     - target: {fileID: 4612449579389695582, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: damage
       value: 60
