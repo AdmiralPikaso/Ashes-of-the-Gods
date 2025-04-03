@@ -86,7 +86,10 @@ public class PlayerRegularAttack : MonoBehaviour
             hit.collider.GetComponent<Enemy>().TakeDamage(damage);
         }
         waitMode = true;
-       
+    }
+
+    private void RegularAttackSound()
+    {
         Sounds.Sound(attackSound, audioSource, volume, minPitch, maxPitch);
     }
 

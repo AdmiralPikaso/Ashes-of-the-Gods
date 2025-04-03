@@ -4,6 +4,14 @@ using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
+    [Header("Hit Sounds")]
+    [SerializeField] private AudioClip[] hitSounds;
+    [SerializeField] private float hitSoundVolume;
+    [SerializeField] private float volume;
+    [SerializeField] protected float minPitch;
+    [SerializeField] protected float maxPitch;
+    [SerializeField] protected AudioClip armorDamageSound;
+    private AudioSource audioSource;
     private Animator animator;
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private float hp;
@@ -15,6 +23,7 @@ public class PlayerStats : MonoBehaviour
     Collider2D col;
     void Awake()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();  
         animator = GetComponent<Animator>();
         dash = this.GetComponent<SecondSkill>();
 
@@ -31,9 +40,13 @@ public class PlayerStats : MonoBehaviour
             if (!dash.GetinDash())
             {
                 if (this.GetComponent<FirstSkill>().In_armor)
+                {
+                    Sounds.Sound(armorDamageSound, audioSource, volume, minPitch, maxPitch);
                     this.GetComponent<FirstSkill>().AttacksCount += 1;
+                }
                 else
                 {
+                    PlayRandomHitSound();
                     HpNow -= damage;
                 }
                 if (HpNow <= 0)
@@ -42,6 +55,18 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    private int lastSoundIndex = -1;
+
+    private void PlayRandomHitSound()
+    {
+        int randomIndex = Random.Range(0, hitSounds.Length);
+        if (randomIndex == lastSoundIndex)
+            randomIndex = Random.Range(0, hitSounds.Length);
+        else
+            audioSource.PlayOneShot(hitSounds[randomIndex], hitSoundVolume);
+        lastSoundIndex = randomIndex;
+        
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Death"))

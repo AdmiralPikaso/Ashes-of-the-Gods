@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     public float HpMax { get; protected set; }
     void Start()
     {
-    audioSource = gameObject.AddComponent<AudioSource>();  
+        audioSource = gameObject.AddComponent<AudioSource>();  
     }
     private void Awake()
     {
@@ -35,12 +35,14 @@ public class Enemy : MonoBehaviour
             Die();
         }
         Debug.Log("Хп врага" + HpNow);
-
     }
     
     public bool isDead = false;
     protected void Die()
-    {   isDead = true;
+    {   
+        Sounds.Sound(deathSound, audioSource, volume, minPitch, maxPitch);
+        GetComponent<BoxCollider2D>().enabled = false;
+        isDead = true;
         print("Смерть");
         animator.SetBool("IsDie", true);
     }

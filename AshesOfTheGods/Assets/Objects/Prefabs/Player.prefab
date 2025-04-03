@@ -174,11 +174,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   damage: 30
-  attackSpeed: 0
-  attackSound: {fileID: 0}
-  minPitch: 0
-  maxPitch: 0
-  volume: 0
+  attackSpeed: 3
+  attackSound: {fileID: 8300000, guid: dbc445848db16094a92476032b776ead, type: 3}
+  minPitch: 1.2
+  maxPitch: 1.4
+  volume: 80
 --- !u!114 &7814438284837899995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,10 +197,10 @@ MonoBehaviour:
     m_Bits: 8
   damage: 15
   attackSpeed: 0.3
-  attackSound: {fileID: 0}
-  minPitch: 0
-  maxPitch: 0
-  volume: 0
+  attackSound: {fileID: 8300000, guid: d07038bc2e1aec244a685a730e482a63, type: 3}
+  minPitch: 1
+  maxPitch: 1.3
+  volume: 80
   InAttackAnim: 0
 --- !u!114 &8330952764653955981
 MonoBehaviour:
@@ -216,10 +216,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   airSpeedMultiplier: 0.9
-  walkingSound: {fileID: 0}
-  walkingSoundInterval: 0
-  minPitch: 0
-  maxPitch: 0
+  walkingSound: {fileID: 8300000, guid: dbc445848db16094a92476032b776ead, type: 3}
+  minPitch: 1
+  maxPitch: 1.3
   volume: 0
   canMoveInAttack: 1
   canMoveInRegularAttackArmor: 1
@@ -241,8 +240,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armorHealth: 5
   CoolDownTime: 10
-  skillSound: {fileID: 0}
-  volume: 0
+  skillSound: {fileID: 8300000, guid: cf63440dbe3f2454bbe4aaeef08c1f84, type: 3}
+  volume: 80
   inArmorAnim: 0
   inArmor: 0
   firstSkillFill: {fileID: 0}
@@ -259,6 +258,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae17fe9a00522f428d789570a7c1662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitSounds:
+  - {fileID: 8300000, guid: 341145df8d80c174b8dc895a04352fbe, type: 3}
+  - {fileID: 8300000, guid: ad81a2c9483624b4ba209a2fd6115050, type: 3}
+  - {fileID: 8300000, guid: 9af03611303840a46b2643c20b5c202b, type: 3}
+  - {fileID: 8300000, guid: 068665962433b7f4286c616ce0eb08f5, type: 3}
+  - {fileID: 8300000, guid: c76338f9df31cf44391a144309d125c4, type: 3}
+  hitSoundVolume: 0.15
+  volume: 0.5
+  minPitch: 1
+  maxPitch: 1.3
+  armorDamageSound: {fileID: 8300000, guid: 602e3829ef5c18d4eb676c04db41dcc3, type: 3}
   deathScreen: {fileID: 0}
   hp: 100
   godMode: 0

@@ -197,6 +197,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.33333334
+    functionName: RegularAttackSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.36666667
     functionName: RegularAttack
     data: 
@@ -205,14 +212,14 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.6666667
-    functionName: CanMoveInAttack
+    functionName: OffAttackAnim
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.6666667
-    functionName: OffAttackAnim
+    functionName: CanMoveInAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
