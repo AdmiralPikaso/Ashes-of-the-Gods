@@ -123,8 +123,6 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private AudioClip walkingSound;
     private AudioSource audioSource;
-    private float lastWalkingSoundTime;
-    [SerializeField] private float walkingSoundInterval;
     [SerializeField] private float minPitch;
     [SerializeField] private float maxPitch;
     [SerializeField] private float volume;
@@ -267,6 +265,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void WalkSounds()
+    {
+        if ((on_ground || on_platform || on_moving_platform) && moveDirection != 0 && walkingSound != null)
+            {
+                Sounds.Sound(walkingSound, audioSource, volume, minPitch, maxPitch);
+            }
+    }
+
     private SpriteRenderer spriteRenderer;
     void Start()
     {
@@ -284,12 +290,6 @@ public class PlayerMovement : MonoBehaviour
             moveDirection = Input.GetAxis("Horizontal");
             in_air = !on_ground && !on_platform && !on_moving_platform;
             JumpLogic();
-
-            if ((on_ground || on_platform || on_moving_platform) && moveDirection != 0 && walkingSound != null && Time.time - lastWalkingSoundTime >= walkingSoundInterval)
-            {
-                Sounds.Sound(walkingSound, audioSource, volume, minPitch, maxPitch);
-                lastWalkingSoundTime = Time.time;
-            }
         }
     }
     void FixedUpdate()

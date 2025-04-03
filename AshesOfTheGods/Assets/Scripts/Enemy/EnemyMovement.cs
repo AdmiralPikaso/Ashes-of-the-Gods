@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    [SerializeField] protected AudioClip angryEnemy;
+    [SerializeField] protected AudioClip attackSound;
+    protected AudioSource audioSource;
+    [SerializeField] protected float minPitch;
+    [SerializeField] protected float maxPitch;
+    [SerializeField] protected float volume;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
@@ -13,9 +19,11 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private Transform secondGuardedPoint;
     
     private PlayerMovement player_on_platform;
+    private GameObject hpCanvas;
 
     void Awake()
     {
+        hpCanvas = transform.Find("HpCanvas").gameObject;
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
         playerTransform = player.transform;
@@ -32,6 +40,7 @@ public class EnemyMovement : MonoBehaviour
     CapsuleCollider2D playerColl;
     private void Start()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
         coll = GetComponent<BoxCollider2D>();
         playerColl = player.GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
@@ -64,6 +73,7 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 returnMovement;
     private bool returnWaitModeFlag = false;
     private bool isWalking = false;
+    private bool hasPlayedAngrySound = false;
     private void FixedUpdate()
     {
         //Debug.Log(enemyCanAtack);
@@ -117,6 +127,10 @@ public class EnemyMovement : MonoBehaviour
            // Debug.Log("Enemy Detected");
             guardMode = false;
             returnMode = false;
+            if (!angryMode)
+            {
+                hasPlayedAngrySound = false;
+            }
             angryMode = true;
         }
 
@@ -127,12 +141,16 @@ public class EnemyMovement : MonoBehaviour
             angryMode = false;
             returnMode = true;
             returnWaitModeFlag = true;
+            hasPlayedAngrySound = false;
         }
-
         Vector2 movementDirection = Vector2.zero;
-        
         if (!onAtackDistanse & angryMode)
         {
+            if (!hasPlayedAngrySound)
+            {
+                Sounds.Sound(angryEnemy, audioSource, volume, minPitch, maxPitch);
+                hasPlayedAngrySound = true;
+            }
             AngryMode();
             if (!isAttack)
                 isWalking = true;
@@ -230,6 +248,11 @@ public class EnemyMovement : MonoBehaviour
         animator.SetTrigger("Attack");
         enemyCanAtack = false;
     }
+
+    private void AttackSound()
+    {
+        Sounds.Sound(attackSound, audioSource, volume, minPitch, maxPitch);
+    }
     
     private void EnemyAtack()
     {
@@ -279,6 +302,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Destruction()
     {
+        hpCanvas.SetActive(false);
         isWalking = false;
         //enemyCanAtack = false;
         returnWaitMode = false;

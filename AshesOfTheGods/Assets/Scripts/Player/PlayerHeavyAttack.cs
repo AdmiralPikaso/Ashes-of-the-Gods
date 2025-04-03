@@ -67,10 +67,13 @@ public class PlayerHeavyAttack : MonoBehaviour
             hit.collider.GetComponent<Enemy>().TakeDamage(damage);
         }
         waitMode = true;
-
-        Sounds.Sound(attackSound, audioSource, volume, minPitch, maxPitch);
     }
 
+    private void HeavyAttackSound()
+    {
+        Sounds.Sound(attackSound, audioSource, volume, minPitch, maxPitch);
+    }
+    
     private IEnumerator AttackCooldown(float attackColldown)
     {
         while (true)

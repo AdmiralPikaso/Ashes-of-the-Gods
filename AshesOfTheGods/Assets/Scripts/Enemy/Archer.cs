@@ -3,6 +3,12 @@ using System.Collections;
 
 public class Archer : MonoBehaviour
 {
+    [SerializeField] protected AudioClip attackSound_1;
+    [SerializeField] protected AudioClip attackSound_2;
+    protected AudioSource audioSource;
+    [SerializeField] protected float minPitch;
+    [SerializeField] protected float maxPitch;
+    [SerializeField] protected float volume;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private GameObject player;
@@ -10,11 +16,13 @@ public class Archer : MonoBehaviour
     [SerializeField] private Transform secondGuardedPoint;
     Rigidbody2D rb;
     BoxCollider2D coll;
-
+    private GameObject hpCanvas;
 
     [SerializeField]private float distance;
     private void Start()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();  
+        hpCanvas = transform.Find("HpCanvas").gameObject;
         coll = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
@@ -127,6 +135,11 @@ public class Archer : MonoBehaviour
         }
     }
 
+    private void AttackSound_1()
+    {
+        Sounds.Sound(attackSound_1, audioSource, volume, minPitch, maxPitch);
+    }
+
     private bool guardModeRightMove = false;
     private bool guardWaitMode = false;
     [SerializeField] private float speed;
@@ -221,6 +234,7 @@ public class Archer : MonoBehaviour
     {
         if (!shootWaitMode)
         {
+            Sounds.Sound(attackSound_2, audioSource, volume, minPitch, maxPitch);
             Instantiate(arrow,gameObject.GetComponent<BoxCollider2D>().bounds.max, Quaternion.identity);
             shootWaitMode = true;
         }
@@ -228,6 +242,7 @@ public class Archer : MonoBehaviour
 
     private void Destruction()
     {
+        hpCanvas.SetActive(false);
         canSomething = false;
         guardModeRightMove = false;
         returnWaitMode = false;
