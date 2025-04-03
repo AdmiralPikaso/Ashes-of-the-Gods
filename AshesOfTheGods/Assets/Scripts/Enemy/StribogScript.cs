@@ -9,14 +9,14 @@ public class StribogScript : MonoBehaviour
     private Animator animator;
     GameObject player;
     Rigidbody2D rb;
-   
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(WaitBeforeAttack());
+        //StartCoroutine(WaitBeforeAttack());
         StartCoroutine(WaitAfterAttack());
         StartCoroutine(WaitJump());
         StartCoroutine(WaitStun());
@@ -31,12 +31,12 @@ public class StribogScript : MonoBehaviour
     private bool activeFlag = false;
     [SerializeField] private Transform bossFightTarget;
 
-   
+
     [SerializeField] private Transform jumpPointA;
     [SerializeField] private Transform jumpPointB;
     private Vector2 jumpMove;
     private bool returnMode;
-    
+
     [SerializeField] private float jumpSpeed;
     private bool dashMode = false;
     public bool Catch { get; set; } = false;
@@ -44,15 +44,15 @@ public class StribogScript : MonoBehaviour
     private bool secondFase = false;
     private bool secondFaseSkill = false;
     private Vector2 SecondFaseSkillMove;
-    private bool waitBeforeAttack = false;
-    private bool waitwaitBeforeAttack = false;
+    //private bool waitBeforeAttack = false;
+    //private bool waitwaitBeforeAttack = false;
     private bool deathFlag = false;
 
     [SerializeField] GameObject healthBar;
     private void FixedUpdate()
     {
         if (activeFlag)
-        { 
+        {
             healthBar.SetActive(true);
         }
         if (movement.x > 0 && !spriteRenderer.flipX)
@@ -61,7 +61,7 @@ public class StribogScript : MonoBehaviour
             spriteRenderer.flipX = false;
         if (player.GetComponent<PlayerStats>().HpNow <= 0)
             deathFlag = true;
-        if (player.transform.position.x > bossFightTarget.position.x & activeFlag == false & !deathFlag)
+        if (player.GetComponent<CapsuleCollider2D>().bounds.center.x > bossFightTarget.position.x & activeFlag == false & !deathFlag)
         {
             jump = false;
             activeFlag = true;
@@ -69,7 +69,7 @@ public class StribogScript : MonoBehaviour
 
         if (activeFlag & !stun & !deathFlag)
         {
-            
+
             if (!jump & Vector2.Distance(gameObject.transform.position, jumpPointA.position) >= Vector2.Distance(gameObject.transform.position, jumpPointB.position))
             {
                 jumpMove = (jumpPointA.position - transform.position).normalized;
@@ -82,40 +82,41 @@ public class StribogScript : MonoBehaviour
             if (jump & !inAttackAnim)
                 Jump();
 
-            
+
             if (returnMode)
                 ReturnMode();
             else returnMove = (new Vector2(rb.position.x, bossFightTarget.position.y) - rb.position).normalized;
 
-            
+
 
             //Vector towards the enemy 
-            movement = (player.transform.position - transform.position).normalized;
+            movement = (player.GetComponent<CapsuleCollider2D>().bounds.center - transform.position).normalized;
             movement.y = 0;
-            SecondFaseSkillMove = (player.transform.position - transform.position).normalized;
+            SecondFaseSkillMove = (player.GetComponent<CapsuleCollider2D>().bounds.center - transform.position).normalized;
 
 
             if (!waitAfterAttack & !jump & !returnMode & !dashMode)
                 CalmMode();
 
-            
-            if (attackCount >= 2 & !waitwaitBeforeAttack & (Vector2.Distance(player.transform.position, rb.position) <= attackDistance))
+
+            /*if (attackCount >= 2 & !waitwaitBeforeAttack & (Vector2.Distance(player.GetComponent<CapsuleCollider2D>().bounds.center, rb.position) <= attackDistance))
             {
                 
                 waitwaitBeforeAttack = true;
                 waitBeforeAttack = true;
                 
             }
-            if (attackCount >= 2 & !waitBeforeAttack)
+            */
+            if (attackCount >= 2 /*& !waitBeforeAttack*/)
             {
-                if (Vector2.Distance(player.transform.position, rb.position) <= attackDistance)
+                if (Vector2.Distance(player.GetComponent<CapsuleCollider2D>().bounds.center, rb.position) <= attackDistance)
                 {
                     attackCount = 0;
                     animator.SetTrigger("Attack");
                 }
                 else
                 {
-                    waitwaitBeforeAttack = false;
+                    //waitwaitBeforeAttack = false;
                     attackCount = 0;
                 }
 
@@ -130,12 +131,14 @@ public class StribogScript : MonoBehaviour
             if (dashMode)
                 Dash();
 
-            if (gameObject.GetComponent<NewStribog>().HpNow <= gameObject.GetComponent<NewStribog>().HpMax/3)
+            if (gameObject.GetComponent<NewStribog>().HpNow <= gameObject.GetComponent<NewStribog>().HpMax / 3)
                 secondFase = true;
 
-            if (secondFaseSkill)
+            if (secondFaseSkill & !returnMode)
             {
-                SecondFaseSkill();
+                animator.SetBool("Fly", true);
+                rb.MovePosition(rb.position + jumpSpeed * Time.fixedDeltaTime * SecondFaseSkillMove);
+                //SecondFaseSkill();
             }
             /*if (!gameObject.GetComponent<Enemy>().isDead)
             {
@@ -150,11 +153,13 @@ public class StribogScript : MonoBehaviour
     private float secondFaseAttackCount = 0;
     private bool stun = false;
     private bool wasInArmor = false;
-    private void SecondFaseSkill()
+
+    /*private void SecondFaseSkill()
     {
-        animator.SetBool("Fly", true);
-        if (!returnMode)
-            rb.MovePosition(rb.position + jumpSpeed * Time.fixedDeltaTime * SecondFaseSkillMove);
+    animator.SetBool("Fly", true);
+                if (!returnMode)
+                    rb.MovePosition(rb.position + jumpSpeed * Time.fixedDeltaTime * SecondFaseSkillMove);
+        
         if (Vector2.Distance(player.transform.position, rb.position) <= 5f)
         {
             if (secondFaseAttackCount == 0)
@@ -169,8 +174,28 @@ public class StribogScript : MonoBehaviour
             }
                 returnMode = true;
         }
+     }
+    */
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (secondFaseSkill && collision.gameObject.CompareTag("Player") & !returnMode)
+        {
+            if (secondFaseAttackCount == 0)
+            {
+                if (player.GetComponent<FirstSkill>().In_armor)
+                {
+                    player.GetComponent<FirstSkill>().AttacksCount += 3;
+                    wasInArmor = true;
+                }
+                else player.GetComponent<PlayerStats>().ReduceHp(secondFaseSkillDamage);
+                secondFaseAttackCount++;
+            }
+            returnMode = true;
+        }
     }
-    
+
     private void AirBlastSkill()
     {
         GameObject blast = Instantiate(airBlast, transform.position, Quaternion.identity);
@@ -180,7 +205,7 @@ public class StribogScript : MonoBehaviour
 
     private void Dash()
     {
-        if (Vector2.Distance(player.transform.position, rb.position) > attackDistance)
+        if (Vector2.Distance(player.GetComponent<CapsuleCollider2D>().bounds.center, rb.position) > attackDistance)
             rb.MovePosition(rb.position + speed * 10 * Time.fixedDeltaTime * movement);
         else
         {
@@ -210,7 +235,7 @@ public class StribogScript : MonoBehaviour
                 wasInArmor = false;
             }
         }
-        
+
     }
 
     int airBlastCount = 3;
@@ -222,17 +247,17 @@ public class StribogScript : MonoBehaviour
         if (AirBlastSeries & airBlastCount < 3 & !inRangeAttackAnim)
         {
             animator.SetTrigger("RangeAttack");
-            
+
         }
         if (airBlastCount == 3)
             inAirBlast = false;
-        if (!inAirBlast &Vector2.Distance(player.transform.position, rb.position) > attackDistance)
+        if (!inAirBlast & Vector2.Distance(player.GetComponent<CapsuleCollider2D>().bounds.center, rb.position) > attackDistance)
         {
-            
+
             rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * movement);
         }
-        
-        
+
+
     }
 
     public void CountAttack()
@@ -241,12 +266,12 @@ public class StribogScript : MonoBehaviour
     }
 
     [SerializeField] private float attackDamage;
-    
+
     private void Attack()
     {
         waitAfterAttack = true;
-        waitwaitBeforeAttack = false;
-        if (Vector2.Distance(player.transform.position, rb.position) <= attackDistance)
+        //waitwaitBeforeAttack = false;
+        if (Vector2.Distance(player.GetComponent<CapsuleCollider2D>().bounds.center, rb.position) <= attackDistance)
         {
             player.GetComponent<PlayerStats>().ReduceHp(attackDamage);
             player.GetComponent<FirstSkill>().AttacksCount += 3;
@@ -289,14 +314,14 @@ public class StribogScript : MonoBehaviour
     }
 
 
-   
+
 
 
     [SerializeField] private float afterAtackTime;
     [SerializeField] private float stunTime;
     [SerializeField] private float beforeAtackTime;
 
-    private IEnumerator WaitBeforeAttack()
+    /*private IEnumerator WaitBeforeAttack()
     {
         while (true)
         {
@@ -308,72 +333,73 @@ public class StribogScript : MonoBehaviour
 
         }
         yield return new WaitForFixedUpdate();
-    }
-}
+    }*/
+
     private IEnumerator WaitAfterAttack()
     {
         while (true)
         {
             if (waitAfterAttack)
             {
-            yield return new WaitForSeconds(afterAtackTime + 1);
-            waitAfterAttack = false;
+                yield return new WaitForSeconds(afterAtackTime + 1);
+                waitAfterAttack = false;
             }
             yield return new WaitForFixedUpdate();
-        
 
-        yield return new WaitForFixedUpdate();
+
+            yield return new WaitForFixedUpdate();
+        }
     }
+
+        [SerializeField] private float jumpCD;
+        [SerializeField] private float jumpSecondCD;
+
+        private IEnumerator WaitJump()
+        {
+            while (true)
+            {
+                if (!jump & activeFlag)
+                {
+                    yield return new WaitForSeconds(jumpCD);
+                    jump = true;
+                    jumpCD = jumpSecondCD;
+
+                }
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
+        private IEnumerator WaitStun()
+        {
+            while (true)
+            {
+                if (stun)
+                {
+                    yield return new WaitForSeconds(stunTime);
+                    stun = false;
+                }
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
+        private IEnumerator AirBlastCd()
+        {
+            while (true)
+            {
+                if (!AirBlastSeries)
+                {
+                    yield return new WaitForSeconds(3);
+                    AirBlastSeries = true;
+                }
+                yield return new WaitForFixedUpdate();
+            }
+        }
+        private void Death()
+        {
+            deathFlag = true;
+            //gameObject.SetActive(false);
+            //healthBar.SetActive(false);
+            //Destroy(gameObject, 5f);
+        }
 }
 
-    [SerializeField] private float jumpCD;
-    [SerializeField] private float jumpSecondCD;
-    
-    private IEnumerator WaitJump()
-    {
-        while (true)
-        {
-            if (!jump & activeFlag)
-            {
-                yield return new WaitForSeconds(jumpCD);
-                jump = true;
-                jumpCD = jumpSecondCD;
-
-            }
-        yield return new WaitForFixedUpdate();
-        }
-    }
-
-    private IEnumerator WaitStun()
-    {
-        while (true)
-        {
-            if (stun)
-            {
-                yield return new WaitForSeconds(stunTime);
-                stun = false;
-            }
-            yield return new WaitForFixedUpdate();
-        }
-    }
-
-    private IEnumerator AirBlastCd()
-    {
-        while (true)
-        {
-            if (!AirBlastSeries)
-            {
-                yield return new WaitForSeconds(3);
-                AirBlastSeries = true;
-            }
-            yield return new WaitForFixedUpdate();
-        }
-    }
-    private void Death()
-    {
-        deathFlag = true;
-        //gameObject.SetActive(false);
-        //healthBar.SetActive(false);
-        //Destroy(gameObject, 5f);
-    }
-}
