@@ -17,9 +17,11 @@ public class SaveManagerScript : MonoBehaviour
     private bool IsSaved2 = false;
 
     private Transform SkyPos;
+   // private Transform MountainsPos;
     private void Awake()
     {
         SkyPos = GameObject.FindGameObjectWithTag("Sky").transform;
+       // MountainsPos = GameObject.FindGameObjectWithTag("Mountains").transform;
         
     }
     private void Start()
