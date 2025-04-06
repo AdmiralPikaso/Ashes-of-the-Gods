@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ContinueButton : MonoBehaviour
 {
     Button button;
-    [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject escMenuBackground;
     private void Awake()
     {
         button = GetComponent<Button>();
@@ -16,7 +16,7 @@ public class ContinueButton : MonoBehaviour
     private void Continue()
     {
         player.GetComponent<PlayerStats>().isEsc = false;
-        settingsMenu.SetActive(false);
+        escMenuBackground.SetActive(false);
         Time.timeScale = 1f;
     }
 
