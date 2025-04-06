@@ -11,7 +11,8 @@ public class HintOpenScript : MonoBehaviour
     }
 
     [SerializeField] private GameObject hintHintText;
-    [SerializeField] private GameObject hintPanel;
+    [SerializeField] private GameObject hintHintOffText;
+    [SerializeField] private GameObject hintPanelText;
     
     void Update()
     {
@@ -19,14 +20,31 @@ public class HintOpenScript : MonoBehaviour
         {
             hintHintText.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E))
-                hintPanel.SetActive(!hintPanel.activeSelf);
-
+            {
+                hintPanelText.GetComponentInParent<GameObject>().SetActive(hintPanelText.GetComponentInParent<GameObject>().activeSelf);
+                hintPanelText.SetActive(!hintPanelText.activeSelf);
+            }
+            if (hintPanelText.activeSelf)
+            {
+                hintHintOffText.SetActive(true);
+                hintHintText.SetActive(false);
+            }
+            else
+            {
+                hintHintText.SetActive(true);
+                hintHintOffText.SetActive(false);
+            }
         }
         else
         {
+            hintHintText.GetComponentInParent<GameObject>().SetActive(false);
             hintHintText.SetActive(false);
-            hintPanel.SetActive(false);
+            hintPanelText.SetActive(false);
+            hintHintOffText.SetActive(false);
         }
 
+        
+        
+        
     }
 }
