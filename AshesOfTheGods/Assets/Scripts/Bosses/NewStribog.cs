@@ -3,10 +3,6 @@ using UnityEngine.Audio;
 
 public class NewStribog : Enemy
 {
-    void Start()
-    {
-        audioSource = gameObject.AddComponent<AudioSource>();
-    }
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -16,7 +12,7 @@ public class NewStribog : Enemy
 
     public override void TakeDamage(float damage)
     {
-        Sounds.Sound(damageSound, audioSource, volume, minPitch, maxPitch);
+        Sounds.Sound(damageSound, GetComponent<StribogScript>().audioSource, volume, minPitch, maxPitch);
         HpNow -= damage;
         gameObject.GetComponent<StribogScript>().CountAttack();
         if (HpNow <= 0)
