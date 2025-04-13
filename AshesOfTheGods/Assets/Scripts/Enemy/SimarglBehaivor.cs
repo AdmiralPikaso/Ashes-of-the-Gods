@@ -106,30 +106,15 @@ public class SimarglBehaivor : MonoBehaviour
     private bool waitAfterBlast;
     private void FireBlastAttack()
     {
-        if (blastSeries == 0 | blastSeries == 3)
+        if (blastSeries <= 5)
         {
             GameObject blast = Instantiate(fireBlast, fireTarget1.transform.position, Quaternion.identity);
         }
-        else if (blastSeries == 2 | blastSeries == 8)
+        else
         {
             GameObject blast = Instantiate(fireBlast, fireTarget2.transform.position, Quaternion.identity);
         }
-        else if (blastSeries == 1 | blastSeries == 7)
-        {
-            GameObject blast = Instantiate(fireBlast, fireTarget3.transform.position, Quaternion.identity);
-        }
-        else if (blastSeries == 6 | blastSeries == 10)
-        {
-            GameObject blast = Instantiate(fireBlast, fireTarget4.transform.position, Quaternion.identity);
-        }
-        else if (blastSeries == 5 | blastSeries == 11)
-        {
-            GameObject blast = Instantiate(fireBlast, fireTarget5.transform.position, Quaternion.identity);
-        }
-        else if (blastSeries == 4 | blastSeries == 9)
-        {
-            GameObject blast = Instantiate(fireBlast, fireTarget6.transform.position, Quaternion.identity);
-        }
+        
         blastSeries++;
         waitAfterBlast = true;
     }
@@ -185,7 +170,7 @@ public class SimarglBehaivor : MonoBehaviour
     {
 
         //он продолжает двигаться в том направлении, куда двигался в начале атаки
-        if ((attackVector == Vector2.left.normalized & rb.position.x - LeftPillar.transform.position.x >= 5f) | (attackVector == Vector2.right.normalized & RightPillar.transform.position.x - rb.position.x >= 5f))
+        if ((attackVector == Vector2.left.normalized & rb.position.x - LeftPillar.transform.position.x >= 10f) | (attackVector == Vector2.right.normalized & RightPillar.transform.position.x - rb.position.x >= 10f))
         {
             Debug.Log("едет к столбам");
             rb.MovePosition(rb.position + speedInAttack * Time.fixedDeltaTime * attackVector);
@@ -201,10 +186,6 @@ public class SimarglBehaivor : MonoBehaviour
     [Header("точки стрельбы")]
     [SerializeField] private GameObject fireTarget1;
     [SerializeField] private GameObject fireTarget2;
-    [SerializeField] private GameObject fireTarget3;
-    [SerializeField] private GameObject fireTarget4;
-    [SerializeField] private GameObject fireTarget5;
-    [SerializeField] private GameObject fireTarget6;
 
     private bool FireAttack = false;
     private void SecondFaseJump()

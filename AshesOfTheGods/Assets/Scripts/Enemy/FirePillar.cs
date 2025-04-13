@@ -7,14 +7,11 @@ public class FirePillar : MonoBehaviour
 
     [Header("Урон")]
     [SerializeField] private float damage;
-
-
     private SpriteRenderer renderer;
     void Start()
     {
-
-        renderer = GetComponent<SpriteRenderer>();
         
+        renderer = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(WaitAfterAttack());
     }
@@ -24,14 +21,14 @@ public class FirePillar : MonoBehaviour
     private bool fire = false;
     private float currentAlpha = 0f;
     private float fadeTimer = 0f;
-
     private void FixedUpdate()
     {
         if (IsOn && !fire)
         {
+            
+            
             fadeTimer += Time.fixedDeltaTime;
             currentAlpha = Mathf.Clamp01(fadeTimer / appearTime);
-
             Color color = renderer.color;
             color.a = currentAlpha;
             renderer.color = color;
@@ -40,18 +37,21 @@ public class FirePillar : MonoBehaviour
             {
                 fire = true;
             }
+            
         }
     }
 
     private bool waitAfterAttack = false;
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") & !waitAfterAttack)
+        if (collision.gameObject.CompareTag("Player") & !waitAfterAttack & IsOn)
         {
             player.GetComponent<PlayerStats>().ReduceHp(damage);
             waitAfterAttack = true;
         }
     }
+    
 
     [Space]
     [Header("кд урона")]
