@@ -11680,7 +11680,7 @@ PrefabInstance:
     - target: {fileID: 1080274902614433886, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: firstSkillShade
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1046896438}
     - target: {fileID: 1421830942121657589, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: DashTime
       value: 0.25
@@ -11700,7 +11700,7 @@ PrefabInstance:
     - target: {fileID: 1421830942121657589, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: secondSkillShade
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 977246458}
     - target: {fileID: 1729840789426286850, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.665
@@ -12497,6 +12497,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85e470f811ad41d409cbff1d0f9c7730, type: 3}
+--- !u!1 &977246458 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8101871643591103523, guid: 302fb09957537d74ba2bcebeba5c2512, type: 3}
+  m_PrefabInstance: {fileID: 18301650}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &982225434
 GameObject:
   m_ObjectHideFlags: 0
@@ -12722,6 +12727,11 @@ Transform:
   - {fileID: 498287154}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1046896438 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2905430395955608475, guid: 302fb09957537d74ba2bcebeba5c2512, type: 3}
+  m_PrefabInstance: {fileID: 18301650}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1087110652
 PrefabInstance:
   m_ObjectHideFlags: 0
