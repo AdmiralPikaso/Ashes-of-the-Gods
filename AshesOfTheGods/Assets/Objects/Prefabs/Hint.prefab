@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hintHintText: {fileID: 0}
-  hintPanel: {fileID: 0}
+  hintHintOffText: {fileID: 0}
+  hintPanelText: {fileID: 0}
 --- !u!212 &1664273685004453196
 SpriteRenderer:
   m_ObjectHideFlags: 0

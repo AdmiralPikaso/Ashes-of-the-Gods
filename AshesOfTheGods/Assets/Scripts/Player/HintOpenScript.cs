@@ -21,7 +21,7 @@ public class HintOpenScript : MonoBehaviour
             hintHintText.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E))
             {
-                hintPanelText.GetComponentInParent<GameObject>().SetActive(hintPanelText.GetComponentInParent<GameObject>().activeSelf);
+                hintPanelText.transform.parent.gameObject.SetActive(!hintPanelText.transform.parent.gameObject.activeSelf);
                 hintPanelText.SetActive(!hintPanelText.activeSelf);
             }
             if (hintPanelText.activeSelf)
@@ -37,9 +37,11 @@ public class HintOpenScript : MonoBehaviour
         }
         else
         {
-            hintHintText.GetComponentInParent<GameObject>().SetActive(false);
-            hintHintText.SetActive(false);
+            
+            hintPanelText.transform.parent.gameObject.SetActive(false);
             hintPanelText.SetActive(false);
+
+            hintHintText.SetActive(false);
             hintHintOffText.SetActive(false);
         }
 
