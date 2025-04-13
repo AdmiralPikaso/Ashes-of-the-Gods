@@ -196,6 +196,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b92046d2c2a83b479b9d6ac231ad1e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wingFlap: {fileID: 8300000, guid: 0f48051485822b54198b51e92c7c8898, type: 3}
+  audioSource: {fileID: 0}
+  minPitch: 1
+  maxPitch: 1.3
+  volume: 0
   attackDistance: 10
   bossFightTarget: {fileID: 0}
   jumpPointA: {fileID: 0}

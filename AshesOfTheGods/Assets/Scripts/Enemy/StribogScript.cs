@@ -9,9 +9,15 @@ public class StribogScript : MonoBehaviour
     private Animator animator;
     GameObject player;
     Rigidbody2D rb;
+    [SerializeField] protected AudioClip wingFlap;
+    public AudioSource audioSource;
+    [SerializeField] protected float minPitch;
+    [SerializeField] protected float maxPitch;
+    [SerializeField] protected float volume;
 
     void Start()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();  
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
@@ -95,8 +101,6 @@ public class StribogScript : MonoBehaviour
             SecondFaseSkillMove = (player.GetComponent<CapsuleCollider2D>().bounds.center - transform.position).normalized;
 
 
-            if (!waitAfterAttack & !jump & !returnMode & !dashMode)
-                CalmMode();
 
 
             /*if (attackCount >= 2 & !waitwaitBeforeAttack & (Vector2.Distance(player.GetComponent<CapsuleCollider2D>().bounds.center, rb.position) <= attackDistance))
@@ -121,6 +125,9 @@ public class StribogScript : MonoBehaviour
                 }
 
             }
+            else if (!inAttackAnim & !waitAfterAttack & !jump & !returnMode & !dashMode)
+                CalmMode();
+
 
             if (Catch)
             {
@@ -314,7 +321,10 @@ public class StribogScript : MonoBehaviour
     }
 
 
-
+    private void PlayWingFlapSound()
+    {
+        Sounds.Sound(wingFlap, audioSource, volume, minPitch, maxPitch);
+    }
 
 
     [SerializeField] private float afterAtackTime;

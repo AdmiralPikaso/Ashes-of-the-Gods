@@ -17,6 +17,8 @@ public class FirstSkill : MonoBehaviour
     [SerializeField] private AudioClip skillSound;
     private AudioSource audioSource;
     [SerializeField] private float volume;
+    [SerializeField] private float minPitch;
+    [SerializeField] private float maxPitch;
     void Awake()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
@@ -50,7 +52,7 @@ public class FirstSkill : MonoBehaviour
         AttacksCount = 0;
         //this.GetComponent<SpriteRenderer>().color = Color.grey;
         ready = false;
-        Sounds.Sound(skillSound, audioSource, volume);
+        Sounds.Sound(skillSound, audioSource, volume, minPitch, maxPitch);
     }
     private void OffArmorAnim()
     {

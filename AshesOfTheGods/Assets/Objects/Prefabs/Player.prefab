@@ -124,7 +124,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 11, y: 12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -242,6 +242,8 @@ MonoBehaviour:
   CoolDownTime: 10
   skillSound: {fileID: 8300000, guid: cf63440dbe3f2454bbe4aaeef08c1f84, type: 3}
   volume: 80
+  minPitch: 1
+  maxPitch: 1.2
   inArmorAnim: 0
   inArmor: 0
   firstSkillFill: {fileID: 0}
