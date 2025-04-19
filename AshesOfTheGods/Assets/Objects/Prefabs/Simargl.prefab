@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e905fd07f04cd4ea5458327be2c736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
+  hp: 400
   damageSound: {fileID: 0}
   deathSound: {fileID: 0}
   minPitch: 0
@@ -186,11 +186,12 @@ MonoBehaviour:
   bossFightPoint: {fileID: 0}
   fireA: {fileID: 0}
   fireB: {fileID: 0}
-  fireC: {fileID: 0}
-  fireD: {fileID: 0}
-  fireE: {fileID: 0}
-  fireF: {fileID: 0}
+  left1: {fileID: 0}
+  right1: {fileID: 0}
+  left2: {fileID: 0}
+  right2: {fileID: 0}
   healthBar: {fileID: 0}
+  pillarSpeed: 5
 --- !u!114 &3181152777230612350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,17 +205,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  attackDistance: 15
-  fireBlast: {fileID: 2195181542045423615, guid: 467e61dbd6d20b848a0248e880c31eb3, type: 3}
+  attackDistance: 10
+  fireBlast: {fileID: 2195181542045423615, guid: 758b9611b463ab94d8b3dae7922820af, type: 3}
+  fireTarget1: {fileID: 0}
+  fireTarget2: {fileID: 0}
   attackDamage: 10
   LeftPillar: {fileID: 0}
   RightPillar: {fileID: 0}
   speedInAttack: 10
   jumpTarget: {fileID: 0}
-  fireTarget1: {fileID: 0}
-  fireTarget2: {fileID: 0}
-  fireTarget3: {fileID: 0}
-  fireTarget4: {fileID: 0}
-  fireTarget5: {fileID: 0}
-  fireTarget6: {fileID: 0}
-  afterAtackTime: 5
+  afterAtackTime: 3

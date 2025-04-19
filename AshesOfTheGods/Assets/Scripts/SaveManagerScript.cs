@@ -38,6 +38,7 @@ public class SaveManagerScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Тригернуло");
         if (collision.gameObject.CompareTag("SavePoint1") && !IsSaved1)
         {
             SavePlayerPosition(transform.position, SkyPos.position);

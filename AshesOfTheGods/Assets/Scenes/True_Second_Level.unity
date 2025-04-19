@@ -1277,14 +1277,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FIrePillarC
       objectReference: {fileID: 0}
-    - target: {fileID: 5168381389472314283, guid: 821aa65dfa69dce46a710a2b522e2595, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8926901480618323109, guid: 821aa65dfa69dce46a710a2b522e2595, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1342,14 +1334,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FIrePillarE
       objectReference: {fileID: 0}
-    - target: {fileID: 5168381389472314283, guid: 821aa65dfa69dce46a710a2b522e2595, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8926901480618323109, guid: 821aa65dfa69dce46a710a2b522e2595, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1365,11 +1349,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2434459605710473862, guid: 821aa65dfa69dce46a710a2b522e2595, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 101.6
+      value: 101.7047
       objectReference: {fileID: 0}
     - target: {fileID: 2434459605710473862, guid: 821aa65dfa69dce46a710a2b522e2595, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -17.8
+      value: -17.3576
       objectReference: {fileID: 0}
     - target: {fileID: 2434459605710473862, guid: 821aa65dfa69dce46a710a2b522e2595, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9758,11 +9742,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5601851578151317147, guid: a3a8df5eafb5c4e4786efaa525941083, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -389.3
+      value: -492.08
       objectReference: {fileID: 0}
     - target: {fileID: 5601851578151317147, guid: a3a8df5eafb5c4e4786efaa525941083, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.47
+      value: 75.6
       objectReference: {fileID: 0}
     - target: {fileID: 5601851578151317147, guid: a3a8df5eafb5c4e4786efaa525941083, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9799,14 +9783,6 @@ PrefabInstance:
     - target: {fileID: 8007413964865462066, guid: a3a8df5eafb5c4e4786efaa525941083, type: 3}
       propertyPath: m_Name
       value: SavePoint
-      objectReference: {fileID: 0}
-    - target: {fileID: 8007413964865462066, guid: a3a8df5eafb5c4e4786efaa525941083, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8007413964865462066, guid: a3a8df5eafb5c4e4786efaa525941083, type: 3}
-      propertyPath: m_TagString
-      value: SavePoint2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11635,11 +11611,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 488907195182511806, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 110.6
+      value: 5.1
       objectReference: {fileID: 0}
     - target: {fileID: 488907195182511806, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -23
+      value: -23.31
       objectReference: {fileID: 0}
     - target: {fileID: 488907195182511806, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12081,14 +12057,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FIrePillarD
       objectReference: {fileID: 0}
-    - target: {fileID: 5168381389472314283, guid: 821aa65dfa69dce46a710a2b522e2595, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8926901480618323109, guid: 821aa65dfa69dce46a710a2b522e2595, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12234,11 +12202,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5601851578151317147, guid: a3a8df5eafb5c4e4786efaa525941083, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -303
+      value: -305.5502
       objectReference: {fileID: 0}
     - target: {fileID: 5601851578151317147, guid: a3a8df5eafb5c4e4786efaa525941083, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -21.8
+      value: -20.6408
       objectReference: {fileID: 0}
     - target: {fileID: 5601851578151317147, guid: a3a8df5eafb5c4e4786efaa525941083, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12276,18 +12244,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SavePoint1
       objectReference: {fileID: 0}
-    - target: {fileID: 8007413964865462066, guid: a3a8df5eafb5c4e4786efaa525941083, type: 3}
-      propertyPath: m_TagString
-      value: SavePoint1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8574974198448950020, guid: a3a8df5eafb5c4e4786efaa525941083, type: 3}
-      propertyPath: m_Size.x
-      value: 20.877773
-      objectReference: {fileID: 0}
-    - target: {fileID: 8574974198448950020, guid: a3a8df5eafb5c4e4786efaa525941083, type: 3}
-      propertyPath: m_Offset.x
-      value: 2.438017
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12323,7 +12279,7 @@ Transform:
   m_GameObject: {fileID: 949379119}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 193.3, y: -16, z: 6.2385645}
+  m_LocalPosition: {x: 162, y: -16, z: 6.2385645}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13448,18 +13404,6 @@ PrefabInstance:
     - target: {fileID: 5168381389472314283, guid: 821aa65dfa69dce46a710a2b522e2595, type: 3}
       propertyPath: m_Name
       value: FIrePillarB
-      objectReference: {fileID: 0}
-    - target: {fileID: 5168381389472314283, guid: 821aa65dfa69dce46a710a2b522e2595, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8521319949199544299, guid: 821aa65dfa69dce46a710a2b522e2595, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8926901480618323109, guid: 821aa65dfa69dce46a710a2b522e2595, type: 3}
-      propertyPath: m_Color.a
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -98696,7 +98640,7 @@ Transform:
   m_GameObject: {fileID: 1584082337}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 99.488884, y: -12.249998, z: -10}
+  m_LocalPosition: {x: 16.101112, y: -12.239998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -98851,14 +98795,6 @@ PrefabInstance:
     - target: {fileID: 5168381389472314283, guid: 821aa65dfa69dce46a710a2b522e2595, type: 3}
       propertyPath: m_Name
       value: FIrePillarF
-      objectReference: {fileID: 0}
-    - target: {fileID: 5168381389472314283, guid: 821aa65dfa69dce46a710a2b522e2595, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8926901480618323109, guid: 821aa65dfa69dce46a710a2b522e2595, type: 3}
-      propertyPath: m_Color.a
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -99062,7 +98998,7 @@ Transform:
   m_GameObject: {fileID: 1632389905}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 99.488884, y: -12.249998, z: -10}
+  m_LocalPosition: {x: 16.101112, y: -12.239998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -99249,10 +99185,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1406593930606163856, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
-      propertyPath: hp
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 1406593930606163856, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
       propertyPath: fireA
       value: 
       objectReference: {fileID: 291578680}
@@ -99260,22 +99192,6 @@ PrefabInstance:
       propertyPath: fireB
       value: 
       objectReference: {fileID: 1238185822}
-    - target: {fileID: 1406593930606163856, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
-      propertyPath: fireC
-      value: 
-      objectReference: {fileID: 1247258516}
-    - target: {fileID: 1406593930606163856, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
-      propertyPath: fireD
-      value: 
-      objectReference: {fileID: 667028443}
-    - target: {fileID: 1406593930606163856, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
-      propertyPath: fireE
-      value: 
-      objectReference: {fileID: 1473248920}
-    - target: {fileID: 1406593930606163856, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
-      propertyPath: fireF
-      value: 
-      objectReference: {fileID: 786144524}
     - target: {fileID: 1406593930606163856, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
       propertyPath: left1
       value: 
@@ -99297,17 +99213,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1877425577}
     - target: {fileID: 1406593930606163856, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
-      propertyPath: pillarSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1406593930606163856, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
       propertyPath: bossFightPoint
       value: 
       objectReference: {fileID: 268792475}
-    - target: {fileID: 3181152777230612350, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
-      propertyPath: fireBlast
-      value: 
-      objectReference: {fileID: 2195181542045423615, guid: 758b9611b463ab94d8b3dae7922820af, type: 3}
     - target: {fileID: 3181152777230612350, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
       propertyPath: LeftPillar
       value: 
@@ -99328,22 +99236,6 @@ PrefabInstance:
       propertyPath: fireTarget2
       value: 
       objectReference: {fileID: 667028443}
-    - target: {fileID: 3181152777230612350, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
-      propertyPath: fireTarget3
-      value: 
-      objectReference: {fileID: 1473248920}
-    - target: {fileID: 3181152777230612350, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
-      propertyPath: fireTarget4
-      value: 
-      objectReference: {fileID: 786144524}
-    - target: {fileID: 3181152777230612350, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
-      propertyPath: fireTarget5
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3181152777230612350, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
-      propertyPath: fireTarget6
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3197503770777717079, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
       propertyPath: m_LocalPosition.x
       value: 206.2
