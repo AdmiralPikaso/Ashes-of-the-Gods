@@ -31,19 +31,17 @@ public class SimarglBehaivor : MonoBehaviour
     private int attackCount = 0;
     
     private Vector2 attackVector;
-    private bool secondFaseJump = false;
+    private bool secondFase = false;
     private float blastSeries = 0;
     private Vector3 playerPos;
+
+    bool chooseMove = false;
     private void FixedUpdate() // flip x = false => повернут влево
     {
         playerPos = player.GetComponent<CapsuleCollider2D>().bounds.center;
         
-
-
         if (gameObject.GetComponent<SimarglScript>().IsActive)
         {
-            
-
             //Debug.Log($"ЅьЄт влево {attackVector == Vector2.left.normalized}");
             //Debug.Log($"ЅьЄт вправо {attackVector == Vector2.right.normalized}");
             //Debug.Log($"»дЄт к игроку {attackCount == 0 & (Vector2.Distance(rb.position, playerPos) > attackDistance)}");
@@ -56,81 +54,64 @@ public class SimarglBehaivor : MonoBehaviour
             movement = (playerPos - transform.position).normalized;
             movement.y = 0;
 
-            if (!secondFaseJump & !waitAfterAttack)
+            if (!secondFase & !waitAfterAttack)
             {
                 if ((Vector2.Distance(playerPos, rb.position) <= attackDistance & !waitAfterOneAttack) | (attackCount>0 & !waitAfterOneAttack))
                 {
                     if (attackCount == 0)
                     {
-
                         if (!gameObject.GetComponent<SpriteRenderer>().flipX)
                             attackVector = Vector2.left.normalized;
                         else attackVector = Vector2.right.normalized;
                     }
                     BasicAttack();
-
                 }
                 
                 if (attackCount > 0)
                     BasicAttackMove();
 
-                
                 if (attackCount == 0 & 
                     (Vector2.Distance(rb.position, playerPos) > attackDistance | 
                     (gameObject.GetComponent<SpriteRenderer>().flipX == false & playerPos.x > transform.position.x) 
-                    | ((gameObject.GetComponent<SpriteRenderer>().flipX == true & playerPos.x < transform.position.x))))
+                    | (gameObject.GetComponent<SpriteRenderer>().flipX == true & playerPos.x < transform.position.x)))
                     CalmMode();
 
             }
 
-            
+            if (!secondFase & (gameObject.GetComponent<SimarglScript>().HpNow <= ((gameObject.GetComponent<SimarglScript>().HpMax / 3) * 1)))
+                secondFase = true;
 
-            if (!secondFaseJump & (gameObject.GetComponent<SimarglScript>().HpNow <= ((gameObject.GetComponent<SimarglScript>().HpMax / 3) * 1)))
-                secondFaseJump = true;
-
-            if (secondFaseJump)
-                SecondFaseJump();
+            if (secondFase)
+            {
+                Vector2 leftVector = (LeftPillar.transform.position - transform.position).normalized;
+                Vector2 rightVector = (RightPillar.transform.position - transform.position).normalized;
+                if (Vector2.Distance(leftVector, transform.position) > Vector2.Distance(rightVector, transform.position))
+                    SecondFaseMove(LeftPillar);
+                else SecondFaseMove(RightPillar);
+        
+            }
 
             if (FireAttack & !waitAfterBlast)
-            {
                 FireBlastAttack(); 
-            }
-              
-            
-            
         }
-
     }
 
     [SerializeField] private GameObject fireBlast;
+    [Space]
+    [Header("точки стрельбы")]
+    [SerializeField] private GameObject fireTarget1;
+    [SerializeField] private GameObject fireTarget2;
     private bool waitAfterBlast;
     private void FireBlastAttack()
     {
-        if (blastSeries == 0 | blastSeries == 3)
+        if (Vector2.Distance(transform.position, fireTarget1.transform.position) < Vector2.Distance(transform.position, fireTarget2.transform.position))
         {
             GameObject blast = Instantiate(fireBlast, fireTarget1.transform.position, Quaternion.identity);
         }
-        else if (blastSeries == 2 | blastSeries == 8)
+        else
         {
             GameObject blast = Instantiate(fireBlast, fireTarget2.transform.position, Quaternion.identity);
         }
-        else if (blastSeries == 1 | blastSeries == 7)
-        {
-            GameObject blast = Instantiate(fireBlast, fireTarget3.transform.position, Quaternion.identity);
-        }
-        else if (blastSeries == 6 | blastSeries == 10)
-        {
-            GameObject blast = Instantiate(fireBlast, fireTarget4.transform.position, Quaternion.identity);
-        }
-        else if (blastSeries == 5 | blastSeries == 11)
-        {
-            GameObject blast = Instantiate(fireBlast, fireTarget5.transform.position, Quaternion.identity);
-        }
-        else if (blastSeries == 4 | blastSeries == 9)
-        {
-            GameObject blast = Instantiate(fireBlast, fireTarget6.transform.position, Quaternion.identity);
-        }
-        blastSeries++;
         waitAfterBlast = true;
     }
     
@@ -185,7 +166,7 @@ public class SimarglBehaivor : MonoBehaviour
     {
 
         //он продолжает двигатьс€ в том направлении, куда двигалс€ в начале атаки
-        if ((attackVector == Vector2.left.normalized & rb.position.x - LeftPillar.transform.position.x >= 5f) | (attackVector == Vector2.right.normalized & RightPillar.transform.position.x - rb.position.x >= 5f))
+        if ((attackVector == Vector2.left.normalized & rb.position.x - LeftPillar.transform.position.x >= 10f) | (attackVector == Vector2.right.normalized & RightPillar.transform.position.x - rb.position.x >= 10f))
         {
             Debug.Log("едет к столбам");
             rb.MovePosition(rb.position + speedInAttack * Time.fixedDeltaTime * attackVector);
@@ -197,32 +178,23 @@ public class SimarglBehaivor : MonoBehaviour
     [Header("точка дл€ взлЄта")]
     [SerializeField] private GameObject jumpTarget;
 
-    [Space]
-    [Header("точки стрельбы")]
-    [SerializeField] private GameObject fireTarget1;
-    [SerializeField] private GameObject fireTarget2;
-    [SerializeField] private GameObject fireTarget3;
-    [SerializeField] private GameObject fireTarget4;
-    [SerializeField] private GameObject fireTarget5;
-    [SerializeField] private GameObject fireTarget6;
+    
 
     private bool FireAttack = false;
-    private void SecondFaseJump()
+    
+   
+    
+    private void SecondFaseMove(GameObject pillar)
     {
-        LeftPillar.SetActive(false);
-        RightPillar.SetActive(false);
-
-        Vector2 jumpVector = (jumpTarget.transform.position - transform.position).normalized;
-        if (Vector2.Distance(rb.position, jumpTarget.transform.position) >= 5f)
-            rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * jumpVector);
-        else
+        
+        if (Vector2.Distance(rb.position, pillar.transform.position) >= 5f)
         {
-            
-            FireAttack = true;
+            Vector2 moveVector = (pillar.transform.position - transform.position).normalized;
+            rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * moveVector);
         }
+        else FireAttack = true;
+        
     }
-
-
 
 
 

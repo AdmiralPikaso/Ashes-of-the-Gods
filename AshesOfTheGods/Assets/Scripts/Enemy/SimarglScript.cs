@@ -40,22 +40,26 @@ public class SimarglScript : Enemy
 
     [Space]
     [Header("Границы второй зоны огня")]
-    [SerializeField] private GameObject fireC;
-    [SerializeField] private GameObject fireD;
+    [SerializeField] private GameObject left1;
+    [SerializeField] private GameObject right1;
 
     [Space]
     [Header("Границы третьей зоны огня")]
-    [SerializeField] private GameObject fireE;
-    [SerializeField] private GameObject fireF;
+    [SerializeField] private GameObject left2;
+    [SerializeField] private GameObject right2;
 
     [Space]
     [Header("хелсбар")]
     [SerializeField] private GameObject healthBar;
     private void Update()
     {
-        
+
         if (!IsActive & bossFightPoint.transform.position.x < player.transform.position.x)
+        {
             IsActive = true;
+            fireA.SetActive(true); 
+            fireB.SetActive(true);
+        }
 
         if (IsActive)
         {
@@ -63,50 +67,38 @@ public class SimarglScript : Enemy
             fireA.SetActive(true);
             fireB.SetActive(true);
 
-            gameObject.GetComponent<SimarglBehaivor>().LeftPillar = fireA;
-            gameObject.GetComponent<SimarglBehaivor>().RightPillar = fireB;
-
             fireA.GetComponent<FirePillar>().IsOn = true;
             fireB.GetComponent<FirePillar>().IsOn = true;
 
         }
         
         if (HpNow <= (HpMax/3)*2 )
-        {
-            fireA.SetActive(false);
-            fireB.SetActive(false);
-
-            gameObject.GetComponent<SimarglBehaivor>().LeftPillar = fireC;
-            gameObject.GetComponent<SimarglBehaivor>().RightPillar = fireD;
-
-            fireC.SetActive(true);
-            fireD.SetActive(true);
-            
-            fireC.GetComponent<FirePillar>().IsOn = true;
-            fireD.GetComponent<FirePillar>().IsOn = true;
-        }
+            MovePillar(left1,right1);   
+                    
 
         if (HpNow <= (HpMax/2)*1)
-        {
-            fireC.SetActive(false);
-            fireD.SetActive(false);
+            MovePillar(left2, right2);
 
-            gameObject.GetComponent<SimarglBehaivor>().LeftPillar = fireE;
-            gameObject.GetComponent<SimarglBehaivor>().RightPillar = fireB;
+        if (HpNow <= (HpMax / 3) * 1)
+            MovePillar(left1, right1);
 
-            fireE.SetActive(true);
-            fireF.SetActive(true);
-
-            fireE.GetComponent<FirePillar>().IsOn = true;
-            fireF.GetComponent<FirePillar>().IsOn = true;
-
-        }
-            
-          
     }
 
-    
+    [Space]
+    [Header("Скорость столбов")]
+    [SerializeField] float pillarSpeed;
 
+    private void MovePillar(GameObject leftPoint, GameObject rightPoint)
+    {
+        if (Vector2.Distance(fireA.transform.position, leftPoint.transform.position) >= 5f & Vector2.Distance(fireB.transform.position, rightPoint.transform.position) >= 5f)
+        {
+            Vector2 move1 = (leftPoint.transform.position - fireA.transform.position).normalized;
+            fireA.GetComponent<Rigidbody2D>().MovePosition(fireA.GetComponent<Rigidbody2D>().position + Time.fixedDeltaTime * move1 * pillarSpeed);
+
+            Vector2 move2 = (rightPoint.transform.position - fireB.transform.position).normalized;
+            fireB.GetComponent<Rigidbody2D>().MovePosition(fireB.GetComponent<Rigidbody2D>().position + Time.fixedDeltaTime * move2 * pillarSpeed);
+        }
+    }
     
    
    
