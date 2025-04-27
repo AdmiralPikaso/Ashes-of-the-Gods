@@ -23,6 +23,7 @@ public class PlayerStats : MonoBehaviour
     Collider2D col;
     void Awake()
     {
+        Application.targetFrameRate = 200;
         audioSource = gameObject.AddComponent<AudioSource>();  
         animator = GetComponent<Animator>();
         dash = this.GetComponent<SecondSkill>();

@@ -213,5 +213,4 @@ MonoBehaviour:
   LeftPillar: {fileID: 0}
   RightPillar: {fileID: 0}
   speedInAttack: 10
-  jumpTarget: {fileID: 0}
   afterAtackTime: 3
