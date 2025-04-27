@@ -32,10 +32,11 @@ public class SimarglBehaivor : MonoBehaviour
     
     private Vector2 attackVector;
     private bool secondFase = false;
-    private float blastSeries = 0;
+    
     private Vector3 playerPos;
-
+    
     bool chooseMove = false;
+    private GameObject chooseMovePillar;
     private void FixedUpdate() // flip x = false => повернут влево
     {
         playerPos = player.GetComponent<CapsuleCollider2D>().bounds.center;
@@ -81,15 +82,30 @@ public class SimarglBehaivor : MonoBehaviour
             if (!secondFase & (gameObject.GetComponent<SimarglScript>().HpNow <= ((gameObject.GetComponent<SimarglScript>().HpMax / 3) * 1)))
                 secondFase = true;
 
-            if (secondFase)
+            
+            if (secondFase & !chooseMove & !FireAttack)
             {
-                Vector2 leftVector = (LeftPillar.transform.position - transform.position).normalized;
-                Vector2 rightVector = (RightPillar.transform.position - transform.position).normalized;
-                if (Vector2.Distance(leftVector, transform.position) > Vector2.Distance(rightVector, transform.position))
-                    SecondFaseMove(LeftPillar);
-                else SecondFaseMove(RightPillar);
-        
+                
+                if (Vector2.Distance(LeftPillar.transform.position, transform.position) > Vector2.Distance(RightPillar.transform.position, transform.position))
+                {
+                    chooseMove = true;
+                    chooseMovePillar = LeftPillar;
+                    gameObject.GetComponent<SpriteRenderer>().flipX = false;
+                    Debug.Log("Двигается к левой колонне");
+                    
+                }
+                else
+                {
+                    chooseMove = true;
+                    chooseMovePillar = RightPillar;
+                    gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                    Debug.Log("Двигается к правой колонне");
+                    
+                }
             }
+
+            if (chooseMove)
+                SecondFaseMove(chooseMovePillar);
 
             if (FireAttack & !waitAfterBlast)
                 FireBlastAttack(); 
@@ -113,6 +129,7 @@ public class SimarglBehaivor : MonoBehaviour
             GameObject blast = Instantiate(fireBlast, fireTarget2.transform.position, Quaternion.identity);
         }
         waitAfterBlast = true;
+        FireAttack = false;
     }
     
 
@@ -137,15 +154,20 @@ public class SimarglBehaivor : MonoBehaviour
     private void BasicAttack()
     {
 
-        
+
         //не сломать!
         //Урон регается только в случае, если симаргл атакует влево и гг стоит слева от него на дистанции тычки
         if (attackVector == Vector2.left.normalized & (Vector2.Distance(playerPos, rb.position) <= attackDistance) & playerRB.transform.position.x <= transform.position.x)
+        {
             player.GetComponent<PlayerStats>().ReduceHp(attackDamage);
-
+            player.GetComponent<FirstSkill>().AttacksCount += 5;
+        }
         //Либо симаргл атакует вправо и гг стоит справа от него на дистанции тычки
         else if (attackVector == Vector2.right.normalized & (Vector2.Distance(playerPos, rb.position) <= attackDistance) & playerRB.transform.position.x >= transform.position.x)
+        {
             player.GetComponent<PlayerStats>().ReduceHp(attackDamage);
+            player.GetComponent<FirstSkill>().AttacksCount += 5;
+        }
 
         attackCount++;
         waitAfterOneAttack = true;
@@ -174,9 +196,6 @@ public class SimarglBehaivor : MonoBehaviour
     }
 
 
-    [Space]
-    [Header("точка для взлёта")]
-    [SerializeField] private GameObject jumpTarget;
 
     
 
@@ -186,13 +205,19 @@ public class SimarglBehaivor : MonoBehaviour
     
     private void SecondFaseMove(GameObject pillar)
     {
-        
+        speed = 20;
+
         if (Vector2.Distance(rb.position, pillar.transform.position) >= 5f)
         {
             Vector2 moveVector = (pillar.transform.position - transform.position).normalized;
+            moveVector.y = 0;
             rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * moveVector);
         }
-        else FireAttack = true;
+        else
+        {
+            FireAttack = true;
+            chooseMove = false;
+        }
         
     }
 
@@ -233,7 +258,7 @@ public class SimarglBehaivor : MonoBehaviour
         {
             if (waitAfterBlast)
             {
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(3);
                 waitAfterBlast = false;
             }
 

@@ -72,14 +72,13 @@ public class SimarglScript : Enemy
 
         }
         
-        if (HpNow <= (HpMax/3)*2 )
+        if (HpNow <= (HpMax/3)*2)
             MovePillar(left1,right1);   
-                    
-
-        if (HpNow <= (HpMax/2)*1)
+        
+        else if (HpNow <= (HpMax/2)*1)
             MovePillar(left2, right2);
-
-        if (HpNow <= (HpMax / 3) * 1)
+        
+        else if (HpNow <= (HpMax / 3) * 1)
             MovePillar(left1, right1);
 
     }
