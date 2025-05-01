@@ -4,7 +4,6 @@ public class SimarglScript : Enemy
 {
     public bool IsActive { get; protected set; } = false;
 
-
     private GameObject player;
     
     private void Awake()
@@ -29,27 +28,33 @@ public class SimarglScript : Enemy
 
     }
 
-    [Header("Точка, которая запускает файт")]
+    private void Destruction()
+    {
+        gameObject.GetComponent<SimarglScript>().IsActive = false;
+        Destroy(gameObject, 5f);
+    }
+    
+    [Header("пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ")]
     [SerializeField] private GameObject bossFightPoint;
 
 
     [Space]
-    [Header("Границы первой зоны огня")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ")]
     [SerializeField] private GameObject fireA;
     [SerializeField] private GameObject fireB;
 
     [Space]
-    [Header("Границы второй зоны огня")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ")]
     [SerializeField] private GameObject fireC;
     [SerializeField] private GameObject fireD;
 
     [Space]
-    [Header("Границы третьей зоны огня")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ")]
     [SerializeField] private GameObject fireE;
     [SerializeField] private GameObject fireF;
 
     [Space]
-    [Header("хелсбар")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
     [SerializeField] private GameObject healthBar;
     private void Update()
     {

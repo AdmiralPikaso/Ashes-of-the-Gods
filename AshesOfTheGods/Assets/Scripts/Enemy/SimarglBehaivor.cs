@@ -4,12 +4,14 @@ using UnityEngine.Rendering.UI;
 
 public class SimarglBehaivor : MonoBehaviour
 {
+    private Animator animator;
     GameObject player;
     Rigidbody2D rb;
 
     Rigidbody2D playerRB;
     void Start()
     {
+        animator = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         playerRB = player.GetComponent<Rigidbody2D>();
@@ -18,14 +20,14 @@ public class SimarglBehaivor : MonoBehaviour
         StartCoroutine(FireBlastCd());
     }
 
-    //Вектор в сторону игрока
+    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     private Vector2 movement;
 
-    [Header("скорость передвижения")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
     [SerializeField] private float speed;
 
     [Space]
-    [Header("дистанция атаки")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")]
     [SerializeField] private float attackDistance;
 
     private int attackCount = 0;
@@ -34,7 +36,7 @@ public class SimarglBehaivor : MonoBehaviour
     private bool secondFaseJump = false;
     private float blastSeries = 0;
     private Vector3 playerPos;
-    private void FixedUpdate() // flip x = false => повернут влево
+    private void FixedUpdate() // flip x = false => пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     {
         playerPos = player.GetComponent<CapsuleCollider2D>().bounds.center;
         
@@ -44,15 +46,15 @@ public class SimarglBehaivor : MonoBehaviour
         {
             
 
-            //Debug.Log($"Бьёт влево {attackVector == Vector2.left.normalized}");
-            //Debug.Log($"Бьёт вправо {attackVector == Vector2.right.normalized}");
-            //Debug.Log($"Идёт к игроку {attackCount == 0 & (Vector2.Distance(rb.position, playerPos) > attackDistance)}");
-            //Debug.Log($"Кол-во атак {attackCount}");
+            //Debug.Log($"пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ {attackVector == Vector2.left.normalized}");
+            //Debug.Log($"пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ {attackVector == Vector2.right.normalized}");
+            //Debug.Log($"пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ {attackCount == 0 & (Vector2.Distance(rb.position, playerPos) > attackDistance)}");
+            //Debug.Log($"пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅ {attackCount}");
 
             if (transform.position.x < LeftPillar.transform.position.x || transform.position.x > RightPillar.transform.position.x)
                 attackCount = 0;
 
-            //Вектор в сторону игрока 
+            //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 
             movement = (playerPos - transform.position).normalized;
             movement.y = 0;
 
@@ -67,7 +69,7 @@ public class SimarglBehaivor : MonoBehaviour
                             attackVector = Vector2.left.normalized;
                         else attackVector = Vector2.right.normalized;
                     }
-                    BasicAttack();
+                    animator.SetTrigger("IsAttack");
 
                 }
                 
@@ -80,7 +82,8 @@ public class SimarglBehaivor : MonoBehaviour
                     (gameObject.GetComponent<SpriteRenderer>().flipX == false & playerPos.x > transform.position.x) 
                     | ((gameObject.GetComponent<SpriteRenderer>().flipX == true & playerPos.x < transform.position.x))))
                     CalmMode();
-
+                
+                animator.SetBool("IsWalk", walk);
             }
 
             
@@ -106,6 +109,7 @@ public class SimarglBehaivor : MonoBehaviour
     private bool waitAfterBlast;
     private void FireBlastAttack()
     {
+        walk = false;
         if (blastSeries == 0 | blastSeries == 3)
         {
             GameObject blast = Instantiate(fireBlast, fireTarget1.transform.position, Quaternion.identity);
@@ -134,9 +138,10 @@ public class SimarglBehaivor : MonoBehaviour
         waitAfterBlast = true;
     }
     
-
+    private bool walk = false;
     private void CalmMode()
     {
+        walk = true;
         if (transform.position.x < playerPos.x)
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
         
@@ -149,20 +154,20 @@ public class SimarglBehaivor : MonoBehaviour
 
 
     [Space]
-    [Header("Урон")]
+    [Header("пїЅпїЅпїЅпїЅ")]
     [SerializeField] private float attackDamage;
     private bool waitAfterAttack = false;
     private bool waitAfterOneAttack = false;
     private void BasicAttack()
     {
 
-        
-        //не сломать!
-        //Урон регается только в случае, если симаргл атакует влево и гг стоит слева от него на дистанции тычки
+        walk = false;
+        //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ!
+        //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         if (attackVector == Vector2.left.normalized & (Vector2.Distance(playerPos, rb.position) <= attackDistance) & playerRB.transform.position.x <= transform.position.x)
             player.GetComponent<PlayerStats>().ReduceHp(attackDamage);
 
-        //Либо симаргл атакует вправо и гг стоит справа от него на дистанции тычки
+        //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         else if (attackVector == Vector2.right.normalized & (Vector2.Distance(playerPos, rb.position) <= attackDistance) & playerRB.transform.position.x >= transform.position.x)
             player.GetComponent<PlayerStats>().ReduceHp(attackDamage);
 
@@ -179,26 +184,27 @@ public class SimarglBehaivor : MonoBehaviour
     public GameObject RightPillar;
 
     [Space]
-    [Header ("скорость при атаке")]
+    [Header ("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")]
     [SerializeField] private float speedInAttack;
     private void BasicAttackMove()
     {
-
-        //он продолжает двигаться в том направлении, куда двигался в начале атаки
+        walk = false;
+        Debug.Log("BasicAttackMove");
+        //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         if ((attackVector == Vector2.left.normalized & rb.position.x - LeftPillar.transform.position.x >= 5f) | (attackVector == Vector2.right.normalized & RightPillar.transform.position.x - rb.position.x >= 5f))
         {
-            Debug.Log("едет к столбам");
+            Debug.Log("пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
             rb.MovePosition(rb.position + speedInAttack * Time.fixedDeltaTime * attackVector);
         }
     }
 
 
     [Space]
-    [Header("точка для взлёта")]
+    [Header("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")]
     [SerializeField] private GameObject jumpTarget;
 
     [Space]
-    [Header("точки стрельбы")]
+    [Header("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
     [SerializeField] private GameObject fireTarget1;
     [SerializeField] private GameObject fireTarget2;
     [SerializeField] private GameObject fireTarget3;
@@ -209,6 +215,7 @@ public class SimarglBehaivor : MonoBehaviour
     private bool FireAttack = false;
     private void SecondFaseJump()
     {
+        walk = false;
         LeftPillar.SetActive(false);
         RightPillar.SetActive(false);
 
@@ -222,12 +229,8 @@ public class SimarglBehaivor : MonoBehaviour
         }
     }
 
-
-
-
-
     [Space]
-    [Header("кд атаки")]
+    [Header("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")]
     [SerializeField] private float afterAtackTime;
     private IEnumerator WaitAfterAttack()
     {
@@ -248,7 +251,7 @@ public class SimarglBehaivor : MonoBehaviour
         {
             if (waitAfterOneAttack)
             {
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(5);
                 waitAfterOneAttack = false;
             }
             yield return new WaitForFixedUpdate();
