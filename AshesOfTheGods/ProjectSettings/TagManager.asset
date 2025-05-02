@@ -18,6 +18,8 @@ TagManager:
   - Sky
   - SavePoint1
   - SavePoint2
+  - PerunHand
+  - Perun
   layers:
   - Default
   - TransparentFX

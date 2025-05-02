@@ -20,44 +20,81 @@ public class PerunScript : MonoBehaviour
     [Space]
     [Header("кулак ближник")]
     [SerializeField] GameObject melleHand;
+
+    [Space]
+    [Header("кулак дальник")]
+    [SerializeField] GameObject rangeHand;
     
     private bool active = false;
 
     private Vector3 returnMelleHandPos;
     private bool inMelle = false;
     private Vector3 attackMove;
+    private bool lightningSkill = true;
+    private bool waitHand = false;
     void FixedUpdate()
     {
         //Debug.Log();
-        if (!active & player.transform.position.x > startTarget.transform.position.x)
+        if (!active & player.transform.position.x > startTarget.transform.position.x & !gameObject.GetComponent<Enemy>().isDead)
             active = true;
+
+        if (gameObject.GetComponent<Enemy>().isDead)
+            active = false;
 
         if (active) 
         {
-
-            if (Mathf.Abs(melleHand.transform.position.x - player.transform.position.x) <= 1f & !attacked)
+            if (rangeHand.GetComponent<PerunRangeHandScript>().Attack == false)
             {
-                
-                inMelle = true;
-                attackMove = player.transform.position;
-                MelleHandAttack(attackMove);
+                if (!waitMelleAttack)
+                {
+                    if (Mathf.Abs(melleHand.transform.position.x - player.transform.position.x) <= 1f & !attacked)
+                    {
+
+                        inMelle = true;
+                        attackMove = player.transform.position;
+                        MelleHandAttack(attackMove);
+                    }
+
+                    if (inMelle)
+                        MelleHandAttack(attackMove);
+
+                    if (!inMelle)
+                        MelleHandMove();
+
+                    if (attacked)
+                        ReturnMelleHand();
+                }
             }
-
-            if (inMelle)
-                MelleHandAttack(attackMove);
-            
-            if (!inMelle)
-                MelleHandMove();
-
-            if (attacked)
-                ReturnMelleHand();
-            
-
+           
         }
+
+        //if (HpNow <= HpMax/2 & lightningSkill)
+          //  LightningSkill();
+
+        
+            
+            
     }
 
     private bool attacked = false;
 
+    [Space]
+    [Header("Большая молния")]
+    [SerializeField] private GameObject lightning;
+    [Space]
+    [Header("Споты молний")]
+    [SerializeField] private GameObject lightningSpot1;
+    [SerializeField] private GameObject lightningSpot2;
+    [SerializeField] private GameObject lightningSpot3;
+    [SerializeField] private GameObject lightningSpot4;
+    private void LightningSkill()
+    {
+        Instantiate(lightning, lightningSpot1.transform.position, Quaternion.identity);
+        Instantiate(lightning, lightningSpot2.transform.position, Quaternion.identity);
+        Instantiate(lightning, lightningSpot3.transform.position, Quaternion.identity);
+        Instantiate(lightning, lightningSpot4.transform.position, Quaternion.identity);
+        lightningSkill = false;
+    }
     private void MelleHandMove()
     {
         Vector2 melleHandMove = (player.transform.position - melleHand.transform.position).normalized;
@@ -110,8 +147,11 @@ public class PerunScript : MonoBehaviour
         {
             if (waitMelleAttack)
             {
+                rangeHand.GetComponent<PerunRangeHandScript>().Attack = true;   
                 yield return new WaitForSeconds(3);
-                waitMelleAttack = true;
+                waitMelleAttack = false;
+                
+
             }
 
             yield return new WaitForFixedUpdate();

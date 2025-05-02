@@ -16,10 +16,12 @@ public class PerunMelleHandScript : MonoBehaviour
     }
     [Header("урон")]
     [SerializeField] private float damage;
+
+    public bool Active { get; set; } = true;
     private void OnTriggerEnter2D(Collider2D collision)
     {  
     
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") & Active)
         {
             player.GetComponent<PlayerStats>().ReduceHp(damage);
             

@@ -160,13 +160,13 @@ public class SimarglBehaivor : MonoBehaviour
         if (attackVector == Vector2.left.normalized & (Vector2.Distance(playerPos, rb.position) <= attackDistance) & playerRB.transform.position.x <= transform.position.x)
         {
             player.GetComponent<PlayerStats>().ReduceHp(attackDamage);
-            player.GetComponent<FirstSkill>().AttacksCount += 5;
+            //player.GetComponent<FirstSkill>().AttacksCount += 5;
         }
         //Либо симаргл атакует вправо и гг стоит справа от него на дистанции тычки
         else if (attackVector == Vector2.right.normalized & (Vector2.Distance(playerPos, rb.position) <= attackDistance) & playerRB.transform.position.x >= transform.position.x)
         {
             player.GetComponent<PlayerStats>().ReduceHp(attackDamage);
-            player.GetComponent<FirstSkill>().AttacksCount += 5;
+            //player.GetComponent<FirstSkill>().AttacksCount += 5;
         }
 
         attackCount++;
