@@ -7,7 +7,7 @@ public class Arrow : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private float force;
     [SerializeField] private float damage;
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

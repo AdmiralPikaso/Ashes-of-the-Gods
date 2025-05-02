@@ -13,8 +13,8 @@ public class PerunRangeHandScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log($"Стрельба {Attack}");
-        Debug.Log($"Кд стрельбы {waitAfterAttack}");
+        //Debug.Log($"Стрельба {Attack}");
+        //Debug.Log($"Кд стрельбы {waitAfterAttack}");
         if (Attack & !waitAfterAttack)
             LightningBlast();
         

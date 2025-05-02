@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using static System.Math;
 
@@ -9,7 +10,7 @@ public class PerunScript : MonoBehaviour
     void Start()
     {
         StartCoroutine(MelleAttackCd());
-
+        StartCoroutine(WaitAfterMelee());
         player = GameObject.FindWithTag("Player");
         returnMelleHandPos = melleHand.transform.position;
     }
@@ -20,6 +21,7 @@ public class PerunScript : MonoBehaviour
     [Space]
     [Header("кулак ближник")]
     [SerializeField] GameObject melleHand;
+    
 
     [Space]
     [Header("кулак дальник")]
@@ -31,25 +33,27 @@ public class PerunScript : MonoBehaviour
     private bool inMelle = false;
     private Vector3 attackMove;
     private bool lightningSkill = true;
-    private bool waitHand = false;
+    public bool waitHand { get; set; } = false;
+    
     void FixedUpdate()
     {
-        //Debug.Log();
+        Debug.Log(Mathf.Abs(melleHand.transform.position.x - player.transform.position.x) <= 1f & !attacked);
+        Debug.Log(Mathf.Abs(melleHand.transform.position.x - player.transform.position.x) <= 1f & !attacked);
         if (!active & player.transform.position.x > startTarget.transform.position.x & !gameObject.GetComponent<Enemy>().isDead)
             active = true;
 
         if (gameObject.GetComponent<Enemy>().isDead)
             active = false;
-
+        
         if (active) 
         {
             if (rangeHand.GetComponent<PerunRangeHandScript>().Attack == false)
             {
-                if (!waitMelleAttack)
+                if (!waitMelleAttack & !waitHand)
                 {
+
                     if (Mathf.Abs(melleHand.transform.position.x - player.transform.position.x) <= 1f & !attacked)
                     {
-
                         inMelle = true;
                         attackMove = player.transform.position;
                         MelleHandAttack(attackMove);
@@ -65,15 +69,15 @@ public class PerunScript : MonoBehaviour
                         ReturnMelleHand();
                 }
             }
-           
+            if (gameObject.GetComponent<Enemy>().HpNow <= gameObject.GetComponent<Enemy>().HpMax /2 & lightningSkill)
+                LightningSkill();
         }
 
-        //if (HpNow <= HpMax/2 & lightningSkill)
-          //  LightningSkill();
+       
 
-        
-            
-            
+
+
+
     }
 
     private bool attacked = false;
@@ -87,6 +91,7 @@ public class PerunScript : MonoBehaviour
     [SerializeField] private GameObject lightningSpot2;
     [SerializeField] private GameObject lightningSpot3;
     [SerializeField] private GameObject lightningSpot4;
+    
     private void LightningSkill()
     {
         Instantiate(lightning, lightningSpot1.transform.position, Quaternion.identity);
@@ -95,17 +100,17 @@ public class PerunScript : MonoBehaviour
         Instantiate(lightning, lightningSpot4.transform.position, Quaternion.identity);
         lightningSkill = false;
     }
+
+    
     private void MelleHandMove()
     {
         Vector2 melleHandMove = (player.transform.position - melleHand.transform.position).normalized;
         melleHandMove.y = 0;
 
-        //melleHand.GetComponent<Rigidbody2D>().MovePosition
-        //  (melleHand.GetComponent<Rigidbody2D>().position + Time.fixedDeltaTime * melleHandMove * 10);
-
+      
         melleHand.GetComponent<Rigidbody2D>().MovePosition
             (Vector2.MoveTowards(melleHand.GetComponent<Rigidbody2D>().position, new Vector2(player.transform.position.x, melleHand.transform.position.y),
-            10*Time.fixedDeltaTime));
+            10f*Time.fixedDeltaTime));
     }
     private void MelleHandAttack(Vector2 attackMove)
     {
@@ -119,6 +124,8 @@ public class PerunScript : MonoBehaviour
         {
             inMelle = false;
             attacked = true;
+            waitHand = true;
+            melleHand.GetComponent<PerunMelleHandScript>().Active = false;
         }
     }
 
@@ -157,5 +164,20 @@ public class PerunScript : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
+    }
+
+    private IEnumerator WaitAfterMelee()
+    {
+        while (true)
+        {
+            if (waitHand)
+            {
+                yield return new WaitForSeconds(2);
+                waitHand = false;
+                melleHand.GetComponent<PerunMelleHandScript>().Active = true;
+            }
+
+            yield return new WaitForFixedUpdate();
+        }
     }
 }
