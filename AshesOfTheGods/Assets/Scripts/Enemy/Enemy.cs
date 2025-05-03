@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
         if (!gameObject.CompareTag("Perun"))
         {
             GetComponent<BoxCollider2D>().enabled = false;
-            animator.SetBool("IsDie", true);
+            //animator.SetBool("IsDie", true);
         }
         isDead = true;
         print("Смерть");
