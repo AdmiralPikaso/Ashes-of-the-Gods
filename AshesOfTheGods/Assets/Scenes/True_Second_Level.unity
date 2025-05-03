@@ -99160,7 +99160,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1406593930606163856, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
       propertyPath: hp
-      value: 4
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 1406593930606163856, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
       propertyPath: fireA
