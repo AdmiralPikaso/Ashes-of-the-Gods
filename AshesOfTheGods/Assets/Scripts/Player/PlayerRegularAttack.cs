@@ -83,7 +83,10 @@ public class PlayerRegularAttack : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(GetComponent<CapsuleCollider2D>().bounds.center, direction, direction.magnitude, damageableLayerMask);
         if (hit.collider != null)
         {
-            hit.collider.GetComponent<Enemy>().TakeDamage(damage);
+            if (hit.collider.CompareTag("PerunHand"))
+                hit.collider.GetComponentInParent<Enemy>().TakeDamage(damage);
+            
+            else hit.collider.GetComponent<Enemy>().TakeDamage(damage);
         }
         waitMode = true;
     }

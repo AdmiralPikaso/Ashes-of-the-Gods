@@ -41,9 +41,13 @@ public class Enemy : MonoBehaviour
     protected void Die()
     {   
         Sounds.Sound(deathSound, audioSource, volume, minPitch, maxPitch);
-        GetComponent<BoxCollider2D>().enabled = false;
+        if (!gameObject.CompareTag("Perun"))
+        {
+            GetComponent<BoxCollider2D>().enabled = false;
+            animator.SetBool("IsDie", true);
+        }
         isDead = true;
         print("Смерть");
-        animator.SetBool("IsDie", true);
+        
     }
 }
