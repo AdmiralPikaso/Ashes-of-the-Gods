@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      molnia_0: 7611923049857422527
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
