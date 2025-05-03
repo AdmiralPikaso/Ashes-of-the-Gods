@@ -439,3 +439,5 @@ MonoBehaviour:
   lieLeft: {fileID: 0}
   lieRight: {fileID: 0}
   coolDownTime: 10
+  thirdSkillFill: {fileID: 0}
+  thirdSkillShade: {fileID: 0}

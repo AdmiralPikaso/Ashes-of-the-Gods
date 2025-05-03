@@ -168,5 +168,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 25
-  rotationSpeed: 200
-  homingStartDelay: 0.5
+  damage: 30
