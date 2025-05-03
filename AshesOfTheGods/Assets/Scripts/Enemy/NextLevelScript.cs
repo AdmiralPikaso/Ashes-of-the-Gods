@@ -30,4 +30,6 @@ public class NextLevelScript : MonoBehaviour
         SceneManager.LoadScene(PlayerPrefs.GetInt("LevelNumber"));
 
     }
+
+    
 }
