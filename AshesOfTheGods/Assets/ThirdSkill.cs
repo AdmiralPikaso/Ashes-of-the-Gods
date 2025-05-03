@@ -12,7 +12,7 @@ public class ThirdSkill : MonoBehaviour
     public GameObject lieRight;
 
     [SerializeField] private float coolDownTime = 10.0f;
-    private bool ready;
+    private bool ready = true;
 
     private void Start()
     {
