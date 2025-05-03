@@ -1,4 +1,5 @@
 using System.Collections;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using static System.Math;
@@ -34,11 +35,11 @@ public class PerunScript : MonoBehaviour
     private Vector3 attackMove;
     private bool lightningSkill = true;
     public bool waitHand { get; set; } = false;
-    
+  
     void FixedUpdate()
     {
-        Debug.Log(Mathf.Abs(melleHand.transform.position.x - player.transform.position.x) <= 1f & !attacked);
-        Debug.Log(Mathf.Abs(melleHand.transform.position.x - player.transform.position.x) <= 1f & !attacked);
+        //Debug.Log(Mathf.Abs(melleHand.transform.position.x - player.transform.position.x) <= 1f & !attacked);
+        //Debug.Log(Mathf.Abs(melleHand.transform.position.x - player.transform.position.x) <= 1f & !attacked);
         if (!active & player.transform.position.x > startTarget.transform.position.x & !gameObject.GetComponent<Enemy>().isDead)
             active = true;
 
@@ -54,11 +55,15 @@ public class PerunScript : MonoBehaviour
 
                     if (Mathf.Abs(melleHand.transform.position.x - player.transform.position.x) <= 1f & !attacked)
                     {
+                        if (!inMelle)
+                        {
+                            returnMelleHandPos = melleHand.transform.position;
+                            
+                        }
                         inMelle = true;
-                        attackMove = player.transform.position;
-                        MelleHandAttack(attackMove);
+                        attackMove = player.transform.position;           
                     }
-
+                   
                     if (inMelle)
                         MelleHandAttack(attackMove);
 
@@ -70,6 +75,10 @@ public class PerunScript : MonoBehaviour
                 }
             }
             if (gameObject.GetComponent<Enemy>().HpNow <= gameObject.GetComponent<Enemy>().HpMax /2 & lightningSkill)
+                LightningSkill();
+            if (gameObject.GetComponent<Enemy>().HpNow <= gameObject.GetComponent<Enemy>().HpMax / 3 & lightningSkill)
+                LightningSkill();
+            if (gameObject.GetComponent<Enemy>().HpNow <= gameObject.GetComponent<Enemy>().HpMax / 4 & lightningSkill)
                 LightningSkill();
         }
 
@@ -118,7 +127,7 @@ public class PerunScript : MonoBehaviour
         {
             
             melleHand.GetComponent<Rigidbody2D>().MovePosition
-                (Vector2.MoveTowards(melleHand.GetComponent<Rigidbody2D>().position, attackMove, 10f * Time.fixedDeltaTime));
+                (Vector2.MoveTowards(melleHand.GetComponent<Rigidbody2D>().position, attackMove, 13f * Time.fixedDeltaTime));
         }
         else
         {
@@ -133,11 +142,11 @@ public class PerunScript : MonoBehaviour
     private void ReturnMelleHand()
     {
         Vector2 returnMove = returnMelleHandPos;
-
+        
         if (Vector2.Distance(melleHand.transform.position, returnMelleHandPos) > 0.1f)
         {
             melleHand.GetComponent<Rigidbody2D>().MovePosition
-                (Vector2.MoveTowards(melleHand.GetComponent<Rigidbody2D>().position,returnMove, 10f * Time.fixedDeltaTime));
+                (Vector2.MoveTowards(melleHand.GetComponent<Rigidbody2D>().position,returnMove, 13f * Time.fixedDeltaTime));
         }
         else
         {
@@ -180,4 +189,6 @@ public class PerunScript : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
     }
+
+   
 }

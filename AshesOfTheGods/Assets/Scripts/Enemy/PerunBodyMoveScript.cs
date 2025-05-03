@@ -12,7 +12,7 @@ public class PerunBodyMoveScript : MonoBehaviour
     private Vector3 positionDelta;
 
     [SerializeField] private GameObject meleeHand;
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private float speed = 13f;
 
     [SerializeField] private GameObject meleeArm1;
     [SerializeField] private GameObject meleeArm2;
@@ -21,6 +21,9 @@ public class PerunBodyMoveScript : MonoBehaviour
     [SerializeField] private GameObject rangeArm2;
 
     [SerializeField] private GameObject rangeHand;
+    [SerializeField] private GameObject head;
+    [SerializeField] private GameObject greenBack;
+    [SerializeField] private GameObject coat;
     private void FixedUpdate()
     {
         //Body movement behind meleeHand
@@ -29,12 +32,18 @@ public class PerunBodyMoveScript : MonoBehaviour
 
         positionDelta.y = 0f;
         positionDelta.z = 0f;
+        
         BodyMove(gameObject);        
+        
         BodyMove(meleeArm2);
+
         BodyMove(rangeArm1);
         BodyMove(rangeArm2);
         BodyMove(rangeHand);
-
+        
+        BodyMove(head);
+        BodyMove(greenBack);
+        BodyMove(coat);
         lastMHposition = meleeHand.transform.position;
         //Body movement behind meleeHand
 

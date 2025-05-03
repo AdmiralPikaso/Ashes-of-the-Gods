@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6148072491082608458}
   - component: {fileID: 8990835475646062130}
+  - component: {fileID: 68223725692743798}
   - component: {fileID: -7106712545859689815}
   - component: {fileID: 1592195855792871113}
-  - component: {fileID: -7340021781281900099}
   m_Layer: 0
-  m_Name: Lightning
+  m_Name: Small Lightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2195181542045423615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0089265285, y: -0, z: -0, w: 0.99996024}
-  m_LocalPosition: {x: 0.5757, y: 2.82, z: 0.0505}
-  m_LocalScale: {x: 1.2503276, y: 1.2503276, z: 1.2503276}
+  m_LocalRotation: {x: 0.008914638, y: -0, z: -0, w: 0.9999603}
+  m_LocalPosition: {x: -6.6717, y: -0.9298, z: -0.0128}
+  m_LocalScale: {x: 0.44382632, y: 0.44382632, z: 0.44382632}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 1.023, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.022, y: 0, z: 0}
 --- !u!212 &8990835475646062130
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -78,8 +78,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 48cc62603a730be4da8aa5035fc6952f, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: a77cb4f609ba972489754ab3a4007f4b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -90,6 +90,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &68223725692743798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2195181542045423615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d22a685c6688d448c786d12c9aee44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 40
+  damage: 25
 --- !u!50 &-7106712545859689815
 Rigidbody2D:
   serializedVersion: 5
@@ -151,29 +165,15 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.02002716, y: 0.08906937}
+  m_Offset: {x: 0.04446125, y: 0.16024613}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.600449, y: 22.539999}
+    oldSize: {x: 22.55, y: 4.60249}
     newSize: {x: 3.59, y: 0.51}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.7564483, y: 22.946186}
+  m_Size: {x: 22.914278, y: 3.9923124}
   m_EdgeRadius: 0
---- !u!114 &-7340021781281900099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2195181542045423615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 615f31ad8f098624799214120d763052, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 25
-  damage: 25

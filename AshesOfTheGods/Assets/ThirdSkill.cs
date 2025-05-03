@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ThirdSkill : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class ThirdSkill : MonoBehaviour
     private void Start()
     {
         StartCoroutine(WaitMode());
+        StartCoroutine(ReloadUi());
     }
     void Update()
     {
@@ -59,7 +61,7 @@ public class ThirdSkill : MonoBehaviour
         }
         ready = false;
     }
-    private bool thirdskillUIreload;
+    
     private IEnumerator WaitMode()
     {
         while (true)
@@ -67,10 +69,42 @@ public class ThirdSkill : MonoBehaviour
             if (!ready)
             {
                 print("”ıÓ‰ËÚ ‚ Í‰");
-                thirdskillUIreload = true;
+                thirdSkillUiReload = true;
                 yield return new WaitForSeconds(coolDownTime);              
                 ready = true;
                 print("√Œ“Œ¬");
+            }
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+
+    private bool thirdSkillUiReload;
+    [SerializeField] Image thirdSkillFill;
+    [SerializeField] GameObject thirdSkillShade;
+    private float cd = 0;
+    
+    private IEnumerator ReloadUi()
+    {
+        while (true)
+        {
+
+            if (thirdSkillUiReload)
+            {
+                thirdSkillShade.SetActive(true);
+                thirdSkillFill.fillAmount = 0;
+                while (cd != 1)
+                {
+                    cd += Time.deltaTime;
+                    //print(" ‰¯ËÚÒˇ");
+                    thirdSkillFill.fillAmount = cd / coolDownTime;
+                    if (ready == true)
+                        cd = 1;
+                    yield return null;
+                }
+                thirdSkillUiReload = false;
+                thirdSkillShade.SetActive(false);
+                cd = 0;
             }
             yield return new WaitForFixedUpdate();
         }
