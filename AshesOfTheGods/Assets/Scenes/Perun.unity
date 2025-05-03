@@ -11515,6 +11515,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.4
       objectReference: {fileID: 0}
+    - target: {fileID: 3661215739747115609, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4612449579389695582, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: attackSpeed
       value: 1
@@ -11551,8 +11555,7 @@ PrefabInstance:
       propertyPath: deathScreen
       value: 
       objectReference: {fileID: 987883650}
-    m_RemovedComponents:
-    - {fileID: 3661215739747115609, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
