@@ -10,6 +10,7 @@ public class HintOpenScript : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");   
     }
 
+
     [SerializeField] private GameObject hintHintText;
     [SerializeField] private GameObject hintHintOffText;
     [SerializeField] private GameObject hintPanelText;
@@ -23,7 +24,7 @@ public class HintOpenScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 hintPanelText.transform.parent.gameObject.SetActive(!hintPanelText.transform.parent.gameObject.activeSelf);
-                hintPanelText.SetActive(!hintPanelText.activeSelf);
+                hintPanelText.SetActive(hintPanelText.transform.parent.gameObject.activeSelf);
             }
             if (hintPanelText.activeSelf)
             {
@@ -36,21 +37,16 @@ public class HintOpenScript : MonoBehaviour
                 hintHintOffText.SetActive(false);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.E) & hintPanelText.transform.parent.gameObject.activeSelf)
+       
+        else
         {
+            
             hintPanelText.transform.parent.gameObject.SetActive(false);
-            hintHintText.SetActive(true);
+            hintPanelText.SetActive(false);
+
+            hintHintText.SetActive(false);
             hintHintOffText.SetActive(false);
         }
-        //else
-        //{
-            
-            //hintPanelText.transform.parent.gameObject.SetActive(false);
-            //hintPanelText.SetActive(false);
-
-            //hintHintText.SetActive(false);
-            //hintHintOffText.SetActive(false);
-        //}
 
         
         
