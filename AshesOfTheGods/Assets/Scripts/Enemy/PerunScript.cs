@@ -39,8 +39,9 @@ public class PerunScript : MonoBehaviour
     private Vector3 attackMove;
     private bool lightningSkill = true;
     public bool waitHand { get; set; } = false;
-    [SerializeField] private GameObject hpBar;  
-    
+    [SerializeField] private GameObject hpBar;
+
+    [SerializeField] private GameObject win;
     void FixedUpdate()
     {
         //Debug.Log(Mathf.Abs(melleHand.transform.position.x - player.transform.position.x) <= 1f & !attacked);
@@ -52,9 +53,11 @@ public class PerunScript : MonoBehaviour
         }
         if (gameObject.GetComponent<Enemy>().isDead)
         {
+            win.SetActive(true);
             active = false;
             Destroy(gameObject, 5f);
             hpBar.SetActive(false);
+
         }
         if (active)
         {
