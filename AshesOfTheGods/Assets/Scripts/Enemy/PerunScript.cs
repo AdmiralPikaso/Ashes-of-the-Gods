@@ -6,26 +6,30 @@ using static System.Math;
 
 public class PerunScript : MonoBehaviour
 {
+    [SerializeField] private AudioClip lightningPerunSound;
+    private AudioSource perunLightningAudioSource;
+    [SerializeField] private float lightningVolume;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     GameObject player;
     void Start()
     {
+        perunLightningAudioSource = gameObject.AddComponent<AudioSource>();
         StartCoroutine(MelleAttackCd());
         StartCoroutine(WaitAfterMelee());
         player = GameObject.FindWithTag("Player");
         returnMelleHandPos = melleHand.transform.position;
     }
 
-    [Header("точка старта")]
+    [Header("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")]
     [SerializeField] GameObject startTarget;
 
     [Space]
-    [Header("кулак ближник")]
+    [Header("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
     [SerializeField] GameObject melleHand;
     
 
     [Space]
-    [Header("кулак дальник")]
+    [Header("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
     [SerializeField] GameObject rangeHand;
     
     private bool active = false;
@@ -49,6 +53,7 @@ public class PerunScript : MonoBehaviour
         if (gameObject.GetComponent<Enemy>().isDead)
         {
             active = false;
+            Destroy(gameObject, 5f);
             hpBar.SetActive(false);
         }
         if (active)
@@ -96,10 +101,10 @@ public class PerunScript : MonoBehaviour
     private bool attacked = false;
 
     [Space]
-    [Header("Большая молния")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")]
     [SerializeField] private GameObject lightning;
     [Space]
-    [Header("Споты молний")]
+    [Header("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")]
     [SerializeField] private GameObject lightningSpot1;
     [SerializeField] private GameObject lightningSpot2;
     [SerializeField] private GameObject lightningSpot3;
@@ -112,7 +117,7 @@ public class PerunScript : MonoBehaviour
     private bool flagThree = false;
     private void LightningSkill()
     {
-        
+        Sounds.StaticSound(lightningPerunSound, perunLightningAudioSource, lightningVolume);
         if (gameObject.GetComponent<Enemy>().HpNow > (gameObject.GetComponent<Enemy>().HpMax * 2 / 3))
             flagOne = true;
         if (gameObject.GetComponent<Enemy>().HpNow <= (gameObject.GetComponent<Enemy>().HpMax * 2 / 3) & flagOne)

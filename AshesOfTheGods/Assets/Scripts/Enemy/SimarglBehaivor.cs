@@ -4,6 +4,15 @@ using UnityEngine.Rendering.UI;
 
 public class SimarglBehaivor : MonoBehaviour
 {
+    [SerializeField] private AudioClip attackSimarglSound;
+    private AudioSource attackSimarglAudioSource;
+    [SerializeField] private float attackSimarglVolume;
+    [SerializeField] private float minP;
+    [SerializeField] private float maxP;
+    [SerializeField] private AudioClip stepSound;
+    [SerializeField] private float stepVolume;
+    [SerializeField] private AudioClip fireSound;
+    [SerializeField] private float fireVolume;
     private Animator animator;
     GameObject player;
     Rigidbody2D rb;
@@ -11,6 +20,7 @@ public class SimarglBehaivor : MonoBehaviour
     Rigidbody2D playerRB;
     void Start()
     {
+        attackSimarglAudioSource = gameObject.AddComponent<AudioSource>();
         animator = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
@@ -18,6 +28,11 @@ public class SimarglBehaivor : MonoBehaviour
         StartCoroutine(WaitAfterAttack());
         StartCoroutine(WaitAfterOneAttack());
         StartCoroutine(FireBlastCd());
+    }
+
+    private void PlayStepSound()
+    {
+        Sounds.Sound(stepSound, attackSimarglAudioSource, stepVolume, minP, maxP);
     }
 
     //������ � ������� ������
@@ -143,6 +158,7 @@ public class SimarglBehaivor : MonoBehaviour
     private bool waitAfterBlast;
     private void FireBlastAttack()
     {
+        Sounds.StaticSound(fireSound, attackSimarglAudioSource, fireVolume);
         walk = false;
         if (Vector2.Distance(transform.position, fireTarget1.transform.position) < Vector2.Distance(transform.position, fireTarget2.transform.position))
         {
@@ -178,7 +194,7 @@ public class SimarglBehaivor : MonoBehaviour
     private bool waitAfterOneAttack = false;
     private void BasicAttack()
     {
-
+        Sounds.Sound(attackSimarglSound, attackSimarglAudioSource, attackSimarglVolume, minP, maxP);
         walk = false;
         //�� �������!
         //���� �������� ������ � ������, ���� ������� ������� ����� � �� ����� ����� �� ���� �� ��������� �����
