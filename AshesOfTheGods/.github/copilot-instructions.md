@@ -8,6 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Enemy, Water, UI, UI, Platform, Player, Ground, Walls
 - Active game object:
+
   - Name: Player
   - Tag: Player
   - Layer: Player
