@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8990835475646062130}
   - component: {fileID: -7106712545859689815}
   - component: {fileID: 1592195855792871113}
-  - component: {fileID: 7664548626040659432}
+  - component: {fileID: 3436292459234512527}
   m_Layer: 0
   m_Name: FireBall
   m_TagString: Untagged
@@ -163,7 +163,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 5.8175917, y: 2.5047302}
   m_EdgeRadius: 0
---- !u!114 &7664548626040659432
+--- !u!114 &3436292459234512527
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,8 +172,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2195181542045423615}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70d22a685c6688d448c786d12c9aee44, type: 3}
+  m_Script: {fileID: 11500000, guid: f43a7d93524c9a84b94c9ea1d30a40fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   force: 40
-  damage: 50
+  damage: 25

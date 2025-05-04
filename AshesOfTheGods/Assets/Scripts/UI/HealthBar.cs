@@ -16,7 +16,7 @@ public class HealthBar : MonoBehaviour
             playerOrEnemy = true;
 
         }
-        else if (creature.CompareTag("Enemy"))
+        else if (creature.CompareTag("Enemy") || creature.CompareTag("Perun"))
         {
             maxHealth = creature.GetComponent<Enemy>().HpMax;
             playerOrEnemy = false;
