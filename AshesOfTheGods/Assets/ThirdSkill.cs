@@ -55,10 +55,9 @@ public class ThirdSkill : MonoBehaviour
         GameObject fireball = Instantiate(fireballPrefab, firePoint.position, firePoint.rotation);
         FireBlast homing = fireball.GetComponent<FireBlast>();
         
-        if (homing != null && target != null)
-        {
+        
             homing.target = target.transform;
-        }
+        
         ready = false;
     }
     
