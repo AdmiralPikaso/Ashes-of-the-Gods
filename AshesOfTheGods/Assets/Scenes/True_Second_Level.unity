@@ -99178,6 +99178,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 667028443}
     - target: {fileID: 1406593930606163856, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
+      propertyPath: isDead
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406593930606163856, guid: 4be49b2ad3710e1449e43dd02ae0bf93, type: 3}
       propertyPath: right1
       value: 
       objectReference: {fileID: 786144524}

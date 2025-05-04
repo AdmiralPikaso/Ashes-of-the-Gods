@@ -27,7 +27,7 @@ public class Arrow : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Enemy") & !collision.gameObject.CompareTag("PerunHand") & !(collision.gameObject.name == "CringeWall") & !(collision.gameObject.name == "RightLie")) 
         {
-            Debug.Log(collision.gameObject.name);
+            //Debug.Log(collision.gameObject.name);
             if (collision.gameObject.CompareTag("Player"))
                 player.GetComponent<PlayerStats>().ReduceHp(damage);
             Destroy(gameObject);

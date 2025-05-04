@@ -36,6 +36,12 @@ public class HintOpenScript : MonoBehaviour
                 hintHintOffText.SetActive(false);
             }
         }
+        else if (Input.GetKeyDown(KeyCode.E) & hintPanelText.transform.parent.gameObject.activeSelf)
+        {
+            hintPanelText.transform.parent.gameObject.SetActive(false);
+            hintHintText.SetActive(true);
+            hintHintOffText.SetActive(false);
+        }
         //else
         //{
             
