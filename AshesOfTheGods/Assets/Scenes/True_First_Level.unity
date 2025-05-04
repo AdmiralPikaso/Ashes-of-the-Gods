@@ -1129,7 +1129,7 @@ GameObject:
   - component: {fileID: 320525972}
   - component: {fileID: 320525971}
   - component: {fileID: 320525970}
-  - component: {fileID: 320525969}
+  - component: {fileID: 320525973}
   m_Layer: 0
   m_Name: TileHelper
   m_TagString: Untagged
@@ -1137,18 +1137,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &320525969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 320525968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edb72583afe90c844bde0cd9f722677d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!483693784 &320525970
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -1432,6 +1420,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 562283564}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &320525973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320525968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbcd9bdc31988f642b1cf9dcdc549b5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &332213255
 GameObject:
   m_ObjectHideFlags: 0

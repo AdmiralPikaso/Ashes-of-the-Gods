@@ -3,13 +3,13 @@ using UnityEngine.Tilemaps;
 
 public class ActiveScript : MonoBehaviour
 {
-    private StribogScript script;
+    private SimarglScript script;
     void Start()
     {
-        script = GameObject.Find("Stribog").GetComponent<StribogScript>();
+        script = GameObject.Find("Simargl").GetComponent<SimarglScript>();
     }   
     void Update()
     {
-        this.gameObject.GetComponent<TilemapRenderer>().enabled = !script.getActive();
+        this.gameObject.GetComponent<TilemapRenderer>().enabled = !script.IsActive;
     }
 }

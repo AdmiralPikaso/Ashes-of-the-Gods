@@ -38,12 +38,10 @@ public class ZoneScript : MonoBehaviour
 
     private void Update()
     {
-        tileZone.SetActive(!open);
-        print(enemies.Count);
+        tileZone.SetActive(!open);     
     }
     private void OnEnable()
-    {
-        print("Подписались");
+    {       
         Enemy.DieCalled += CheckToZoneEmpty;
     }
 
