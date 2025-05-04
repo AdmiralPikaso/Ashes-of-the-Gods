@@ -1938,6 +1938,10 @@ PrefabInstance:
       propertyPath: thirdSkillShade
       value: 
       objectReference: {fileID: 1185925612}
+    - target: {fileID: 5287131323156095293, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7046270433244800343, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: m_Size.y
       value: 4.96636
