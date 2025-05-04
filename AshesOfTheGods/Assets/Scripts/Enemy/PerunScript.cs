@@ -45,8 +45,8 @@ public class PerunScript : MonoBehaviour
 
         if (gameObject.GetComponent<Enemy>().isDead)
             active = false;
-        
-        if (active) 
+
+        if (active)
         {
             if (rangeHand.GetComponent<PerunRangeHandScript>().Attack == false)
             {
@@ -58,12 +58,12 @@ public class PerunScript : MonoBehaviour
                         if (!inMelle)
                         {
                             returnMelleHandPos = melleHand.transform.position;
-                            
+
                         }
                         inMelle = true;
-                        attackMove = player.transform.position;           
+                        attackMove = player.transform.position;
                     }
-                   
+
                     if (inMelle)
                         MelleHandAttack(attackMove);
 
@@ -74,12 +74,11 @@ public class PerunScript : MonoBehaviour
                         ReturnMelleHand();
                 }
             }
-            if (gameObject.GetComponent<Enemy>().HpNow <= gameObject.GetComponent<Enemy>().HpMax /2 & lightningSkill)
-                LightningSkill();
-            if (gameObject.GetComponent<Enemy>().HpNow <= gameObject.GetComponent<Enemy>().HpMax / 3 & lightningSkill)
-                LightningSkill();
-            if (gameObject.GetComponent<Enemy>().HpNow <= gameObject.GetComponent<Enemy>().HpMax / 4 & lightningSkill)
-                LightningSkill();
+            
+            
+
+            
+            LightningSkill();
         }
 
        
@@ -100,14 +99,63 @@ public class PerunScript : MonoBehaviour
     [SerializeField] private GameObject lightningSpot2;
     [SerializeField] private GameObject lightningSpot3;
     [SerializeField] private GameObject lightningSpot4;
-    
+    [SerializeField] private GameObject lightningSpot5;
+    [SerializeField] private GameObject lightningSpot6;
+
+    private bool flagOne = false;
+    private bool flagTwo = false;
+    private bool flagThree = false;
     private void LightningSkill()
     {
-        Instantiate(lightning, lightningSpot1.transform.position, Quaternion.identity);
-        Instantiate(lightning, lightningSpot2.transform.position, Quaternion.identity);
-        Instantiate(lightning, lightningSpot3.transform.position, Quaternion.identity);
-        Instantiate(lightning, lightningSpot4.transform.position, Quaternion.identity);
-        lightningSkill = false;
+        
+        if (gameObject.GetComponent<Enemy>().HpNow > (gameObject.GetComponent<Enemy>().HpMax * 2 / 3))
+            flagOne = true;
+        if (gameObject.GetComponent<Enemy>().HpNow <= (gameObject.GetComponent<Enemy>().HpMax * 2 / 3) & flagOne)
+        {
+            Debug.Log("Lightning 1");
+            
+            Instantiate(lightning, lightningSpot1.transform.position, Quaternion.identity);
+            Instantiate(lightning, lightningSpot2.transform.position, Quaternion.identity);
+            Instantiate(lightning, lightningSpot3.transform.position, Quaternion.identity);
+            Instantiate(lightning, lightningSpot4.transform.position, Quaternion.identity);
+            Instantiate(lightning, lightningSpot5.transform.position, Quaternion.identity);
+            Instantiate(lightning, lightningSpot6.transform.position, Quaternion.identity);
+            flagOne = false;
+        }
+
+
+        if (gameObject.GetComponent<Enemy>().HpNow > (gameObject.GetComponent<Enemy>().HpMax / 2))
+            flagTwo = true;
+
+        if (gameObject.GetComponent<Enemy>().HpNow <= (gameObject.GetComponent<Enemy>().HpMax / 2) & flagTwo)
+        {
+            Debug.Log("Lightning 2");
+            
+            Instantiate(lightning, lightningSpot1.transform.position, Quaternion.identity);
+            Instantiate(lightning, lightningSpot2.transform.position, Quaternion.identity);
+            Instantiate(lightning, lightningSpot3.transform.position, Quaternion.identity);
+            Instantiate(lightning, lightningSpot4.transform.position, Quaternion.identity);
+            Instantiate(lightning, lightningSpot5.transform.position, Quaternion.identity);
+            Instantiate(lightning, lightningSpot6.transform.position, Quaternion.identity);
+            flagTwo = false;
+        }
+
+        if (gameObject.GetComponent<Enemy>().HpNow > (gameObject.GetComponent<Enemy>().HpMax / 4))
+            flagThree = true;
+
+        if (gameObject.GetComponent<Enemy>().HpNow <= (gameObject.GetComponent<Enemy>().HpMax / 4) & flagThree)
+        {
+            Debug.Log("Lightning 3");
+            
+            Instantiate(lightning, lightningSpot1.transform.position, Quaternion.identity);
+            Instantiate(lightning, lightningSpot2.transform.position, Quaternion.identity);
+            Instantiate(lightning, lightningSpot3.transform.position, Quaternion.identity);
+            Instantiate(lightning, lightningSpot4.transform.position, Quaternion.identity);
+            Instantiate(lightning, lightningSpot5.transform.position, Quaternion.identity);
+            Instantiate(lightning, lightningSpot6.transform.position, Quaternion.identity);
+            flagThree = false;
+        }
+        
     }
 
     

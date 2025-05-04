@@ -42,6 +42,8 @@ public class StribogScript : MonoBehaviour
     private bool waitAfterAttack = false;
     private bool jump = true;
     private bool activeFlag = false;
+
+    public bool getActive() => activeFlag;
     [SerializeField] private Transform bossFightTarget;
 
 
