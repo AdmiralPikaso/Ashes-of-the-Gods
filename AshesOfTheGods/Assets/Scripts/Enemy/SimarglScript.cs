@@ -4,11 +4,11 @@ public class SimarglScript : Enemy
 {
     public bool IsActive { get; protected set; } = false;
 
-
     private GameObject player;
     
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         
         HpNow = hp;
@@ -25,43 +25,47 @@ public class SimarglScript : Enemy
             healthBar.SetActive(false);
             Die();
         }
-
-
     }
 
-    [Header("Точка, которая запускает файт")]
+    private void Destruction()
+    {
+        IsActive = false;
+        Destroy(gameObject, 5f);
+    }
+
+    [Header("пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ")]
     [SerializeField] private GameObject bossFightPoint;
 
 
     [Space]
-    [Header("Границы первой зоны огня")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ")]
     [SerializeField] private GameObject fireA;
     [SerializeField] private GameObject fireB;
 
     [Space]
-    [Header("Границы второй зоны огня")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ")]
     [SerializeField] private GameObject left1;
     [SerializeField] private GameObject right1;
 
     [Space]
-    [Header("Границы третьей зоны огня")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ")]
     [SerializeField] private GameObject left2;
     [SerializeField] private GameObject right2;
 
     [Space]
-    [Header("хелсбар")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
     [SerializeField] private GameObject healthBar;
     private void Update()
     {
 
-        if (!IsActive & bossFightPoint.transform.position.x < player.transform.position.x)
+        if (!IsActive & bossFightPoint.transform.position.x < player.transform.position.x & !(HpNow <= 0))
         {
             IsActive = true;
             fireA.SetActive(true); 
             fireB.SetActive(true);
         }
 
-        if (IsActive)
+        if (IsActive & !(HpNow <= 0))
         {
             healthBar.SetActive(true);
             fireA.SetActive(true);
@@ -88,11 +92,23 @@ public class SimarglScript : Enemy
                 IsActive = false;
             }
         }
+        
+        if (HpNow <= (HpMax / 3) * 1)
+        {
+            fireA.transform.position = left1.transform.position;
+            fireB.transform.position = right1.transform.position;
+            //MovePillar(left1, right1);
+        }
+        
+        else if (HpNow <= (HpMax/2)*1)
+            MovePillar(left2, right2);
 
+        else if (HpNow <= (HpMax/3)*2)
+            MovePillar(left1,right1);
     }
 
     [Space]
-    [Header("Скорость столбов")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
     [SerializeField] float pillarSpeed;
 
     private void MovePillar(GameObject leftPoint, GameObject rightPoint)

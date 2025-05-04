@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using NUnit.Framework.Constraints;
 
 public class StribogScript : MonoBehaviour
 {
@@ -406,10 +407,11 @@ public class StribogScript : MonoBehaviour
         }
         private void Death()
         {
+            activeFlag = false;
             deathFlag = true;
             //gameObject.SetActive(false);
-            //healthBar.SetActive(false);
-            //Destroy(gameObject, 5f);
+            healthBar.SetActive(false);
+            Destroy(gameObject, 5f);
         }
 }
 

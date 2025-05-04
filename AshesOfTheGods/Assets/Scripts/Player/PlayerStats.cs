@@ -64,7 +64,7 @@ public class PlayerStats : MonoBehaviour
         if (randomIndex == lastSoundIndex)
             randomIndex = Random.Range(0, hitSounds.Length);
         else
-            Sounds.Sound(hitSounds[randomIndex], audioSource, volume);
+            Sounds.StaticSound(hitSounds[randomIndex], audioSource, volume);
         lastSoundIndex = randomIndex;
         
     }
