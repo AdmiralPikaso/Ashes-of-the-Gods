@@ -64,7 +64,10 @@ public class PlayerHeavyAttack : MonoBehaviour
         RaycastHit2D[] hits = Physics2D.RaycastAll(GetComponent<CapsuleCollider2D>().bounds.center, direction, direction.magnitude, damageableLayerMask);
         foreach (RaycastHit2D hit in hits)
         {
-            hit.collider.GetComponent<Enemy>().TakeDamage(damage);
+            if (hit.collider.gameObject.CompareTag("PerunHand"))
+                hit.collider.GetComponentInParent<Enemy>().TakeDamage(damage);
+            else
+                hit.collider.GetComponent<Enemy>().TakeDamage(damage);
         }
         waitMode = true;
     }
