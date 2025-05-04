@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class SimarglScript : Enemy
 {
+    [SerializeField] private AudioClip damageSimargl;
+    [SerializeField] private float min;
+    [SerializeField] private float max;
+    [SerializeField] private float damageVolume;
+    private AudioSource damageSimarglAudioSource;
+
     public bool IsActive { get; protected set; } = false;
 
     private GameObject player;
@@ -11,6 +17,7 @@ public class SimarglScript : Enemy
     
     private void Awake()
     {
+        damageSimarglAudioSource = gameObject.AddComponent<AudioSource>();
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -18,7 +25,6 @@ public class SimarglScript : Enemy
         HpNow = hp;
         HpMax = hp;
     }
-
     private void Start()
     {
         StartCoroutine(damageble());
@@ -26,7 +32,7 @@ public class SimarglScript : Enemy
     private bool getDamage = false;
     public override void TakeDamage(float damage)
     {
-
+        Sounds.Sound(damageSimargl, damageSimarglAudioSource, damageVolume, min, max);
         HpNow -= damage;
         getDamage = true;
         if (HpNow <= 0)

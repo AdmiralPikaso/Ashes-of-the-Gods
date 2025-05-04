@@ -4,17 +4,20 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class PerunRangeHandScript : MonoBehaviour
 {
-   
+   [SerializeField] private AudioClip lightningfistSound;
+    private AudioSource lightningfistAudioSource;
+    [SerializeField] private float lightningfistVolume;
     void Start()
     {
+        lightningfistAudioSource = gameObject.AddComponent<AudioSource>();
         StartCoroutine(WaitAfterAttack());
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Debug.Log($"Стрельба {Attack}");
-        //Debug.Log($"Кд стрельбы {waitAfterAttack}");
+        //Debug.Log($"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ {Attack}");
+        //Debug.Log($"пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ {waitAfterAttack}");
         if (Attack & !waitAfterAttack)
             LightningBlast();
         
@@ -31,6 +34,7 @@ public class PerunRangeHandScript : MonoBehaviour
     private int attackCount = 0;
     private void LightningBlast()
     {
+        Sounds.StaticSound(lightningfistSound, lightningfistAudioSource, lightningfistVolume);
         switch (attackCount)
         {
             case 0:

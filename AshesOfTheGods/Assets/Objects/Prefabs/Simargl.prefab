@@ -184,6 +184,10 @@ MonoBehaviour:
   maxPitch: 0
   volume: 0
   isDead: 0
+  damageSimargl: {fileID: 8300000, guid: ba23fd9fdd6f4db4894a04dd0a807490, type: 3}
+  min: 0.9
+  max: 1.1
+  damageVolume: 0.4
   bossFightPoint: {fileID: 0}
   fireA: {fileID: 0}
   fireB: {fileID: 0}
@@ -205,6 +209,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b004ec3df4a7eaa4d963da14730f008d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackSimarglSound: {fileID: 8300000, guid: f125d50d530661e46a1ff0ceaa593a8d, type: 3}
+  attackSimarglVolume: 0.6
+  minP: 0.9
+  maxP: 1.1
+  stepSound: {fileID: 8300000, guid: 2b719ff917355af4b8bb8f9487e60b9f, type: 3}
+  stepVolume: 0.3
+  fireSound: {fileID: 8300000, guid: 435a7cd3b6aba7d46a0aff603e670d75, type: 3}
+  fireVolume: 0.5
   speed: 15
   attackDistance: 10
   fireBlast: {fileID: 2195181542045423615, guid: 758b9611b463ab94d8b3dae7922820af, type: 3}

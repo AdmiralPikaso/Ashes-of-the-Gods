@@ -12,14 +12,14 @@ public class StribogScript : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField] protected AudioClip wingFlap;
     public AudioSource audioSource;
-    [SerializeField] protected float minPitch;
-    [SerializeField] protected float maxPitch;
-    [SerializeField] protected float volume;
-    [SerializeField] protected AudioClip attackStribogSound;
-    public AudioSource attackAudioSource;
-    [SerializeField] protected float attackVolume;
-    [SerializeField] protected AudioClip airBlastSound;
-    [SerializeField] protected float airBlastVolume;
+    [SerializeField] private float minPitch;
+    [SerializeField] private float maxPitch;
+    [SerializeField] private float volume;
+    [SerializeField] private AudioClip attackStribogSound;
+    private AudioSource attackAudioSource;
+    [SerializeField] private float attackVolume;
+    [SerializeField] private AudioClip airBlastSound;
+    [SerializeField] private float airBlastVolume;
 
     void Start()
     {

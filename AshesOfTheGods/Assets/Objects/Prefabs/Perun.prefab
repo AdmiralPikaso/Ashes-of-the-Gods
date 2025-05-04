@@ -492,6 +492,8 @@ MonoBehaviour:
   head: {fileID: 8565779495814874828}
   greenBack: {fileID: 1389564355535938426}
   coat: {fileID: 7761909966719131369}
+  rightWall: {fileID: 0}
+  leftWall: {fileID: 0}
 --- !u!1 &3674612443797598396
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,6 +816,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4db2c123e4eba4a9462fe8fc5b053d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightningPerunSound: {fileID: 0}
+  lightningVolume: 0
   startTarget: {fileID: 0}
   melleHand: {fileID: 915843539021315269}
   rangeHand: {fileID: 8579740908402863151}
@@ -822,6 +826,8 @@ MonoBehaviour:
   lightningSpot2: {fileID: 0}
   lightningSpot3: {fileID: 0}
   lightningSpot4: {fileID: 0}
+  lightningSpot5: {fileID: 0}
+  lightningSpot6: {fileID: 0}
 --- !u!114 &6623364522591628280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -834,12 +840,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a67d892859dcb5a44bb9f7b3da045ca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
-  damageSound: {fileID: 0}
+  hp: 10
+  damageSound: {fileID: 8300000, guid: 0b62f42391558694b943c80750a55c70, type: 3}
   deathSound: {fileID: 0}
-  minPitch: 0
-  maxPitch: 0
-  volume: 0
+  minPitch: 0.9
+  maxPitch: 1.1
+  volume: 0.7
   isDead: 0
 --- !u!1 &7761909966719131369
 GameObject:
@@ -1206,6 +1212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795cb2d1426e2644ab59fb41af12d753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightningfistSound: {fileID: 8300000, guid: 9933022de2544bb47976292b5523f2a9, type: 3}
+  lightningfistVolume: 0.8
   lightning: {fileID: 2195181542045423615, guid: 313ff5998b9c9e44cb6a647f02bfea00, type: 3}
   fireSpot1: {fileID: 5826046313395279880}
   fireSpot2: {fileID: 659120381965613390}
