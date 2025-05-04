@@ -821,6 +821,7 @@ MonoBehaviour:
   startTarget: {fileID: 0}
   melleHand: {fileID: 915843539021315269}
   rangeHand: {fileID: 8579740908402863151}
+  hpBar: {fileID: 0}
   lightning: {fileID: 2195181542045423615, guid: 75b53de171b8f6e41aad9688be40ee58, type: 3}
   lightningSpot1: {fileID: 0}
   lightningSpot2: {fileID: 0}

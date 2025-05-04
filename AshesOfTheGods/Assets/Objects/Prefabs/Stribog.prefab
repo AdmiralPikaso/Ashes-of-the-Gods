@@ -208,10 +208,11 @@ MonoBehaviour:
   maxPitch: 1.3
   volume: 0.8
   attackStribogSound: {fileID: 8300000, guid: 1b52e9ea77f8a4048adc84f3ad00bd78, type: 3}
-  attackAudioSource: {fileID: 0}
   attackVolume: 0.8
   airBlastSound: {fileID: 8300000, guid: 5001ccdbd07aa0d429341ffa84049b6d, type: 3}
   airBlastVolume: 0.7
+  fightSound: {fileID: 8300000, guid: 088de5388afbb8247aafcca4c88f601a, type: 3}
+  fightVolume: 0.3
   attackDistance: 10
   bossFightTarget: {fileID: 0}
   jumpPointA: {fileID: 0}
