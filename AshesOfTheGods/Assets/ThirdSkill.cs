@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class ThirdSkill : MonoBehaviour
 {
+    [SerializeField] private AudioClip fireSound;
+    private AudioSource fireAudioSource;
+    [SerializeField] private float fireVolume;
     public GameObject fireballPrefab;
     public Transform firePoint;
     public GameObject leftArm;
@@ -17,6 +20,7 @@ public class ThirdSkill : MonoBehaviour
 
     private void Start()
     {
+        fireAudioSource = gameObject.AddComponent<AudioSource>();
         StartCoroutine(WaitMode());
         StartCoroutine(ReloadUi());
     }
@@ -30,7 +34,8 @@ public class ThirdSkill : MonoBehaviour
 
     void SpawnFireball()
     {
-        print("ÎÃÎÍÜ");
+        Sounds.StaticSound(fireSound, fireAudioSource, fireVolume);
+        print("ï¿½ï¿½ï¿½ï¿½ï¿½");
         GameObject target = leftArm;
         bool between = true;
         if (transform.position.x < leftArm.transform.position.x || transform.position.x > rightArm.transform.position.x)
@@ -67,11 +72,11 @@ public class ThirdSkill : MonoBehaviour
         {
             if (!ready)
             {
-                print("Óõîäèò â êä");
+                print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½");
                 thirdSkillUiReload = true;
                 yield return new WaitForSeconds(coolDownTime);              
                 ready = true;
-                print("ÃÎÒÎÂ");
+                print("ï¿½ï¿½ï¿½ï¿½ï¿½");
             }
             yield return new WaitForFixedUpdate();
         }
@@ -95,7 +100,7 @@ public class ThirdSkill : MonoBehaviour
                 while (cd != 1)
                 {
                     cd += Time.deltaTime;
-                    //print("Êäøèòñÿ");
+                    //print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                     thirdSkillFill.fillAmount = cd / coolDownTime;
                     if (ready == true)
                         cd = 1;

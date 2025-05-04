@@ -10,6 +10,9 @@ using Unity.VisualScripting;
 
 public class SecondSkill : MonoBehaviour
 {
+    [SerializeField] private AudioClip dashSound;
+    private AudioSource dashAudioSource;
+    [SerializeField] private float dashVolume;
     private Animator animator;
     [SerializeField] private float CoolDownTime;
     [SerializeField] private float DashDistance = 15;
@@ -26,6 +29,7 @@ public class SecondSkill : MonoBehaviour
     }
     void Start()
     {
+        dashAudioSource = gameObject.AddComponent<AudioSource>();
         animator = GetComponent<Animator>();
         StartCoroutine(DashTimer());
         StartCoroutine(DashCoolDown());
@@ -44,6 +48,7 @@ public class SecondSkill : MonoBehaviour
     {
         if (!cd)
         {
+            Sounds.StaticSound(dashSound, dashAudioSource, dashVolume);
             animator.SetTrigger("Dash");
             inDash = true;
             ready = false;
@@ -97,7 +102,7 @@ public class SecondSkill : MonoBehaviour
                 while (skillCd != 1)
                 {
                     skillCd += Time.deltaTime;
-                    //print("Кдшится");
+                    //print("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
                     secondSkillFill.fillAmount = skillCd / CoolDownTime;
                     if (ready == true)
                         skillCd = 1;

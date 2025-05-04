@@ -33,4 +33,8 @@ public class Sounds : MonoBehaviour
         audioSource.spread = 180f;
         audioSource.rolloffMode = AudioRolloffMode.Linear;
     }
+    public static void StopPlay(AudioClip clip, AudioSource audioSource, float volume)
+    {
+        audioSource.Stop();
+    }
 }
