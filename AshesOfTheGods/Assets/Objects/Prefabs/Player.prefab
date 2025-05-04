@@ -412,6 +412,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!81 &5287131323156095293
 AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8334443902525607045}
+  m_Enabled: 1
 --- !u!114 &7625057915539701522
 MonoBehaviour:
   m_ObjectHideFlags: 0
