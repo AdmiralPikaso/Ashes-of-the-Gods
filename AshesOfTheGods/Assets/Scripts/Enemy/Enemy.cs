@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
             GetComponent<BoxCollider2D>().enabled = false;
             animator.SetBool("IsDie", true);
         }
-        DieCalled.Invoke(gameObject.GetInstanceID());
+        DieCalled?.Invoke(gameObject.GetInstanceID());
         isDead = true;       
         print("Смерть");
 
