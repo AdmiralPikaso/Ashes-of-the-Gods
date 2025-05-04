@@ -184,8 +184,6 @@ MonoBehaviour:
   maxPitch: 0
   volume: 0.3
   isDead: 0
-  stribogDeathSound: {fileID: 8300000, guid: 77ea6e15a581ca64e80506b3d6ca62ee, type: 3}
-  stribogDeathVolume: 0.4
   hitSounds:
   - {fileID: 8300000, guid: 00e72b9d828267849a700feca3424f26, type: 3}
   - {fileID: 8300000, guid: 7dd06769fc836864caf81ff1de414810, type: 3}
