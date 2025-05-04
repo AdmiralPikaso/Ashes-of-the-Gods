@@ -20,6 +20,7 @@ TagManager:
   - SavePoint2
   - PerunHand
   - Perun
+  - Hint
   layers:
   - Default
   - TransparentFX
