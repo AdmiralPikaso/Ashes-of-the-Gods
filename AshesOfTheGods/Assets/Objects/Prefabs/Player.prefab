@@ -418,6 +418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb27039815584d4489feb4a36920994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dashSound: {fileID: 8300000, guid: e29a39d26fd82eb4ea133dbd0a632674, type: 3}
+  dashVolume: 0.3
   CoolDownTime: 1
   DashDistance: 15
   DashTime: 0.25
@@ -479,6 +481,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d68e06c4db42414ca0fe3efebbff3c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireSound: {fileID: 8300000, guid: fa5a6526f73b0af48bd5b6739d202fc5, type: 3}
+  fireVolume: 0.25
   fireballPrefab: {fileID: 2195181542045423615, guid: 3891dfb756d197041b18426625dbe240, type: 3}
   firePoint: {fileID: 4104726326696642878}
   leftArm: {fileID: 0}
