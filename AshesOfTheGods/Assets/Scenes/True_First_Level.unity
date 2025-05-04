@@ -18424,6 +18424,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7759454b31052044a10a0bc20866a06, type: 3}
+--- !u!1 &801624789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 801624790}
+  m_Layer: 0
+  m_Name: Mountains
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &801624790
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801624789}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -148.7251, y: -29.550854, z: -0.54990995}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &804253850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84613,7 +84644,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1584082342}
   - component: {fileID: 1584082341}
-  - component: {fileID: 1584082340}
   - component: {fileID: 1584082339}
   - component: {fileID: 1584082338}
   m_Layer: 0
@@ -84699,14 +84729,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &1584082340
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1584082337}
-  m_Enabled: 1
 --- !u!20 &1584082341
 Camera:
   m_ObjectHideFlags: 0
@@ -87499,3 +87521,4 @@ SceneRoots:
   - {fileID: 993188461}
   - {fileID: 1557942321}
   - {fileID: 457323971}
+  - {fileID: 801624790}
