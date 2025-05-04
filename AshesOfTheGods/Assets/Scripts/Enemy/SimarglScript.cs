@@ -29,6 +29,8 @@ public class SimarglScript : Enemy
 
     private void Destruction()
     {
+        fireA.SetActive(false);
+        fireB.SetActive(false);
         IsActive = false;
         Destroy(gameObject, 5f);
     }
@@ -85,26 +87,10 @@ public class SimarglScript : Enemy
             else if (HpNow <= (HpMax / 3) * 1)
                 MovePillar(left1, right1);
 
-            if (HpNow <= 0)
-            {
-                fireA.SetActive(false);
-                fireB.SetActive(false);
-                IsActive = false;
-            }
+            
         }
         
-        if (HpNow <= (HpMax / 3) * 1)
-        {
-            fireA.transform.position = left1.transform.position;
-            fireB.transform.position = right1.transform.position;
-            //MovePillar(left1, right1);
-        }
         
-        else if (HpNow <= (HpMax/2)*1)
-            MovePillar(left2, right2);
-
-        else if (HpNow <= (HpMax/3)*2)
-            MovePillar(left1,right1);
     }
 
     [Space]
