@@ -259,6 +259,7 @@ public class PlayerMovement : MonoBehaviour
             JumpPressed = Input.GetKeyDown(KeyCode.Space);
             if (!in_air & JumpPressed & !FindFirstObjectByType<SecondSkill>().GetinDash())
             {
+                rigidB.linearVelocityY = 0;
                 rigidB.AddForceY(jumpForce, ForceMode2D.Impulse);
                 animator.SetBool("Jump", true);
                 JumpPressed = false;
