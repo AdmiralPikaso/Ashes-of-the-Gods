@@ -29,6 +29,9 @@ public class SimarglScript : Enemy
 
     private void Destruction()
     {
+        if (player.transform.position.x > transform.position.x)
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        else gameObject.GetComponent<SpriteRenderer>().flipX = false;
         fireA.SetActive(false);
         fireB.SetActive(false);
         IsActive = false;
