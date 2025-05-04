@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Xml.Serialization;
 using NUnit.Framework;
@@ -24,6 +25,7 @@ public class Enemy : MonoBehaviour
     public float HpMax { get; protected set; }
     void Start()
     {
+        print(DieCalled?.GetInvocationList()?.Length ?? 0);
         audioSource = gameObject.AddComponent<AudioSource>();
         if (this.gameObject.name != "Perun")
             StartCoroutine(damageble());
@@ -58,6 +60,8 @@ public class Enemy : MonoBehaviour
     }
 
     public bool isDead = false;
+
+    public static event Action<int> DieCalled;
     protected void Die()
     {
         if(deathSound != null)
@@ -67,7 +71,8 @@ public class Enemy : MonoBehaviour
             GetComponent<BoxCollider2D>().enabled = false;
             animator.SetBool("IsDie", true);
         }
-        isDead = true;
+        DieCalled.Invoke(gameObject.GetInstanceID());
+        isDead = true;       
         print("Смерть");
 
     }
