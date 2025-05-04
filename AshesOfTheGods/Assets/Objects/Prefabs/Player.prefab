@@ -296,8 +296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae17fe9a00522f428d789570a7c1662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healSound: {fileID: 0}
-  vlm: 0
+  healSound: {fileID: 8300000, guid: 927f2bd228755034c990d41f1003cb7f, type: 3}
+  vlm: 0.5
   damageSounds:
   - {fileID: 8300000, guid: 341145df8d80c174b8dc895a04352fbe, type: 3}
   - {fileID: 8300000, guid: ad81a2c9483624b4ba209a2fd6115050, type: 3}
