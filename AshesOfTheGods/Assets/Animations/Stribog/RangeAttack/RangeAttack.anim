@@ -221,8 +221,22 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.325
+    functionName: PlayWingFlapSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.825
     functionName: AirBlastSkill
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.925
+    functionName: PlayWingFlapSound
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
