@@ -6,33 +6,43 @@ public class SaveManagerScript : MonoBehaviour
     private const string POS_X_KEY = "PlayerPosX";
     private const string POS_Y_KEY = "PlayerPosY";
     private const string POS_Z_KEY = "PlayerPosZ";
-    
+
     private const string Sky_X_KEY = "SkyPosX";
     private const string Sky_Y_KEY = "SkyPosY";
     private const string Sky_Z_KEY = "SkyPosZ";
 
-    
-    
+
+
     private bool IsSaved1 = false;
     private bool IsSaved2 = false;
 
     private Transform SkyPos;
-   // private Transform MountainsPos;
+    private float MountainsPos = -470.5f;
+    // private Transform MountainsPos;
     private void Awake()
-    {
-        //if (!(PlayerPrefs.GetInt("LevelNumber")  == 3))
-            SkyPos = GameObject.FindGameObjectWithTag("Sky").transform;
-       // MountainsPos = GameObject.FindGameObjectWithTag("Mountains").transform;
-        
+    {//if (!(PlayerPrefs.GetInt("LevelNumber")  == 3))
+        SkyPos = GameObject.FindGameObjectWithTag("Sky").transform;
+        if (PlayerPrefs.GetInt("LevelNumber") == 2)
+            MountainsPos = GameObject.Find("Mountains").transform.position.x;
+
+        // MountainsPos = GameObject.FindGameObjectWithTag("Mountains").transform;
+
     }
     private void Start()
     {
-        
+
         //Debug.Log($"{PlayerPrefs.HasKey(POS_X_KEY) & PlayerPrefs.HasKey(POS_Y_KEY) & PlayerPrefs.HasKey(POS_Z_KEY)}");
         if (PlayerPrefs.HasKey(POS_X_KEY) & PlayerPrefs.HasKey(POS_Y_KEY) & PlayerPrefs.HasKey(POS_Z_KEY) & PlayerPrefs.HasKey(Sky_X_KEY) & PlayerPrefs.HasKey(Sky_Y_KEY) & PlayerPrefs.HasKey(Sky_Z_KEY))
         {
             transform.position = LoadPlayerPosition();
             SkyPos.position = LoadSkyPosition();
+            if (PlayerPrefs.GetInt("LevelNumber") == 2)
+            {
+                GameObject mountains = GameObject.Find("Mountains");
+                mountains.transform.position = new Vector3(LoadMountainsPos(),
+                    mountains.transform.position.y,
+                    mountains.transform.position.z);
+            }
         }
 
     }
@@ -51,15 +61,14 @@ public class SaveManagerScript : MonoBehaviour
             IsSaved2 = true;
         }
     }
-
     private void Update()
     {
-        
+
     }
 
 
     public void SavePlayerPosition(Vector3 pos, Vector3 SkyPos)
-    { 
+    {
         PlayerPrefs.SetFloat(POS_X_KEY, pos.x);
         PlayerPrefs.SetFloat(POS_Y_KEY, pos.y);
         PlayerPrefs.SetFloat(POS_Z_KEY, pos.z);
@@ -71,8 +80,6 @@ public class SaveManagerScript : MonoBehaviour
         PlayerPrefs.Save();
         Debug.Log("Saved");
         Debug.Log($"Sky Position {SkyPos.x} {SkyPos.y} {SkyPos.z}");
-
-
     }
 
     public Vector3 LoadPlayerPosition()
@@ -93,5 +100,14 @@ public class SaveManagerScript : MonoBehaviour
         Vector3 loadedSkyPosition = new Vector3(Skyx, Skyy, Skyz);
         Debug.Log($"Sky Position loaded: {loadedSkyPosition}");
         return loadedSkyPosition;
+    }
+    public void SaveMountainsPos()
+    {
+        PlayerPrefs.SetFloat("Mountains", MountainsPos);
+    }
+    public float LoadMountainsPos()
+    {
+        float x = PlayerPrefs.GetFloat("Mountains", 0f);
+        return x;
     }
 }
