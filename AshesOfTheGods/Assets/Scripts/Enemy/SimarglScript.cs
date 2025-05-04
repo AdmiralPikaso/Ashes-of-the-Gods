@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SimarglScript : Enemy
@@ -5,21 +6,29 @@ public class SimarglScript : Enemy
     public bool IsActive { get; protected set; } = false;
 
     private GameObject player;
+
+    private SpriteRenderer spriteRenderer;
     
     private void Awake()
     {
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         HpNow = hp;
         HpMax = hp;
     }
 
+    private void Start()
+    {
+        StartCoroutine(damageble());
+    }
+    private bool getDamage = false;
     public override void TakeDamage(float damage)
     {
 
         HpNow -= damage;
-
+        getDamage = true;
         if (HpNow <= 0)
         {
             healthBar.SetActive(false);
@@ -111,8 +120,22 @@ public class SimarglScript : Enemy
             fireB.GetComponent<Rigidbody2D>().MovePosition(fireB.GetComponent<Rigidbody2D>().position + Time.fixedDeltaTime * move2 * pillarSpeed);
         }
     }
-    
-   
-   
-   
+
+
+    private IEnumerator damageble()
+    {
+        while (true)
+        {
+            if (getDamage)
+            {
+                spriteRenderer.color = new Color(1, 0.47f, 0.47f, 1);
+                yield return new WaitForSeconds(0.2f);
+                spriteRenderer.color = Color.white;
+                getDamage = false;
+            }
+
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
 }
