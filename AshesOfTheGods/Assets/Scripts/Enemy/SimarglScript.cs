@@ -74,9 +74,26 @@ public class SimarglScript : Enemy
             fireA.GetComponent<FirePillar>().IsOn = true;
             fireB.GetComponent<FirePillar>().IsOn = true;
 
+
+
+            if (HpNow <= (HpMax / 3) * 2)
+                MovePillar(left1, right1);
+
+            else if (HpNow <= (HpMax / 2) * 1)
+                MovePillar(left2, right2);
+
+            else if (HpNow <= (HpMax / 3) * 1)
+                MovePillar(left1, right1);
+
+            if (HpNow <= 0)
+            {
+                fireA.SetActive(false);
+                fireB.SetActive(false);
+                IsActive = false;
+            }
         }
         
-        /*if (HpNow <= (HpMax / 3) * 1)
+        if (HpNow <= (HpMax / 3) * 1)
         {
             fireA.transform.position = left1.transform.position;
             fireB.transform.position = right1.transform.position;
@@ -87,7 +104,7 @@ public class SimarglScript : Enemy
             MovePillar(left2, right2);
 
         else if (HpNow <= (HpMax/3)*2)
-            MovePillar(left1,right1);*/
+            MovePillar(left1,right1);
     }
 
     [Space]

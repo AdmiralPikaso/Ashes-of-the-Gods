@@ -194,7 +194,7 @@ public class StribogScript : MonoBehaviour
             {
                 if (player.GetComponent<FirstSkill>().In_armor)
                 {
-                    player.GetComponent<FirstSkill>().AttacksCount += 3;
+                    //player.GetComponent<FirstSkill>().AttacksCount += 3;
                     wasInArmor = true;
                 }
                 else player.GetComponent<PlayerStats>().ReduceHp(secondFaseSkillDamage);
@@ -282,7 +282,7 @@ public class StribogScript : MonoBehaviour
         if (Vector2.Distance(player.GetComponent<CapsuleCollider2D>().bounds.center, rb.position) <= attackDistance)
         {
             player.GetComponent<PlayerStats>().ReduceHp(attackDamage);
-            player.GetComponent<FirstSkill>().AttacksCount += 3;
+            //player.GetComponent<FirstSkill>().AttacksCount += 3;
         }
     }
 

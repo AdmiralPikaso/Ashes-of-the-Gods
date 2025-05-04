@@ -14,6 +14,7 @@ public class HintOpenScript : MonoBehaviour
     [SerializeField] private GameObject hintHintOffText;
     [SerializeField] private GameObject hintPanelText;
     
+    
     void Update()
     {
         if (Vector2.Distance(player.GetComponent<CapsuleCollider2D>().bounds.center, transform.position) <= 5f)
@@ -35,15 +36,15 @@ public class HintOpenScript : MonoBehaviour
                 hintHintOffText.SetActive(false);
             }
         }
-        else
-        {
+        //else
+        //{
             
-            hintPanelText.transform.parent.gameObject.SetActive(false);
-            hintPanelText.SetActive(false);
+            //hintPanelText.transform.parent.gameObject.SetActive(false);
+            //hintPanelText.SetActive(false);
 
-            hintHintText.SetActive(false);
-            hintHintOffText.SetActive(false);
-        }
+            //hintHintText.SetActive(false);
+            //hintHintOffText.SetActive(false);
+        //}
 
         
         

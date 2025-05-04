@@ -596,7 +596,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_Name
-      value: Thorn3 (10)
+      value: WallThorn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_TagString
+      value: Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalScale.y
@@ -898,23 +910,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2080600758}
+    m_TransformParent: {fileID: 1284558401}
     m_Modifications:
     - target: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.1034483
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.93
+      value: 222.89227
       objectReference: {fileID: 0}
     - target: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.58
+      value: -54.601
       objectReference: {fileID: 0}
     - target: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.58269405
       objectReference: {fileID: 0}
     - target: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_LocalRotation.w
@@ -946,7 +958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5014817468637909870, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_Name
-      value: Thorn1 (3)
+      value: Thorn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16356,7 +16368,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_Name
-      value: Thorn3 (4)
+      value: WallThorn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_TagString
+      value: Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalScale.y
@@ -16364,7 +16388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.38
+      value: 7.37
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16454,23 +16478,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2080600758}
+    m_TransformParent: {fileID: 1284558401}
     m_Modifications:
     - target: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.1034483
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.94
+      value: 218.90227
       objectReference: {fileID: 0}
     - target: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.57
+      value: -54.586502
       objectReference: {fileID: 0}
     - target: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.58269405
       objectReference: {fileID: 0}
     - target: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_LocalRotation.w
@@ -16502,7 +16526,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5014817468637909870, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_Name
-      value: Thorn1 (2)
+      value: Thorn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16913,12 +16937,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 509383087}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 378.2, y: -70.1, z: 0}
   m_LocalScale: {x: 84.054596, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 510638121}
+  m_Father: {fileID: 1284558401}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &509383089
 BoxCollider2D:
@@ -16997,8 +17021,7 @@ Transform:
   m_Children:
   - {fileID: 1229796451}
   - {fileID: 1032696617}
-  - {fileID: 2080600758}
-  - {fileID: 509383088}
+  - {fileID: 1284558401}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &513521412
@@ -17281,11 +17304,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_Name
-      value: Thorn3
+      value: WallThorn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_TagString
+      value: Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.020000458
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17876,11 +17911,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_Name
-      value: Thorn3 (9)
+      value: WallThorn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_TagString
+      value: Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.05
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17938,7 +17985,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_Name
-      value: Thorn3 (8)
+      value: WallThorn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_TagString
+      value: Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalScale.y
@@ -17946,7 +18005,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.42
+      value: 7.37
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18738,7 +18797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1080274902614433886, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: armorHealth
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1080274902614433886, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: firstSkillFill
@@ -18747,7 +18806,7 @@ PrefabInstance:
     - target: {fileID: 1080274902614433886, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: firstSkillShade
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 954349193}
     - target: {fileID: 1421830942121657589, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: DashTime
       value: 0.25
@@ -18778,6 +18837,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7046270433244800343, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7625057915539701522, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8304520932180182166, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
@@ -19027,6 +19090,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2758350161033701429, guid: 63056f61dbe8dad40a6d76b5fc079f49, type: 3}
   m_PrefabInstance: {fileID: 2048100537}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &954349193 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2905430395955608475, guid: 302fb09957537d74ba2bcebeba5c2512, type: 3}
+  m_PrefabInstance: {fileID: 18301650}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &960913525
 GameObject:
@@ -19278,7 +19346,7 @@ GameObject:
   - component: {fileID: 1032696617}
   m_Layer: 0
   m_Name: Thorns2
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19379,7 +19447,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 510638121}
+    m_TransformParent: {fileID: 1284558401}
     m_Modifications:
     - target: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_LocalScale.y
@@ -19427,26 +19495,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5014817468637909870, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_Name
-      value: Thorn1
+      value: Thorn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1794099623}
-    - targetCorrespondingSourceObject: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 64329776}
-    - targetCorrespondingSourceObject: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1680140531}
-    - targetCorrespondingSourceObject: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 411988173}
-    - targetCorrespondingSourceObject: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1769998962}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
 --- !u!1 &1053498991
@@ -20099,6 +20152,44 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2659ae32ba9e9f545b1c98aeb2354276, type: 3}
+--- !u!1 &1284558400
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1284558401}
+  m_Layer: 0
+  m_Name: Thorns3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1284558401
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284558400}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1794099623}
+  - {fileID: 64329776}
+  - {fileID: 1680140531}
+  - {fileID: 411988173}
+  - {fileID: 1769998962}
+  - {fileID: 2080600758}
+  - {fileID: 509383088}
+  m_Father: {fileID: 510638121}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1297369069 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7264763318710496278, guid: 302fb09957537d74ba2bcebeba5c2512, type: 3}
@@ -84232,7 +84323,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_Name
-      value: Thorn3 (5)
+      value: WallThorn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_TagString
+      value: Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalScale.y
@@ -84294,27 +84397,27 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2080600758}
+    m_TransformParent: {fileID: 1284558401}
     m_Modifications:
     - target: {fileID: 2440422026330929173, guid: 63056f61dbe8dad40a6d76b5fc079f49, type: 3}
       propertyPath: m_Name
-      value: Thorn2 (1)
+      value: Thorn
       objectReference: {fileID: 0}
     - target: {fileID: 2758350161033701429, guid: 63056f61dbe8dad40a6d76b5fc079f49, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.1034483
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 2758350161033701429, guid: 63056f61dbe8dad40a6d76b5fc079f49, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.816208
+      value: 226.77847
       objectReference: {fileID: 0}
     - target: {fileID: 2758350161033701429, guid: 63056f61dbe8dad40a6d76b5fc079f49, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.75
+      value: -54.8475
       objectReference: {fileID: 0}
     - target: {fileID: 2758350161033701429, guid: 63056f61dbe8dad40a6d76b5fc079f49, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.58269405
       objectReference: {fileID: 0}
     - target: {fileID: 2758350161033701429, guid: 63056f61dbe8dad40a6d76b5fc079f49, type: 3}
       propertyPath: m_LocalRotation.w
@@ -84984,7 +85087,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_Name
-      value: Thorn3 (3)
+      value: WallThorn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_TagString
+      value: Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalScale.y
@@ -85406,7 +85521,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1722007042
 Transform:
   m_ObjectHideFlags: 0
@@ -85607,11 +85722,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_Name
-      value: Thorn3 (1)
+      value: WallThorn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_TagString
+      value: Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalPosition.y
@@ -85833,27 +85960,27 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2080600758}
+    m_TransformParent: {fileID: 1284558401}
     m_Modifications:
     - target: {fileID: 2440422026330929173, guid: 63056f61dbe8dad40a6d76b5fc079f49, type: 3}
       propertyPath: m_Name
-      value: Thorn2
+      value: Thorn
       objectReference: {fileID: 0}
     - target: {fileID: 2758350161033701429, guid: 63056f61dbe8dad40a6d76b5fc079f49, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 2758350161033701429, guid: 63056f61dbe8dad40a6d76b5fc079f49, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.8899994
+      value: 206.85226
       objectReference: {fileID: 0}
     - target: {fileID: 2758350161033701429, guid: 63056f61dbe8dad40a6d76b5fc079f49, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.14000003
+      value: -51.063
       objectReference: {fileID: 0}
     - target: {fileID: 2758350161033701429, guid: 63056f61dbe8dad40a6d76b5fc079f49, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.58269405
       objectReference: {fileID: 0}
     - target: {fileID: 2758350161033701429, guid: 63056f61dbe8dad40a6d76b5fc079f49, type: 3}
       propertyPath: m_LocalRotation.w
@@ -85894,23 +86021,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2080600758}
+    m_TransformParent: {fileID: 1284558401}
     m_Modifications:
     - target: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.650009
+      value: 210.61227
       objectReference: {fileID: 0}
     - target: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.019999864
+      value: -50.831
       objectReference: {fileID: 0}
     - target: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.58269405
       objectReference: {fileID: 0}
     - target: {fileID: 2818675467043868598, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_LocalRotation.w
@@ -85942,7 +86069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5014817468637909870, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_Name
-      value: Thorn1 (1)
+      value: Thorn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -86108,7 +86235,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_Name
-      value: Thorn3 (6)
+      value: WallThorn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_TagString
+      value: Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalScale.y
@@ -86116,7 +86255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.41
+      value: 7.37
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalPosition.y
@@ -86174,11 +86313,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_Name
-      value: Thorn3 (2)
+      value: WallThorn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_TagString
+      value: Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.04
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalPosition.y
@@ -86367,7 +86518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5014817468637909870, guid: a2108a60e062f7f48bf8d29e172a7b35, type: 3}
       propertyPath: m_Name
-      value: Thorn1
+      value: Thorn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -86549,7 +86700,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_Name
-      value: Thorn3 (7)
+      value: WallThorn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_TagString
+      value: Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725005783874219960, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalScale.y
@@ -86557,7 +86720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.41
+      value: 7.37
       objectReference: {fileID: 0}
     - target: {fileID: 7895675847722738290, guid: 91fd11cfb4ea41c429f2b94c37753c00, type: 3}
       propertyPath: m_LocalPosition.y
@@ -86677,7 +86840,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2440422026330929173, guid: 63056f61dbe8dad40a6d76b5fc079f49, type: 3}
       propertyPath: m_Name
-      value: Thorn2 (1)
+      value: Thorn
       objectReference: {fileID: 0}
     - target: {fileID: 2758350161033701429, guid: 63056f61dbe8dad40a6d76b5fc079f49, type: 3}
       propertyPath: m_LocalPosition.x
@@ -86913,7 +87076,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2440422026330929173, guid: 63056f61dbe8dad40a6d76b5fc079f49, type: 3}
       propertyPath: m_Name
-      value: Thorn2
+      value: Thorn
       objectReference: {fileID: 0}
     - target: {fileID: 2758350161033701429, guid: 63056f61dbe8dad40a6d76b5fc079f49, type: 3}
       propertyPath: m_LocalPosition.x

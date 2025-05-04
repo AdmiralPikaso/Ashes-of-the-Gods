@@ -20,7 +20,8 @@ public class SaveManagerScript : MonoBehaviour
    // private Transform MountainsPos;
     private void Awake()
     {
-        SkyPos = GameObject.FindGameObjectWithTag("Sky").transform;
+        //if (!(PlayerPrefs.GetInt("LevelNumber")  == 3))
+            SkyPos = GameObject.FindGameObjectWithTag("Sky").transform;
        // MountainsPos = GameObject.FindGameObjectWithTag("Mountains").transform;
         
     }
