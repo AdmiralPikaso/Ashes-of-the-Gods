@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Sounds : MonoBehaviour
 {
@@ -10,8 +11,14 @@ public class Sounds : MonoBehaviour
 
     public static void Sound(AudioClip clip, AudioSource audioSource, float volume, float minPitch, float maxPitch)
     {
+        GameObject slider = GameObject.Find("VolumeSlider");
+        float sliderValue;
+        if (slider != null)
+            sliderValue = slider.GetComponent<Slider>().value;
+        else sliderValue = 1f;
+        float newVolume = volume * sliderValue; 
         float pitch = Random.Range(minPitch, maxPitch);
-        ConfigureAudioSource(audioSource, volume, pitch);
+        ConfigureAudioSource(audioSource, newVolume, pitch);
         audioSource.PlayOneShot(clip);
     }
 

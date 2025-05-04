@@ -15,34 +15,27 @@ public class VolumeSliderScript : MonoBehaviour
     
 
     private AudioSourceData[] audioSources;
-    void Awake()
+    void Start()
     {
-        if (!flag)
-        {
-            AudioSource[] sources = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
-            audioSources = new AudioSourceData[sources.Length];
-            for (int i = 0; i < sources.Length; i++)
-            {
-                Debug.Log(sources[i].volume);
-                audioSources[i] = new AudioSourceData
-                {
-                    
-                    source = sources[i],
-                    initialVolume = sources[i].volume
-                };
-            }
-
-            
-            Debug.Log(audioSources.Length);
-            InitializeSlider();
-            flag = true;
-        }
+        
+        InitializeSlider();
     }
 
-    private bool flag = false;
+    
     private void Update()
     {
-       
+        AudioSource[] sources = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+        audioSources = new AudioSourceData[sources.Length];
+        for (int i = 0; i < sources.Length; i++)
+        {
+            Debug.Log(sources[i].volume);
+            audioSources[i] = new AudioSourceData
+            {
+
+                source = sources[i],
+                initialVolume = sources[i].volume
+            };
+        }
     }
 
 
