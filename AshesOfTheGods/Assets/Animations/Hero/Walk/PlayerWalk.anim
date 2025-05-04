@@ -185,7 +185,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.38
+  - time: 0.36
     functionName: WalkSounds
     data: 
     objectReferenceParameter: {fileID: 0}

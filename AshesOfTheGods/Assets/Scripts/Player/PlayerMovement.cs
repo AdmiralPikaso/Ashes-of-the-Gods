@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -267,10 +268,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void WalkSounds()
     {
-        if ((on_ground || on_platform || on_moving_platform) && moveDirection != 0 && walkingSound != null)
-            {
-                Sounds.Sound(walkingSound, audioSource, volume, minPitch, maxPitch);
-            }
+        if ((on_ground || on_platform || on_moving_platform) && moveDirection != 0 && walkingSound != null & canPlayStepSound)
+        {
+            Sounds.Sound(walkingSound, audioSource, volume, minPitch, maxPitch);
+            canPlayStepSound = false;
+        }
     }
 
     private SpriteRenderer spriteRenderer;
@@ -279,6 +281,7 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         audioSource = gameObject.AddComponent<AudioSource>();
+        StartCoroutine(WaitStepSound());
     }
 
     void Update()
@@ -298,6 +301,21 @@ public class PlayerMovement : MonoBehaviour
         {
             MovementLogic(moveDirection);
             DastLogic(moveDirection);
+        }
+    }
+
+    [SerializeField] private float StepSoundDelay = 0.15f;
+    private bool canPlayStepSound;
+    private IEnumerator WaitStepSound()
+    {
+        while (true)
+        {
+            if (!canPlayStepSound)
+            {
+                yield return new WaitForSeconds(StepSoundDelay);
+                canPlayStepSound = true;
+            }
+            yield return new WaitForFixedUpdate();
         }
     }
 }

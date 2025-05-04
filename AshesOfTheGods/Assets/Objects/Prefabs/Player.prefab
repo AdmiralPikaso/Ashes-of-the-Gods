@@ -52,6 +52,7 @@ GameObject:
   - component: {fileID: 1421830942121657589}
   - component: {fileID: 5569446548572771476}
   - component: {fileID: 3661215739747115609}
+  - component: {fileID: 5287131323156095293}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -216,16 +217,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   airSpeedMultiplier: 0.9
-  walkingSound: {fileID: 8300000, guid: dbc445848db16094a92476032b776ead, type: 3}
-  minPitch: 1
+  walkingSound: {fileID: 8300000, guid: 9184439f17724dc4d8c4586ba6bd640e, type: 3}
+  minPitch: 0.9
   maxPitch: 1.3
-  volume: 0
+  volume: 0.1
   canMoveInAttack: 1
   canMoveInRegularAttackArmor: 1
   canMoveInHeavyAttackArmor: 1
   Death: 0
   direction: {x: 0, y: 0}
   jumpForce: 40
+  StepSoundDelay: 0.1
 --- !u!114 &1080274902614433886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,3 +376,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f834783132ea514db3f75ffcf4405f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!81 &5287131323156095293
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8334443902525607045}
+  m_Enabled: 1
