@@ -35,17 +35,22 @@ public class PerunScript : MonoBehaviour
     private Vector3 attackMove;
     private bool lightningSkill = true;
     public bool waitHand { get; set; } = false;
-  
+    [SerializeField] private GameObject hpBar;  
+    
     void FixedUpdate()
     {
         //Debug.Log(Mathf.Abs(melleHand.transform.position.x - player.transform.position.x) <= 1f & !attacked);
         //Debug.Log(Mathf.Abs(melleHand.transform.position.x - player.transform.position.x) <= 1f & !attacked);
         if (!active & player.transform.position.x > startTarget.transform.position.x & !gameObject.GetComponent<Enemy>().isDead)
+        {
             active = true;
-
+            hpBar.SetActive(true);
+        }
         if (gameObject.GetComponent<Enemy>().isDead)
+        {
             active = false;
-
+            hpBar.SetActive(false);
+        }
         if (active)
         {
             if (rangeHand.GetComponent<PerunRangeHandScript>().Attack == false)
