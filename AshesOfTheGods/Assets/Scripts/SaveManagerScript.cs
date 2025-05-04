@@ -28,7 +28,7 @@ public class SaveManagerScript : MonoBehaviour
     private void Start()
     {
         
-        Debug.Log($"{PlayerPrefs.HasKey(POS_X_KEY) & PlayerPrefs.HasKey(POS_Y_KEY) & PlayerPrefs.HasKey(POS_Z_KEY)}");
+        //Debug.Log($"{PlayerPrefs.HasKey(POS_X_KEY) & PlayerPrefs.HasKey(POS_Y_KEY) & PlayerPrefs.HasKey(POS_Z_KEY)}");
         if (PlayerPrefs.HasKey(POS_X_KEY) & PlayerPrefs.HasKey(POS_Y_KEY) & PlayerPrefs.HasKey(POS_Z_KEY) & PlayerPrefs.HasKey(Sky_X_KEY) & PlayerPrefs.HasKey(Sky_Y_KEY) & PlayerPrefs.HasKey(Sky_Z_KEY))
         {
             transform.position = LoadPlayerPosition();
@@ -39,7 +39,7 @@ public class SaveManagerScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Тригернуло");
+        //Debug.Log("Тригернуло");
         if (collision.gameObject.CompareTag("SavePoint1") && !IsSaved1)
         {
             SavePlayerPosition(transform.position, SkyPos.position);

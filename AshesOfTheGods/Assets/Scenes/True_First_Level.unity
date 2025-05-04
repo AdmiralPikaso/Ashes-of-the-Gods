@@ -359,6 +359,10 @@ PrefabInstance:
       propertyPath: m_FillAmount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3224586857146645941, guid: 302fb09957537d74ba2bcebeba5c2512, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3662581314764085191, guid: 302fb09957537d74ba2bcebeba5c2512, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -18830,6 +18834,10 @@ PrefabInstance:
     - target: {fileID: 1729840789426286850, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5097965423050936035, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5534239254225497599, guid: ac0f89a62c23f2742817e15470e823b2, type: 3}
       propertyPath: m_SortingOrder
@@ -85521,7 +85529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1722007042
 Transform:
   m_ObjectHideFlags: 0

@@ -26,6 +26,7 @@ public class PerunBodyMoveScript : MonoBehaviour
     [SerializeField] private GameObject coat;
     private void FixedUpdate()
     {
+        
         //Body movement behind meleeHand
         positionDelta = meleeHand.transform.position - lastMHposition;
         MeleeHandMove();
@@ -49,17 +50,21 @@ public class PerunBodyMoveScript : MonoBehaviour
 
     }
 
+    [SerializeField] private GameObject rightWall;
+    [SerializeField] private GameObject leftWall;
     private void BodyMove(GameObject slave)
     {
         Vector3 newPos = slave.transform.position + positionDelta;
         newPos.y = slave.transform.position.y;
         newPos.z = slave.transform.position.z;
         slave.transform.position = Vector3.MoveTowards(slave.transform.position, newPos, Time.fixedDeltaTime * speed);
+        
     }
 
     private void MeleeHandMove()
-    { 
-        Vector3 newPos = meleeArm1.transform.position + positionDelta;
-        meleeArm1.transform.position = Vector3.MoveTowards(meleeArm1.transform.position, newPos, Time.fixedDeltaTime * speed);
+    {
+       Vector3 newPos = meleeArm1.transform.position + positionDelta;
+       meleeArm1.transform.position = Vector3.MoveTowards(meleeArm1.transform.position, newPos, Time.fixedDeltaTime * speed);
+        
     }
 }
