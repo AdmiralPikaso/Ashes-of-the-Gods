@@ -15,10 +15,16 @@ public class StribogScript : MonoBehaviour
     [SerializeField] protected float minPitch;
     [SerializeField] protected float maxPitch;
     [SerializeField] protected float volume;
+    [SerializeField] protected AudioClip attackStribogSound;
+    public AudioSource attackAudioSource;
+    [SerializeField] protected float attackVolume;
+    [SerializeField] protected AudioClip airBlastSound;
+    [SerializeField] protected float airBlastVolume;
 
     void Start()
     {
-        audioSource = gameObject.AddComponent<AudioSource>();  
+        audioSource = gameObject.AddComponent<AudioSource>();
+        attackAudioSource = gameObject.AddComponent<AudioSource>(); 
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
@@ -208,6 +214,7 @@ public class StribogScript : MonoBehaviour
 
     private void AirBlastSkill()
     {
+        Sounds.Sound(airBlastSound, attackAudioSource, airBlastVolume, minPitch, maxPitch);
         GameObject blast = Instantiate(airBlast, transform.position, Quaternion.identity);
         AirBlastSeries = false;
         airBlastCount++;
@@ -279,6 +286,7 @@ public class StribogScript : MonoBehaviour
 
     private void Attack()
     {
+        Sounds.Sound(attackStribogSound, attackAudioSource, attackVolume, minPitch, maxPitch);
         waitAfterAttack = true;
         //waitwaitBeforeAttack = false;
         if (Vector2.Distance(player.GetComponent<CapsuleCollider2D>().bounds.center, rb.position) <= attackDistance)

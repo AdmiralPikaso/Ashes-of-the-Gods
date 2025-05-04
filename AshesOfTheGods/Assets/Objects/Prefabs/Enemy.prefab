@@ -394,7 +394,9 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: 68a93674a2227d441a688bade00e6d07, type: 3}
   minPitch: 1
   maxPitch: 1.4
-  volume: 20
+  volume: 1
+  stepSound: {fileID: 8300000, guid: 2b719ff917355af4b8bb8f9487e60b9f, type: 3}
+  vlm: 0.2
   firstGuardedPoint: {fileID: 0}
   secondGuardedPoint: {fileID: 0}
   distance: 15

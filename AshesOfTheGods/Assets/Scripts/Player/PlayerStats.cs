@@ -4,14 +4,17 @@ using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
-    [Header("Hit Sounds")]
-    [SerializeField] private AudioClip[] hitSounds;
+    [SerializeField] protected AudioClip healSound;
+    protected AudioSource audioSource;
+    [SerializeField] protected float vlm;
+    
+    [Header("Damage Sounds")]
+    [SerializeField] private AudioClip[] damageSounds;
     [SerializeField] private float hitSoundVolume;
-    [SerializeField] private float volume;
     [SerializeField] protected float minPitch;
     [SerializeField] protected float maxPitch;
-    [SerializeField] protected AudioClip armorDamageSound;
-    private AudioSource audioSource;
+    [SerializeField] private AudioClip[] armorSounds;
+    [SerializeField] private float armorVolume;
     private Animator animator;
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private float hp;
@@ -42,7 +45,7 @@ public class PlayerStats : MonoBehaviour
             {
                 if (this.GetComponent<FirstSkill>().In_armor)
                 {
-                    Sounds.Sound(armorDamageSound, audioSource, volume, minPitch, maxPitch);
+                    PlayRandomHitArmorSound();
                     this.GetComponent<FirstSkill>().AttacksCount += 1;
                 }
                 else
@@ -60,14 +63,24 @@ public class PlayerStats : MonoBehaviour
 
     private void PlayRandomHitSound()
     {
-        int randomIndex = Random.Range(0, hitSounds.Length);
+        int randomIndex = Random.Range(0, damageSounds.Length);
         if (randomIndex == lastSoundIndex)
-            randomIndex = Random.Range(0, hitSounds.Length);
+            randomIndex = Random.Range(0, damageSounds.Length);
         else
-            Sounds.StaticSound(hitSounds[randomIndex], audioSource, volume);
+            Sounds.StaticSound(damageSounds[randomIndex], audioSource, hitSoundVolume);
         lastSoundIndex = randomIndex;
-        
     }
+
+    private void PlayRandomHitArmorSound()
+    {
+        int randomIndex = Random.Range(0, armorSounds.Length);
+        if (randomIndex == lastSoundIndex)
+            randomIndex = Random.Range(0, armorSounds.Length);
+        else
+            Sounds.StaticSound(armorSounds[randomIndex], audioSource, armorVolume);
+        lastSoundIndex = randomIndex;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Death"))
@@ -80,6 +93,7 @@ public class PlayerStats : MonoBehaviour
 
     public void Heal(float heal)
     {
+        Sounds.StaticSound(healSound, audioSource, vlm);
         HpNow += heal;
         if (HpNow > 100)
             HpNow = 100;

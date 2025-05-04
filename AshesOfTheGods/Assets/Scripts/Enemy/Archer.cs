@@ -5,10 +5,12 @@ public class Archer : MonoBehaviour
 {
     [SerializeField] protected AudioClip attackSound_1;
     [SerializeField] protected AudioClip attackSound_2;
-    protected AudioSource audioSource;
+    [SerializeField] protected float volume;
     [SerializeField] protected float minPitch;
     [SerializeField] protected float maxPitch;
-    [SerializeField] protected float volume;
+    protected AudioSource audioSource;
+    [SerializeField] protected AudioClip stepSound;
+    [SerializeField] protected float vlm;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private GameObject player;
@@ -138,6 +140,10 @@ public class Archer : MonoBehaviour
     private void AttackSound_1()
     {
         Sounds.Sound(attackSound_1, audioSource, volume, minPitch, maxPitch);
+    }
+    private void StepSound()
+    {
+        Sounds.Sound(stepSound, audioSource, vlm, minPitch, maxPitch);
     }
 
     private bool guardModeRightMove = false;

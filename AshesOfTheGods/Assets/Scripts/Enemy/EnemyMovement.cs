@@ -5,10 +5,12 @@ public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] protected AudioClip angryEnemy;
     [SerializeField] protected AudioClip attackSound;
-    protected AudioSource audioSource;
     [SerializeField] protected float minPitch;
     [SerializeField] protected float maxPitch;
     [SerializeField] protected float volume;
+    [SerializeField] protected AudioClip stepSound;
+    [SerializeField] protected float vlm;
+    protected AudioSource audioSource;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
@@ -252,6 +254,10 @@ public class EnemyMovement : MonoBehaviour
     private void AttackSound()
     {
         Sounds.Sound(attackSound, audioSource, volume, minPitch, maxPitch);
+    }
+    private void StepSound()
+    {
+        Sounds.Sound(stepSound, audioSource, vlm, minPitch, maxPitch);
     }
     
     private void EnemyAtack()
